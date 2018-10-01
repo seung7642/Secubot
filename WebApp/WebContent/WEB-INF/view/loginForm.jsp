@@ -119,7 +119,7 @@
 <script src="js/pace.min.js"></script>
 <script src="js/wow.min.js"></script>
 <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-<script src="js/loginForm.js"></script>
+<!-- <script src="js/loginForm.js"></script> -->
 
 
 <!--common script for all pages-->

@@ -17,7 +17,7 @@ import mvc.command.CommandHandler;
 public class JoinHandler implements CommandHandler {
 	
 	private static final String FORM_VIEW = "/WEB-INF/view/joinForm.jsp";
-	private JoinService joinService = new JoinService();
+	private JoinService joinService = new JoinService(); // TODO: Dependency Injection
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
