@@ -167,14 +167,14 @@ aside.left-panel.lg + .content {
 /***** 2.1 LOGO *****/
 .logo {
   text-align: center;
-  background-color: #ffffff;
   padding: 13px 10px;
+  background-color: #2f353f;
 }
 
 .logo-expanded {
   font-size: 20px;
   letter-spacing: .05em;
-  color: #2f353f !important;
+  color: #ffffff !important;
   font-weight: 700;
   text-transform: uppercase;
 }

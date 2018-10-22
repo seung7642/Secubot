@@ -20,3 +20,10 @@ create table siem.log (
 	name varchar(20) not null,
 	log datetime not null
 ) engine=InnoDB default character set=utf8;
+
+create table siem.RuleResult (
+	netType varchar(15),
+	inTime datetime,
+	src_ip varchar(16),
+	dst_ip varchar(16)
+) engine=InnoDB default character set=utf8;

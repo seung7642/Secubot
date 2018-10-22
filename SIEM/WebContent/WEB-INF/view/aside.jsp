@@ -7,7 +7,7 @@
 	<!-- brand -->
 	<div class="logo">
 		<a href="index.html" class="logo-expanded">
-			<i><img src="img/logo.png"></i> <span class="nav-label">SECUBOT</span>
+			<i><img src="img/logo_0_0.png"></i> <span class="nav-label">SECUBOT</span>
 		</a>
 	</div>
 	<!-- / brand -->

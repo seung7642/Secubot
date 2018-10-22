@@ -129,30 +129,25 @@
 							<div id="portlet3" class="panel-collapse collapse in">
 								<div class="portlet-body">
 									<table class="table table-condensed table-hover table-bordered">
-										<tr>
-											<th>ip</th>
-											<th>건수</th>
-										</tr>
-										<tr>
-											<td>123.123.123.123</td>
-											<td>333건</td>
-										</tr>
-										<tr>
-											<td>23.23.23.23</td>
-											<td>100건</td>
-										</tr>
-										<tr>
-											<td>8.8.8.8</td>
-											<td>78건</td>
-										</tr>
-										<tr>
-											<td>192.168.1.6</td>
-											<td>1234건</td>
-										</tr>
-										<tr>
-											<td>0.0.0.0</td>
-											<td>6건</td>
-										</tr>
+										<thead>
+											<tr>
+												<th>ip</th>
+												<th>건수</th>
+											</tr>
+										</thead>
+										<c:if test="${networkServiceModel.count }">
+											<tr>
+												<td>없음</td>
+											</tr>
+										</c:if>
+										<tbody>
+											<c:forEach var="netModel" items="${networkServiceModel.networkList }">
+												<tr>
+													<td>${netModel.src_ip }</td>
+													<td>?</td>
+												</tr>
+											</c:forEach>
+										</tbody>
 									</table>
 								</div>
 							</div>
@@ -207,13 +202,13 @@
 			</div>
 			<!-- end row -->
 
-			<button id="ajaxButton">ajax</button>
-			<div class="ajaxTest">${userCount}</div>
-
+			<button id="test">test</button>
+			
 		</div>
 		<!-- Page Content Ends -->
 		<!-- ================== -->
 
+		
 		<!-- Footer Start -->
 		<footer class="footer"> 2018 © SECUBOT - Adaptive SIEM &
 			Security Configuration Management. </footer>
@@ -255,25 +250,24 @@
 
 	<script>
 		$(document).ready(function() {
-			$('#ajaxButton').bind("click", function() {
+			$('#test').bind("click", function() {
 				$.ajax({
-					url : 'user',
+					url : 'network',
 					type : 'GET',
 					dataType : 'json',
 					success : function(responseData) {
-						$("#ajax").remove();
 						var data = JSON.parse(responseData);
 						if (!data) {
 							alert("회원 수는 0명입니다.");
 							return false;
 						}
-
+	
 						console.log("회원 수: " + responseData);
 						console.log(${userCount});
 					},
 					error : function(e) {
-						console.log("Error: " + e);
-						console.log(${userCount});
+						console.log("Test Error");
+						console.log(${networkServiceModel.networkList.srcIP});
 					}
 				});
 			});
