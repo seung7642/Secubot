@@ -13,17 +13,24 @@ import com.secubot.jdbc.connection.ConnectionProvider;
 public class NetworkService {
 	
 	private NetworkDao networkDao = new NetworkDao();
-	private NetworkServiceModel networkServiceModel = null;
 	private List<NetworkModel> networkList = new ArrayList<>();
 	private int count;
 	
-	public NetworkServiceModel getNetworkModelList() {
+	public List<NetworkModel> getNetworkModelList() {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			networkList = networkDao.select(conn);
-			count = networkDao.selectCount(conn);
-			networkServiceModel = new NetworkServiceModel(networkList, count);
 			
-			return networkServiceModel;
+			return networkList;
+		} catch(SQLException e) {
+			throw new RuntimeException();
+		}
+	}
+	
+	public int totalCount() {
+		try (Connection conn = ConnectionProvider.getConnection()){
+			count = networkDao.selectCount(conn);
+			
+			return count;
 		} catch(SQLException e) {
 			throw new RuntimeException();
 		}

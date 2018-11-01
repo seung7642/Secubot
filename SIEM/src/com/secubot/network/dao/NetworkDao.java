@@ -21,7 +21,7 @@ public class NetworkDao {
 		
 		try {
 			pstmt = conn.prepareStatement
-					("select * from siem.RuleResult");
+					("select * from siem.ruleresult");
 			rs = pstmt.executeQuery();
 			
 			List<NetworkModel> netList = new ArrayList<>();
@@ -55,10 +55,14 @@ public class NetworkDao {
 		
 		try {
 			pstmt = conn.prepareStatement
-					("select count(*) as count from siem.RuleResult");
+					("select count(*) as count from siem.ruleresult");
+			int countNum = 0;
 			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				countNum = rs.getInt("count");
+			}
 			
-			return rs.getInt("count");
+			return countNum;
 		} finally {
 			JdbcUtil.close(pstmt);
 			JdbcUtil.close(rs);

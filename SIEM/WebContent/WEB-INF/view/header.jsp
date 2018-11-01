@@ -108,9 +108,9 @@
 			<!-- user login dropdown start-->
 			<li class="dropdown text-center"><a data-toggle="dropdown"
 				class="dropdown-toggle" href="#"> <img alt=""
-					src="img/SecuBot_logo_min.png"
+					src="img/logo.png"
 					class="img-circle profile-img thumb-sm"> <span
-					class="username">${authUser.name} 님</span> <span class="caret"></span>
+					class="username">${authUser.name} 님</span>
 			</a>
 				<ul class="dropdown-menu extended pro-menu fadeInUp animated"
 					tabindex="5003" style="overflow: hidden; outline: none;">

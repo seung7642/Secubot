@@ -3,8 +3,11 @@ package com.secubot.network.command;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,23 +20,25 @@ import com.secubot.network.service.NetworkService;
 @WebServlet("/network")
 public class NetworkHandler extends HttpServlet {
 
-	private NetworkService networkService = null;
+	private NetworkService networkService = new NetworkService();
+	private Gson gson = new Gson();
+	private List<NetworkModel> networkList = new ArrayList<>();
 	
 	public void init() throws ServletException {
-		
 	}
 	
-	public void doGET(HttpServletRequest req, HttpServletResponse res)
+	public void doGet(HttpServletRequest req, HttpServletResponse res)
 	throws ServletException, IOException {
-		networkService = new NetworkService();
-		NetworkServiceModel networkServiceModel = new NetworkServiceModel();
-		networkServiceModel = networkService.getNetworkModelList();
+		networkList = networkService.getNetworkModelList();
+		String listToJson = gson.toJson(networkList);
 		
-		req.setAttribute("networkServiceModel", networkServiceModel);
+		res.setContentType("application/json");
+		res.getWriter().write(listToJson);
+		
+		req.getSession().setAttribute("networkList", networkList);
 	}
 	
-	public void doPOST(HttpServletRequest req, HttpServletResponse res)
+	public void doPost(HttpServletRequest req, HttpServletResponse res)
 	throws ServletException, IOException {
-		
 	}
 }

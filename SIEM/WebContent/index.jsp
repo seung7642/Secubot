@@ -3,6 +3,9 @@
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
 <%@ page import="java.net.URLEncoder"%>
 <%@ page import="java.net.URLDecoder"%>
+<%@ page import="java.util.List"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="com.secubot.network.model.NetworkModel"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 
 <!DOCTYPE html>
@@ -31,7 +34,7 @@
 <link href="assets/ionicon/css/ionicons.min.css" rel="stylesheet" />
 
 <!-- Custom styles for this template -->
-<link href="css/style_dashboard.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 <link href="css/helper.css" rel="stylesheet">
 
 </head>
@@ -71,7 +74,9 @@
 									<div class="">
 										<h4>전체: 0,000건</h4>
 									</div>
-									<div class="">- 네트워크: 000건</div>
+									<div class="">
+										- 네트워크: <span id=listJson></span>건
+									</div>
 									<div class="">- 악성코드: 000건</div>
 									<div class="">- 위협차단: 000건</div>
 								</div>
@@ -120,6 +125,10 @@
 						</div>
 					</div>
 
+					<%
+						List<NetworkModel> ttt;
+						ttt = (List<NetworkModel>) session.getAttribute("networkList");
+					%>
 					<div class="col-lg-4">
 						<div class="portlet">
 							<!-- /primary heading -->
@@ -135,16 +144,10 @@
 												<th>건수</th>
 											</tr>
 										</thead>
-										<c:if test="${networkServiceModel.count }">
-											<tr>
-												<td>없음</td>
-											</tr>
-										</c:if>
 										<tbody>
-											<c:forEach var="netModel" items="${networkServiceModel.networkList }">
+											<c:forEach var="netModel" items="${networkList }">
 												<tr>
-													<td>${netModel.src_ip }</td>
-													<td>?</td>
+													<td>${netModel.srcIP }</td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -163,30 +166,17 @@
 							<div id="portlet4" class="panel-collapse collapse in">
 								<div class="portlet-body">
 									<table class="table table-condensed table-hover table-bordered">
-										<tr>
+										<thead>
 											<th>ip</th>
 											<th>건수</th>
-										</tr>
-										<tr>
-											<td>123.123.123.123</td>
-											<td>333건</td>
-										</tr>
-										<tr>
-											<td>23.23.23.23</td>
-											<td>100건</td>
-										</tr>
-										<tr>
-											<td>8.8.8.8</td>
-											<td>78건</td>
-										</tr>
-										<tr>
-											<td>192.168.1.6</td>
-											<td>1234건</td>
-										</tr>
-										<tr>
-											<td>0.0.0.0</td>
-											<td>6건</td>
-										</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="netModel" items="${networkList }">
+												<tr>
+													<td>${netModel.dstIP }</td>
+												</tr>
+											</c:forEach>
+										</tbody>
 									</table>
 								</div>
 							</div>
@@ -202,13 +192,13 @@
 			</div>
 			<!-- end row -->
 
-			<button id="test">test</button>
-			
+			<div class="box"></div>
+
 		</div>
 		<!-- Page Content Ends -->
 		<!-- ================== -->
 
-		
+
 		<!-- Footer Start -->
 		<footer class="footer"> 2018 © SECUBOT - Adaptive SIEM &
 			Security Configuration Management. </footer>
@@ -242,6 +232,9 @@
 	<script src="assets/flot-chart/jquery.flot.crosshair.js"></script>
 	<script src="assets/flot-chart/jquery.flot.init.js"></script>
 
+	<!-- Counter-up -->
+	<script src="js/waypoints.min.js" type="text/javascript"></script>
+	<script src="js/jquery.counterup.min.js" type="text/javascript"></script>
 
 	<script src="js/jquery.app.js"></script>
 
@@ -249,29 +242,40 @@
 	<script src="js/jquery.dashboard.js"></script>
 
 	<script>
+		/*
 		$(document).ready(function() {
-			$('#test').bind("click", function() {
 				$.ajax({
 					url : 'network',
 					type : 'GET',
-					dataType : 'json',
 					success : function(responseData) {
-						var data = JSON.parse(responseData);
-						if (!data) {
-							alert("회원 수는 0명입니다.");
-							return false;
-						}
-	
-						console.log("회원 수: " + responseData);
-						console.log(${userCount});
+						// var data = JSON.stringify(responseData);
+						console.log("Success");
+						console.log(responseData);
 					},
 					error : function(e) {
-						console.log("Test Error");
-						console.log(${networkServiceModel.networkList.srcIP});
+						console.log("Nothing");
 					}
 				});
-			});
 		});
+		*/
+		
+		function getNetworkData() {
+			var xhr = XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (this.readyState == 4 && this.readyState == 200) {
+					// TODO: 받아온 데이터 처리할 구문
+					// var obj = JSON.parse(this.responseText);
+				}
+			};
+			
+			xhr.open("GET", "network", true);
+			xhr.send();
+			window.setTimeout("getNetworkData();", 3000);
+		}
+		
+		window.onload = function() {
+			getNetworkData();
+		}
 	</script>
 
 </body>
