@@ -1,0 +1,60 @@
+svg {
+	width: 100%;
+	height: 500px;
+	border: 1px solid gray;
+}
+
+line {
+	shape-rendering: crispEdges;
+	stroke: #000000;
+}
+
+line.minor {
+	stroke: #777777;
+	stroke-width: 2.2;
+}
+
+path.domain {
+	fill: none;
+	stroke: black;
+}
+
+circle {
+	cursor: pointer;
+	fill: none;
+	stroke: #000;
+	stroke-width: 2px;
+}
+
+div#orthographic circle {
+  fill: none;
+  stroke: #000;
+  stroke-width: 2px;
+}
+
+path {
+  fill: none;
+  stroke: #000;
+}
+
+#svgModal {
+	/* position: fixed; */
+	left: 150px;
+	top: 20px
+	z-index: 1;
+	background: white;
+	border: 1px solid black;
+	box-shadow: 10px 10px 5px #888888;
+}
+
+#svgModal tr {
+	border: 1px gray solid;
+}
+
+#svgModal td {
+	font-size: 10px;
+}
+
+#svgModal td.data {
+	font-weight: 900;
+}
