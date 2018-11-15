@@ -46,7 +46,7 @@
 	<%
 		HttpSession httpSession = request.getSession(false);
 		if (httpSession == null || httpSession.getAttribute("authUser") == null) {
-			response.sendRedirect("/SIEM/login.do");
+			response.sendRedirect("/Secubot/login.do");
 		}
 	%>
 
@@ -97,7 +97,7 @@
 													for="someSwitchOptionPrimary" class="label-primary"></label>
 											</div>
 										</td>
-										<td><a href="/SIEM/agentInformation.do">192.168.120.15</a></td>
+										<td><a href="/Secubot/agentInformation.do">192.168.120.15</a></td>
 										<td>00:00:00:00:00:00</td>
 										<td>TEST-PC</td>
 										<td>직원그룹</td>

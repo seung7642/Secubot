@@ -70,7 +70,7 @@ div#search {
 	<%
 		HttpSession httpSession = request.getSession(false);
 		if (httpSession == null || httpSession.getAttribute("authUser") == null) {
-			response.sendRedirect("/SIEM/login.do");
+			response.sendRedirect("/Secubot/login.do");
 		}
 	%>
 

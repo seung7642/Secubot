@@ -6,7 +6,7 @@
 
 	<!-- brand -->
 	<div class="logo">
-		<a href="index.html" class="logo-expanded">
+		<a href="index.jsp" class="logo-expanded">
 			<i><img src="img/logo_0_0.png"></i> <span class="nav-label">SECUBOT</span>
 		</a>
 	</div>
@@ -22,19 +22,19 @@
 					class="ion-eye"></i> <span class="nav-label">Agent</span><span
 					class="badge bg-success">New</span></a>
 				<ul class="list-unstyled">
-					<li><a href="/SIEM/agentMain.do">Main</a></li>
+					<li><a href="/Secubot/agentMain.do">Main</a></li>
 				</ul>
 			</li>
 			<li class="has-submenu"><a href="network.jsp"><i
 					class="ion-network"></i> <span class="nav-label">Network</span> <!--<span class="badge bg-success">New</span>--></a>
 				<ul class="list-unstyled">
-					<li><a href="/SIEM/network.do">Main</a></li>
+					<li><a href="/Secubot/network.do">Main</a></li>
 				</ul>
 			</li>
 			<li class="has-submenu"><a href="#"><i
 					class="ion-clipboard"></i> <span class="nav-label">Policy</span></a>
 				<ul class="list-unstyled">
-					<li><a href="/SIEM/policy.do">Main</a></li>
+					<li><a href="/Secubot/policy.do">Main</a></li>
 				</ul>
 			</li>
 			<li class="has-submenu"><a href="#"><i class="ion-podium"></i>

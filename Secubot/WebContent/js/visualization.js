@@ -41,20 +41,16 @@ function loadScript() {
 		
 		function evtClick(d) {
 			// TODO: circle를 클릭했을 때 모달이 뜨는 로직
-			console.log("Click confirm");
 			d3.select(this).attr("data-toggle", "modal").attr("data-target", "#myModal");
 		}
 		
 		function evtOver(d) {
-			console.log("over");
-			console.log(this);
 			d3.select(this)
 			.transition().duration(500).attr("r", 10);
 		}
 		
 		function evtOut(d) {
 			// TODO: mouseout 이벤트 로직
-			console.log("out");
 			d3.select(this)
 			.transition().duration(500).attr("r", 5);
 		}

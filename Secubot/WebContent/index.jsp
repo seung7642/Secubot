@@ -67,7 +67,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-lg-12">
 					<div class="portlet">
 						<!-- /primary heading -->
 						<div class="portlet-heading">
@@ -80,103 +80,7 @@
 						</div>
 					</div>
 				</div>
-
-				<div class="col-lg-6">
-					<div class="portlet">
-						<!-- /primary heading -->
-						<div class="portlet-heading">
-							<h3 class="portlet-title text-dark">이상 행위 분석</h3>
-						</div>
-						<div id="portlet1" class="panel-collapse collapse in">
-							<div class="portlet-body">
-								<div id="testChart">
-									<svg></svg>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
 				<!-- end row -->
-
-				<div class="row">
-					<div class="col-lg-4">
-						<div class="portlet">
-							<!-- /primary heading -->
-							<div class="portlet-heading">
-								<h3 class="portlet-title text-dark">보안 위협 유형</h3>
-							</div>
-							<div id="portlet3" class="panel-collapse collapse in">
-								<div class="portlet-body">
-									<div id="orthographic">
-										<svg style="width:330px;height:300px;border:1px solid gray;"></svg>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<%
-						List<NetworkModel> ttt;
-						ttt = (List<NetworkModel>) session.getAttribute("networkList");
-					%>
-					<div class="col-lg-4">
-						<div class="portlet">
-							<!-- /primary heading -->
-							<div class="portlet-heading">
-								<h3 class="portlet-title text-dark">보안 위협 Source IP</h3>
-							</div>
-							<div id="portlet3" class="panel-collapse collapse in">
-								<div class="portlet-body">
-									<table class="table table-condensed table-hover table-bordered">
-										<thead>
-											<tr>
-												<th>IP Address</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="netModel" items="${networkList }">
-												<tr>
-													<td>${netModel.srcIP }</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4">
-						<div class="portlet">
-							<!-- /primary heading -->
-							<div class="portlet-heading">
-								<h3 class="portlet-title text-dark">보안 위협 Destination IP</h3>
-							</div>
-							<div id="portlet4" class="panel-collapse collapse in">
-								<div class="portlet-body">
-									<table class="table table-condensed table-hover table-bordered">
-										<thead>
-											<th>IP Address</th>
-										</thead>
-										<tbody>
-											<c:forEach var="netModel" items="${networkList }">
-												<tr>
-													<td>${netModel.dstIP }</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- end col -->
-
-
-				</div>
-				<!-- End row -->
-
-
 			</div>
 			<!-- end row -->
 
@@ -235,46 +139,6 @@
 		getElasticData();
 		loadScript();
 		loadTestChart();
-	</script>
-	
-	<script>
-		var width = 330,
-		   height = 300,
-		   radius = 240;
-		
-		var origin = [-71, 42],
-		    velocity = [.012, -.002],
-		    t0 = Date.now();
-		
-		var projection = d3.geo.orthographic()
-		    .scale(radius)
-		    .clipAngle(90);
-		
-		var path = d3.geo.path()
-		    .projection(projection);
-		
-		var svg = d3.select("#orthographic").select("svg")
-		    .attr("width", width)
-		    .attr("height", height);
-		
-		svg.append("circle")
-		    .attr("cx", width / 2)
-		    .attr("cy", height / 2)
-		    .attr("r", radius);
-		
-		d3.json("dataset/world-110m.min.json", function(error, world) {
-		  if (error) throw error;
-		
-		  var feature = svg.append("path")
-		      .datum(topojson.feature(world, world.objects.land))
-		      .attr("d", path);
-		
-		  d3.timer(function() {
-		    var t = Date.now() - t0;
-		    projection.rotate([origin[0] + velocity[0] * t, origin[1] + velocity[1] * t]);
-		    feature.attr("d", path);
-		  });
-		});
 	</script>
 	
 </body>
