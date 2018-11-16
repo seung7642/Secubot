@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,43 +33,86 @@ table > tbody > tr > td {
 	<div id="window">
 		<div id="window_0">
 			<table class="table table-hover table-striped table-sm">
-				<caption>AgentList</caption>
+				<caption>에이전트 리스트</caption>
 				<thead class="thead-dark">
 					<tr>
-						<th>ID</th>
 						<th>Name</th>
 						<th>Phone</th>
-					<tr>
+					</tr>
 				</thead>
-				<tbody>
+				<tbody id="forData">
 					<tr>
-						<td>Values</td>
 						<td>Values</td>
 						<td>Values</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<div id="window_1"></div>
-		<div id="window_2"></div>
+		<div id="window_1">
+			<table class="table table-hover table-striped table-sm">
+				<caption>프로세스 세션</caption>
+				<thead class="thead-dark">
+					<tr>
+						<th>세션</th>
+					</tr>
+				</thead>
+				<tbody id="forData2">
+					<tr>
+						<td>Values</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div id="window_2">
+			<table class="table table-hover table-striped table-sm">
+				<caption>행위 리스트</caption>
+				<thead class="thead-dark">
+					<tr>
+						<th>Name</th>
+						<th>Phone</th>
+					</tr>
+				</thead>
+				<tbody id="forData3">
+					<tr>
+						<td>Values</td>
+						<td>Values</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 
 
+	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script>
-		var xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function(e) {
-			if (xhr.readyState === 4) {
-				if (xhr.status === 200) {
-					var res = xhr.responseText;
-					var parse = JSON.parse(res);
-					console.log(parse);
-				}
-			}
+		function get() {
+			var bodyContent = $.ajax({
+				url: "http://211.193.58.162:2222/AgentList",
+				global: false,
+				type: "GET",
+				async: false
+			}).responseText;
+			return bodyContent;
 		}
-		xhr.open('GET', 'http://211.193.58.162/AgentList');
-		xhr.setRequestHeader('Accept', 'application/json');
-		xhr.send();
+		var tmp = get();
+		var parse = JSON.parse(tmp);
+		for (var i in parse.AgentList) {
+			document.querySelector("#forData").innerHTML += "<td>" + parse.AgentList[i].UserName + "</td>" +
+			"<td>" + parse.AgentList[i].userPhone + "</td>";
+		}
+		
+		function getGuid() {
+			var bodyContent = $.ajax({
+				url: "http://211.193.58.162:2222/ProcessGuidList?",
+				global: false,
+				type: "GET",
+				async: false
+			}).responseText;
+			return bodyContent;
+		}
+		var tmp = get();
+		var parse = JSON.parse(tmp);
 	</script>
 </body>
 </html>

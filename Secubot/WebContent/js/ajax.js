@@ -33,6 +33,8 @@ function getElasticData() {
 				console.log(data.ProcessList);
 				
 				function visualization(data) {
+					d3.select("svg").selectAll("*").remove();
+					
 					var xScale = d3.scale.linear().domain([data.minX, data.maxX]).range([10, 1300]);
 					var yScale = d3.scale.linear().domain([data.minY, data.maxY]).range([480, 0]);
 					
@@ -59,6 +61,9 @@ function getElasticData() {
 					function evtClick(d) {
 						// TODO: circle를 클릭했을 때 모달이 뜨는 로직
 						d3.select(this).attr("data-toggle", "modal").attr("data-target", "#myModal");
+						var popUrl = "/Secubot/popup.jsp";
+						var popOption = "width=700, height=400, scrollbars=no, status=no;";
+						window.open(popUrl, popOption);
 					}
 					
 					function evtOver(d) {
@@ -69,6 +74,7 @@ function getElasticData() {
 						// TODO: mouseout 이벤트 로직
 						d3.select(this).transition().duration(500).attr("r", 5);
 					}
+					
 				}
 				visualization(data);
 			}
