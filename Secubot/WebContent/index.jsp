@@ -123,7 +123,7 @@
 	
 	<!-- d3.js -->
 	<script src="js/d3.v3.min.js"></script>
-	<script src="js/visualization.js"></script>
+	<!-- <script src="js/visualization.js"></script> -->
 	<script src="js/geodesic.js"></script>
 	<script src="js/testChart.js"></script>
 	<script src="js/topojson.v1.min.js"></script>

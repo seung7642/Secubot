@@ -45,18 +45,12 @@ function loadScript() {
 		}
 		
 		function evtOver(d) {
-			d3.select(this)
-			.transition().duration(500).attr("r", 10);
+			d3.select(this).transition().duration(500).attr("r", 10);
 		}
 		
 		function evtOut(d) {
 			// TODO: mouseout 이벤트 로직
-			d3.select(this)
-			.transition().duration(500).attr("r", 5);
+			d3.select(this).transition().duration(500).attr("r", 5);
 		}
-		
-		
-		
-		
 	}
 }
