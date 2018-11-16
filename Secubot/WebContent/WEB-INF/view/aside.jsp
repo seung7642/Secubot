@@ -19,8 +19,7 @@
 					<span class="nav-label">Dashboard</span></a></li>
 			<li class="has-submenu">
 				<a href="agent.jsp"><i
-					class="ion-eye"></i> <span class="nav-label">Agent</span><span
-					class="badge bg-success">New</span></a>
+					class="ion-eye"></i> <span class="nav-label">Agent</span></a>
 				<ul class="list-unstyled">
 					<li><a href="/Secubot/agentMain.do">Main</a></li>
 				</ul>
@@ -38,23 +37,20 @@
 				</ul>
 			</li>
 			<li class="has-submenu"><a href="#"><i class="ion-podium"></i>
-					<span class="nav-label">analysis</span>
-					<span class="badge bg-pink">X</span></a>
+					<span class="nav-label">analysis</span></a>
 				<ul class="list-unstyled">
 					<li><a href="#">Main</a></li>
 				</ul>
 			</li>
 			<li class="has-submenu"><a href="#"><i
-					class="ion-headphone"></i> <span class="nav-label">Desk</span>
-					<span class="badge bg-pink">X</span></a>
+					class="ion-headphone"></i> <span class="nav-label">Desk</span></a>
 				<ul class="list-unstyled">
 					<li><a href="#">Main</a></li>
 					<li><a href="#">Security</a></li>
 				</ul>
 			</li>
 			<li class="has-submenu"><a href="#"><i
-					class="ion-document"></i> <span class="nav-label">Report</span>
-					<span class="badge bg-pink">X</span></a></li>
+					class="ion-document"></i> <span class="nav-label">Report</span></a></li>
 		</ul>
 	</nav>
 

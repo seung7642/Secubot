@@ -78,20 +78,20 @@ div.tab-pane div.panel.panel-default {
 			<div class="row">
 				<div class="col-lg-12">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#default" data-toggle="tab"
+						<li class="active" style="border: 1px solid;"><a href="#default" data-toggle="tab"
 							aria-expanded="true"> <span class="visible-xs"><i
 									class="fa fa-home"></i></span> <span class="hidden-xs">Node Policy</span>
 						</a></li>
-						<li class=""><a href="#system" data-toggle="tab"
+						<li class="" style="border: 1px solid;"><a href="#system" data-toggle="tab"
 							aria-expanded="false"> <span class="visible-xs"><i
 									class="fa fa-user"></i></span> <span class="hidden-xs">Agent Policy</span>
 						</a></li>
-						<li class=""><a href="#software" data-toggle="tab"
+						<li class="" style="border: 1px solid;"><a href="#software" data-toggle="tab"
 							aria-expanded="false"> <span class="visible-xs"><i
 									class="fa fa-envelope-o"></i></span> <span class="hidden-xs">Group Policy</span>
 						</a></li>
 					</ul>
-					<div class="tab-content">
+					<div class="tab-content" style="border: 1px solid gray;box-shadow:10px 10px 10px 10px;">
 						<div class="tab-pane active" id="default">
 							<div class="table-responsive" data-pattern="priority-columns">
 								<table id="datatable"

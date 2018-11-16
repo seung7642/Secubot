@@ -74,9 +74,10 @@
 						<div id="portlet" class="panel-collapse collapse in">
 							<div class="portlet-body">
 								<div id="search">
-									<form action="" method="POST" class="pull-right">
-										<input type="text" id="ipmac" placeholder="IP/MAC Address...">
-										<button type="submit" id="btnSearch" class="btn btn-primary">Search</button>
+									<!-- Search -->
+									<form role="search" class="navbar-right app-search pull-right hidden-xs">
+										<input type="text" placeholder="Search..." class="form-control">
+										<a href=""><i class="fa fa-search"></i></a>
 									</form>
 								</div>
 								<table class="table table-striped table-hover">

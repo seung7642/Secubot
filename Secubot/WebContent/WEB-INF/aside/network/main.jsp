@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
@@ -90,22 +89,23 @@ div#search {
 			<div class="row">
 				<div class="col-lg-12">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#node" data-toggle="tab"
+						<li class="active" style="border: 1px solid;"><a href="#node" data-toggle="tab"
 							aria-expanded="true"> <span class="visible-xs"><i
 									class="fa fa-home"></i></span> <span class="hidden-xs">Node</span>
 						</a></li>
-						<li class=""><a href="#topology" data-toggle="tab"
+						<li class="" style="border: 1px solid;"><a href="#topology" data-toggle="tab"
 							aria-expanded="false"> <span class="visible-xs"><i
 									class="fa fa-user"></i></span> <span class="hidden-xs">Topology</span>
 						</a></li>
 					</ul>
-					<div class="tab-content">
+					<div class="tab-content" style="border:1px solid gray;box-shadow:10px 10px 10px 10px;">
 						<div class="tab-pane active" id="node">
 							<div class="table-responsive" data-pattern="priority-columns">
 								<div id="search">
-									<form action="" method="POST" class="pull-right">
-										<input type="text" id="ipmac" placeholder="IP/MAC Address...">
-										<button type="submit" id="btnSearch" class="btn btn-primary">Search</button>
+									<!-- Search -->
+									<form role="search" class="navbar-right app-search pull-right hidden-xs">
+										<input type="text" placeholder="Search..." class="form-control">
+										<a href=""><i class="fa fa-search"></i></a>
 									</form>
 								</div>
 								<table id="tech-companies-1"
@@ -250,16 +250,4 @@ div#search {
 
 
 </body>
-=======
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
->>>>>>> branch 'master' of https://github.com/seung7642/WebProgramming
 </html>

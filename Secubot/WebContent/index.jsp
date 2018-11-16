@@ -29,7 +29,7 @@
 <link href="assets/ionicon/css/ionicons.min.css" rel="stylesheet" />
 
 <!-- Custom styles for this template -->
-<link href="css/style.css" rel="stylesheet">
+<link href="css/style.css?ver=1" rel="stylesheet">
 <link href="css/helper.css" rel="stylesheet">
 
 <!-- myCSS -->

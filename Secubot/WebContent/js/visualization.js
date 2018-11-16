@@ -6,11 +6,11 @@ function loadScript() {
 		var xScale = d3.scale.linear().domain([1, 10, 5]).range([20, 480]);
 		var yScale = d3.scale.linear().domain([0, 35]).range([480, 20]);
 		
-		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickSize(480).tickValues([1,2,3,4,5,6,7,8,9,10]);
-		d3.select("#visualization").select("svg").append("g").attr("id", "xAxisG").call(xAxis);
+		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickSize(1000).tickValues([1,2,3,4,5,6,7,8,9,10]);
+		// d3.select("#visualization").select("svg").append("g").attr("id", "xAxisG").call(xAxis);
 		
-		var yAxis = d3.svg.axis().scale(yScale).orient("right").ticks(10).tickSize(480).tickSubdivide(true);
-		d3.select("#visualization").select("svg").append("g").attr("id", "yAxisG").call(yAxis);
+		var yAxis = d3.svg.axis().scale(yScale).orient("right").ticks(10).tickSize(1000).tickSubdivide(true);
+		// d3.select("#visualization").select("svg").append("g").attr("id", "yAxisG").call(yAxis);
 		
 		var allG = d3.select("#visualization").select("svg").append("g").attr("class", "allG");
 		allG.selectAll("circle.tweets").data(data).enter().append("circle")

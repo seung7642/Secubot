@@ -27,7 +27,7 @@ function getElasticData() {
 			if (xhr.status === 200) {
 				let res = xhr.responseText;
 				let parse = JSON.parse(res);
-				console.log(parse);
+				console.log(parse.ProcessList[0]);
 			}
 		} else {
 			let res = xhr.responseText;
