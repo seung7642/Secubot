@@ -9,8 +9,8 @@
 <body>
 
 	<a href="${pageContext.request.contextPath}/index.jsp" target="_blank">link</a>
-	<button onclick="window.open('${pageContext.request.contextPath}/index.jsp',
-	'window_name', 'width=430, height=500, location=no, status=no, scrollbars=yes');">popup</button>
+	<button onclick="window.open('${pageContext.request.contextPath}/popup.jsp',
+	'window_name', 'width=700, height=400, location=no, status=no, scrollbars=yes');">popup</button>
 
 </body>
 </html>

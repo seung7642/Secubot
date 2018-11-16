@@ -1,6 +1,6 @@
 function getNetworkData() {
-	const xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = () => {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
 		// readyState: 4 => DONE(서버 응답 완료)
 		if (xhr.readyState === XMLHttpRequest.DONE) {
 			// TODO: XMLHttpRequest로 받아온 데이터를 처리하는 로직
@@ -17,28 +17,32 @@ function getNetworkData() {
 }
 
 function getElasticData() {
-	let data;
-	const xhr = new XMLHttpRequest();
+	var data;
+	var xhr = new XMLHttpRequest();
+	
 	// XMLHttpRequest.readyState 프로퍼티가 변경(이벤트 발생)될 때마다 'onreadystatechange' 이벤트 핸들러를 호출한다.
-	xhr.onreadystatechange = (e) => {
+	xhr.onreadystatechange = function(e) {
+		
 		// XMLHttpRequest.readyState: 4 => DONE(서버 응답 완료)
 		if (xhr.readyState === 4) {
+			
 			// TODO: XMLHttpRequest로 받아온 데이터를 처리하는 로직
 			if (xhr.status === 200) {
-				let res = xhr.responseText;
+				var res = xhr.responseText;
 				data = JSON.parse(res);
-				console.log(data.ProcessList[0]);
+				console.log(data.ProcessList);
 				
 				function visualization(data) {
-					var xScale = d3.scale.linear().domain([1, 100]).range([20, 480]);
-					var yScale = d3.scale.linear().domain([1, 10]).range([480, 20]);
+					var xScale = d3.scale.linear().domain([data.minX, data.maxX]).range([10, 1300]);
+					var yScale = d3.scale.linear().domain([data.minY, data.maxY]).range([480, 0]);
 					
-					var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickSize(1000).tickValues([1,2,3,4,5,6,7,8,9,10]);
+					var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickSize(1100).tickValues([1,2,3,4,5,6,7,8,9,10]);
 					// d3.select("#visualization").select("svg").append("g").attr("id", "xAxisG").call(xAxis);
 					
-					var yAxis = d3.svg.axis().scale(yScale).orient("right").ticks(10).tickSize(1000).tickSubdivide(true);
-					// d3.select("#visualization").select("svg").append("g").attr("id", "yAxisG").call(yAxis);
+					var yAxis = d3.svg.axis().scale(yScale).orient("right").ticks(10).tickSize(1050).tickSubdivide(true);
+					d3.select("#visualization").select("svg").append("g").attr("id", "yAxisG").call(yAxis);
 					
+					// data() 메서드의 매개변수 타입은 배열이다.
 					var allG = d3.select("#visualization").select("svg").append("g").attr("class", "allG");
 					allG.selectAll("circle.tweets").data(data.ProcessList).enter().append("circle")
 					.attr("class", "tweets")
@@ -69,7 +73,7 @@ function getElasticData() {
 				visualization(data);
 			}
 		} else {
-			let res = xhr.responseText;
+			var res = xhr.responseText;
 		}
 	};
 	xhr.open("GET", "http://211.193.58.162:2222/ProcessList");

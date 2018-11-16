@@ -134,8 +134,6 @@
 	<script>
 		getNetworkData();
 		getElasticData();
-		loadScript();
-		loadTestChart();
 	</script>
 	
 </body>

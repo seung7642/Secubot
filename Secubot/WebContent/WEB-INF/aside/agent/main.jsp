@@ -13,10 +13,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description"
-	content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
-<meta name="author" content="Coderthemes">
-
 <link rel="shortcut icon" href="img/SecuBot_logo.png">
 
 <title>SECUBOT - Adaptive SIEM & Security Configuration
@@ -85,10 +81,9 @@
 										<th width="10%">상태</th>
 										<th width="20%">IP</th>
 										<th width="20%">MAC</th>
-										<th width="10%">호스트명</th>
-										<th width="10%">그룹</th>
-										<th width="10%">정책</th>
-										<th width="20%">최근접속시간</th>
+										<th width="30%">AgentID</th>
+										<th width="10%">사용자명</th>
+										<th width="10%">전화번호</th>
 									</thead>
 									<tbody>
 										<td>
@@ -103,7 +98,6 @@
 										<td>TEST-PC</td>
 										<td>직원그룹</td>
 										<td>직원정책</td>
-										<td>2018-10-26 00:00:00</td>
 									</tbody>
 								</table>
 								
