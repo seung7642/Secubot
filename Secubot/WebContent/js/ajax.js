@@ -1,12 +1,14 @@
 function getNetworkData() {
-	const xhr = XMLHttpRequest();
+	const xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = () => {
-		if (this.readystate == 200) {
+		// readyState: 4 => DONE(서버 응답 완료)
+		if (xhr.readyState === XMLHttpRequest.DONE) {
 			// TODO: XMLHttpRequest로 받아온 데이터를 처리하는 로직
-			let obj = JSON.parse(this.responseText);
-			console.log("Success: " + obj);
-		} else {
-			console.log("Error");
+			if (xhr.status === 200) {
+				console.log(xhr.responseText);
+			} else {
+				console.log("Error !");
+			}
 		}
 	};
 	xhr.open("GET", "network");
@@ -15,13 +17,24 @@ function getNetworkData() {
 }
 
 function getElasticData() {
-	const xhr = XMLHttpRequest();
-	xhr.onreadystatechange = () => {
-		if (this.readystate == 4 && this.readystate == 200) {
+	const xhr = new XMLHttpRequest();
+	
+	// XMLHttpRequest.readyState 프로퍼티가 변경(이벤트 발생)될 때마다 'onreadystatechange' 이벤트 핸들러를 호출한다.
+	xhr.onreadystatechange = (e) => {
+		// XMLHttpRequest.readyState: 4 => DONE(서버 응답 완료)
+		if (xhr.readyState === 4) {
 			// TODO: XMLHttpRequest로 받아온 데이터를 처리하는 로직
+			if (xhr.status === 200) {
+				let res = xhr.responseText;
+				let parse = JSON.parse(res);
+				console.log(parse);
+			}
+		} else {
+			let res = xhr.responseText;
 		}
 	};
-	xhr.open("GET", "http://211.193.58.162:2222/Processes");
+	xhr.open("GET", "http://211.193.58.162:2222/ProcessList");
+	xhr.setRequestHeader('Accept', 'application/json');
 	xhr.send();
 	setTimeout("getElasticData()", 10000);
 }

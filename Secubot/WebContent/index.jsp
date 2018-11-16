@@ -3,8 +3,6 @@
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
 <%@ page import="java.net.URLEncoder"%>
 <%@ page import="java.net.URLDecoder"%>
-<%@ page import="java.util.List"%>
-<%@ page import="java.util.ArrayList"%>
 <%@ page import="com.secubot.network.model.NetworkModel"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 
@@ -115,7 +113,6 @@
 	<script src="js/wow.min.js"></script>
 	<script src="js/jquery.scrollTo.min.js"></script>
 	<script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-	<script src="assets/chat/moment-2.2.1.js"></script>
 
 	<script src="js/jquery.app.js"></script>
 
