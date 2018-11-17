@@ -100,7 +100,7 @@ label {
 		</div>
 		<div class="clear"></div>
 		<div id="policy" class="pull-right1">
-			<form action="" method="POST" class="form col-md-2">
+			<form action="" method="GET" class="form col-md-2" onsubmit="pausecomp(1000);alert('전송되었습니다');return false;">
 				<label for="policyName">대응: </label>
 				<select id="policyName" class="form-control">
 					<option value="policy1">차단</option>
@@ -110,9 +110,17 @@ label {
 			</form>
 		</div>
 	</div>
-	
-	
-	<script>var Base64 = {
+
+
+	<script>
+	function pausecomp(millis)
+	{
+	    var date = new Date();
+	    var curDate = null;
+	    do { curDate = new Date(); }
+	    while(curDate-date < millis);
+	}
+	var Base64 = {
 
 			// private property
 _keyStr : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",

@@ -69,7 +69,7 @@
 					<div class="portlet">
 						<!-- /primary heading -->
 						<div class="portlet-heading">
-							<h3 class="portlet-title text-dark">Chart</h3>
+							<h3 class="portlet-title text-dark">보안 위협 시각화</h3>
 						</div>
 						<div class="portlet-body">
 							<div id="visualization">

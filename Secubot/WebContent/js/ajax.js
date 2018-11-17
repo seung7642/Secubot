@@ -1,4 +1,4 @@
-
+// 내분점 공식
 function scaleNum(D1,D2,T1,T2,n){
 	r1 = (n-D1)/(D2-D1);
 	r2 = (D2-n)/(D2-D1);
@@ -25,22 +25,23 @@ function getElasticData() {
 				
 				function visualization(data) {
 					d3.select("svg").selectAll("*").remove();
+					var formatAxis = d3.format("label");
 					
 					var xScale = d3.scale.linear().domain([data.minX, data.maxX]).range([10, 1300]);
 					var yScale = d3.scale.linear().domain([data.minY, data.maxY]).range([480, 0]);
 					
-					var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickSize(1100);
+					var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickSize(1100).tickFormat(formatAxis);
 					// d3.select("#visualization").select("svg").append("g").attr("id", "xAxisG").call(xAxis);
 					
 					var yAxis = d3.svg.axis().scale(yScale).orient("right").ticks(10).tickSize(1050);
-					d3.select("#visualization").select("svg").append("g").attr("id", "yAxisG").call(yAxis);
+					// d3.select("#visualization").select("svg").append("g").attr("id", "yAxisG").call(yAxis);
 					
 					// data() 메서드의 매개변수 타입은 배열이다.
 					var allG = d3.select("#visualization").select("svg").append("g").attr("class", "allG");
 					allG.selectAll("circle.tweets").data(data.ProcessList).enter().append("circle")
 					.attr("class", "tweets")
 					.attr("r", 5)
-					.attr("cx", function(d) { return 1000 - scaleNum(0,data.maxX,10,1300,d.x); })
+					.attr("cx", function(d) { return 1300 - scaleNum(0,data.maxX,10,1300,d.x); })
 					.attr("cy", function(d) { return scaleNum(0, data.maxY,0,480, d.y); })
 					.style("fill", "black");
 					
@@ -77,5 +78,5 @@ function getElasticData() {
 	xhr.open("GET", "http://211.193.58.162:2222/ProcessList");
 	xhr.setRequestHeader('Accept', 'application/json');
 	xhr.send();
-	setTimeout("getElasticData()", 10000);
+//	setTimeout("getElasticData()", 10000);
 }
