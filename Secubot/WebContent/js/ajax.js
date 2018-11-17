@@ -1,19 +1,10 @@
-function getNetworkData() {
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		// readyState: 4 => DONE(서버 응답 완료)
-		if (xhr.readyState === XMLHttpRequest.DONE) {
-			// TODO: XMLHttpRequest로 받아온 데이터를 처리하는 로직
-			if (xhr.status === 200) {
-				console.log(xhr.responseText);
-			} else {
-				console.log("Error !");
-			}
-		}
-	};
-	xhr.open("GET", "network");
-	xhr.send();
-	setTimeout("getNetworkData()", 10000);
+
+function scaleNum(D1,D2,T1,T2,n){
+	r1 = (n-D1)/(D2-D1);
+	r2 = (D2-n)/(D2-D1);
+	console.log(r1 + "  " + r2);
+	
+	return (T2*r2 + T1*r1)/(r1+r2);
 }
 
 function getElasticData() {
@@ -30,7 +21,7 @@ function getElasticData() {
 			if (xhr.status === 200) {
 				var res = xhr.responseText;
 				data = JSON.parse(res);
-				console.log(data.ProcessList);
+				console.log(data);
 				
 				function visualization(data) {
 					d3.select("svg").selectAll("*").remove();
@@ -38,10 +29,10 @@ function getElasticData() {
 					var xScale = d3.scale.linear().domain([data.minX, data.maxX]).range([10, 1300]);
 					var yScale = d3.scale.linear().domain([data.minY, data.maxY]).range([480, 0]);
 					
-					var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickSize(1100).tickValues([1,2,3,4,5,6,7,8,9,10]);
+					var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickSize(1100);
 					// d3.select("#visualization").select("svg").append("g").attr("id", "xAxisG").call(xAxis);
 					
-					var yAxis = d3.svg.axis().scale(yScale).orient("right").ticks(10).tickSize(1050).tickSubdivide(true);
+					var yAxis = d3.svg.axis().scale(yScale).orient("right").ticks(10).tickSize(1050);
 					d3.select("#visualization").select("svg").append("g").attr("id", "yAxisG").call(yAxis);
 					
 					// data() 메서드의 매개변수 타입은 배열이다.
@@ -49,8 +40,8 @@ function getElasticData() {
 					allG.selectAll("circle.tweets").data(data.ProcessList).enter().append("circle")
 					.attr("class", "tweets")
 					.attr("r", 5)
-					.attr("cx", function(d) { return xScale(d.x); })
-					.attr("cy", function(d) { return yScale(d.y); })
+					.attr("cx", function(d) { return 1000 - scaleNum(0,data.maxX,10,1300,d.x); })
+					.attr("cy", function(d) { return scaleNum(0, data.maxY,0,480, d.y); })
 					.style("fill", "black");
 					
 					var evt = d3.select("g.allG").selectAll("circle");
@@ -59,9 +50,10 @@ function getElasticData() {
 					evt.on("mouseout", evtOut);
 					
 					function evtClick(d) {
-						// TODO: circle를 클릭했을 때 모달이 뜨는 로직
-						d3.select(this).attr("data-toggle", "modal").attr("data-target", "#myModal");
-						var popUrl = "/Secubot/popup.jsp";
+						// TODO: circle를 클릭했을 때 popup이 뜨는 로직
+						console.log(d.MD5);
+						var that = d3.select(this);
+						var popUrl = "/Secubot/popup.jsp?md5=" + d.MD5 + "&imagename=" + d.ImageName;
 						var popOption = "width=700, height=400, scrollbars=no, status=no;";
 						window.open(popUrl, popOption);
 					}
