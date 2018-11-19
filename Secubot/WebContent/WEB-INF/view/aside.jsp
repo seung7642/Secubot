@@ -7,7 +7,7 @@
 	<!-- brand -->
 	<div class="logo">
 		<a href="index.jsp" class="logo-expanded">
-			<i><img src="img/logo_0_0.png"></i> <span class="nav-label">SECUBOT</span>
+			<i><img src="${pageContext.request.contextPath }/img/logo_0_0.png"></i> <span class="nav-label">SECUBOT</span>
 		</a>
 	</div>
 	<!-- / brand -->

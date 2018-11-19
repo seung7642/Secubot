@@ -17,7 +17,7 @@
 			<!-- user login dropdown start-->
 			<li class="dropdown text-center"><a data-toggle="dropdown"
 				class="dropdown-toggle" href="#"> <img alt=""
-					src="img/logo.png"
+					src="${pageContext.request.contextPath }/img/logo.png"
 					class="img-circle profile-img thumb-sm"> <span
 					class="username">${authUser.name} 님</span>
 			</a>

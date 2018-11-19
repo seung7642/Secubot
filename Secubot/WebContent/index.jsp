@@ -3,7 +3,6 @@
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
 <%@ page import="java.net.URLEncoder"%>
 <%@ page import="java.net.URLDecoder"%>
-<%@ page import="com.secubot.network.model.NetworkModel"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 
 <!DOCTYPE html>
