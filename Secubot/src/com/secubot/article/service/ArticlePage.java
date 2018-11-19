@@ -17,6 +17,8 @@ public class ArticlePage {
 		this.total = total;
 		this.currentPage = currentPage;
 		this.content = content;
+		
+		// 게시글이 없을 경우 조건문 처리
 		if (total == 0) {
 			totalPages = 0;
 			startPage = 0;
