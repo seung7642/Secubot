@@ -50,7 +50,11 @@
 				</ul>
 			</li>
 			<li class="has-submenu"><a href="#"><i
-					class="ion-document"></i> <span class="nav-label">Report</span></a></li>
+					class="ion-document"></i> <span class="nav-label">Report</span></a>
+					<ul class="list-unstyled">
+						<li><a href="${pageContext.request.contextPath }/article/list.do">Complaints</a></li>
+					</ul>		
+			</li>
 		</ul>
 	</nav>
 

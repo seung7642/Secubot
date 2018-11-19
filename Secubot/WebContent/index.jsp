@@ -53,7 +53,7 @@
 
 	<%@ include file="/WEB-INF/view/aside.jsp"%>
 
-	<!--Main Content Start -->
+	<!-- Main Content Start -->
 	<section class="content">
 		<%@ include file="/WEB-INF/view/header.jsp"%>
 
