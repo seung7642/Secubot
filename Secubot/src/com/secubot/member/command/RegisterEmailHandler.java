@@ -3,7 +3,7 @@ package com.secubot.member.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.secubot.auth.model.User;
+import com.secubot.auth.service.User;
 import com.secubot.member.service.MemberNotFoundException;
 import com.secubot.member.service.RegisterCodeNotMatchException;
 import com.secubot.member.service.RegisterEmailService;

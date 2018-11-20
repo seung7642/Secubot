@@ -3,7 +3,6 @@ package com.secubot.auth.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import com.secubot.auth.model.User;
 import com.secubot.jdbc.connection.ConnectionProvider;
 import com.secubot.jdbc.JdbcUtil;
 import com.secubot.member.dao.MemberDao;

@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.Date;
 
 import com.secubot.auth.dao.AccessLogDao;
-import com.secubot.auth.model.User;
 import com.secubot.auth.model.AccessLog;
 import com.secubot.jdbc.JdbcUtil;
 import com.secubot.jdbc.connection.ConnectionProvider;

@@ -7,8 +7,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.secubot.auth.model.User;
 import com.secubot.auth.model.AccessLog;
+import com.secubot.auth.service.User;
 import com.secubot.auth.service.LoginFailException;
 import com.secubot.auth.service.LoginService;
 import com.secubot.auth.service.AccessLogService;

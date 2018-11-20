@@ -78,5 +78,5 @@ function getElasticData() {
 	xhr.open("GET", "http://211.193.58.162:2222/ProcessList");
 	xhr.setRequestHeader('Accept', 'application/json');
 	xhr.send();
-//	setTimeout("getElasticData()", 10000);
+	setTimeout("getElasticData()", 20000);
 }

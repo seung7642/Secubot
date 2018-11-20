@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import javax.management.RuntimeErrorException;
 
-import com.secubot.auth.model.User;
+import com.secubot.auth.service.User;
 import com.secubot.jdbc.connection.ConnectionProvider;
 import com.secubot.jdbc.JdbcUtil;
 import com.secubot.member.dao.MemberDao;

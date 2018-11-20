@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.secubot.auth.model.User;
+import com.secubot.auth.service.User;
 import com.secubot.member.service.EmailNotFoundException;
 import com.secubot.member.service.DuplicateIdException;
 import com.secubot.member.service.InvalidPasswordException;
@@ -56,18 +56,18 @@ public class JoinHandler implements CommandHandler {
 			User user = (User) req.getSession().getAttribute("authUser");
 			String email = user.getEmail();
 			
-			if (email.equals("") && email.isEmpty()) { // �쉶�썝 �씤利� �씠硫붿씪 �옱�쟾�넚 �떆 �씠硫붿씪 泥댄겕
+			if (email.equals("") && email.isEmpty()) {
 				email = req.getParameter("email");
 				if (email.equals("") && email.isEmpty()) {
 					throw new EmailNotFoundException();
 				}
 			}
 			
-			joinService.sendEmail(email, null);  // �쉶�썝�씤利� �씠硫붿씪 �옱�쟾�넚
+			joinService.sendEmail(email, null); 
 			res.sendRedirect(req.getContextPath() + "/index.jsp");
 			return null;
 		} catch (EmailNotFoundException e) {
-			return FORM_VIEW; // 湲곕낯 �쉶�썝媛��엯 �뤌
+			return FORM_VIEW;
 		} catch (Exception e) {
 			return FORM_VIEW;
 		}
