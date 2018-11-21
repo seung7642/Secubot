@@ -99,4 +99,42 @@ public class ArticleDao {
 		}
 	}
 	
+	public Article selectById(Connection conn, int no) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement("select * from article "
+					+ "where article_no = ?");
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			
+			Article article = null;
+			if (rs.next()) {
+				article = new Article(
+						rs.getInt("article_no"),
+						new Writer(rs.getString("writer_id"),
+						rs.getString("writer_name")),
+						rs.getString("title"),
+						new Date(rs.getTimestamp("regdate").getTime()),
+						new Date(rs.getTimestamp("moddate").getTime()),
+						rs.getInt("read_cnt"));
+			}
+			
+			return article;
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+	}
+	
+	public void increaseReadCount(Connection conn, int no) throws SQLException {
+		try (PreparedStatement pstmt = conn.prepareStatement(
+				"update article set read_cnt = read_cnt + 1 "
+				+ "where article_no = ?")) {
+			pstmt.setInt(1, no);
+			pstmt.executeUpdate();
+		}
+	}
+	
 }

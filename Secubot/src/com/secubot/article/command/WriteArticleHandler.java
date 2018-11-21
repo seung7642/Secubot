@@ -14,7 +14,7 @@ import com.secubot.mvc.command.CommandHandler;
 
 public class WriteArticleHandler implements CommandHandler {
 
-	private static final String FORM_VIEW = "/WEB-INF/aside/report/writeComplaints.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/aside/desk/writeComplaints.jsp";
 	private WriteArticleService writeService = new WriteArticleService();
 	
 	@Override
