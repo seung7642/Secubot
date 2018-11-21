@@ -16,7 +16,7 @@ import com.secubot.jdbc.connection.ConnectionProvider;
 public class WriteArticleService {
 
 	private ArticleDao articleDao = new ArticleDao();
-	private ArticleContentDao ContentDao = new ArticleContentDao();
+	private ArticleContentDao contentDao = new ArticleContentDao();
 	
 	public Integer write(WriteRequest writeReq) {
 		Connection conn = null;
@@ -29,6 +29,13 @@ public class WriteArticleService {
 			Article savedArticle = articleDao.insert(conn, article);
 			if (savedArticle == null) {
 				throw new RuntimeException("fail to insert article");
+			}
+			ArticleContent content = new ArticleContent(
+					savedArticle.getNumber(),
+					writeReq.getContent());
+			ArticleContent savedContent = contentDao.insert(conn, content);
+			if (savedContent == null) {
+				throw new RuntimeException("fail to insert article_content");
 			}
 			
 			conn.commit();

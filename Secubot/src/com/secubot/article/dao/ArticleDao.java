@@ -113,8 +113,7 @@ public class ArticleDao {
 			if (rs.next()) {
 				article = new Article(
 						rs.getInt("article_no"),
-						new Writer(rs.getString("writer_id"),
-						rs.getString("writer_name")),
+						new Writer(rs.getString("writer_id"), rs.getString("writer_name")),
 						rs.getString("title"),
 						new Date(rs.getTimestamp("regdate").getTime()),
 						new Date(rs.getTimestamp("moddate").getTime()),

@@ -68,7 +68,7 @@ textarea {
 						<div class="portlet-body">
 							<form action="${pageContext.request.contextPath }/article/write.do" method="POST">
 								<input type="text" name="title">
-								<textarea id="summernote" name="content"></textarea>
+								<input type="text" id="summernote" name="content"></input>
 								<button type="submit">작성</button>
 							</form>
 						</div>

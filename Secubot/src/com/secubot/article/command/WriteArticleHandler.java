@@ -48,7 +48,7 @@ public class WriteArticleHandler implements CommandHandler {
 		int newArticleNo = writeService.write(writeReq);
 		req.setAttribute("newArticleNo", newArticleNo);
 		
-		return "/WEB-INF/aside/report/writeSuccess.jsp";
+		return "/WEB-INF/aside/desk/writeSuccess.jsp";
 	}
 	
 	private WriteRequest createWriteRequest(User user, HttpServletRequest req) {

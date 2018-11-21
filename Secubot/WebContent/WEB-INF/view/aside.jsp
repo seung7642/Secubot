@@ -6,7 +6,7 @@
 
 	<!-- brand -->
 	<div class="logo">
-		<a href="index.jsp" class="logo-expanded">
+		<a href="${pageContext.request.contextPath }/index.jsp" class="logo-expanded">
 			<i><img src="${pageContext.request.contextPath }/img/logo_0_0.png"></i> <span class="nav-label">SECUBOT</span>
 		</a>
 	</div>
@@ -15,19 +15,19 @@
 	<!-- Navbar Start -->
 	<nav class="navigation">
 		<ul class="list-unstyled">
-			<li class="active"><a href="index.jsp"><i class="ion-home"></i>
+			<li class="active"><a href="${pageContext.request.contextPath }/index.jsp"><i class="ion-home"></i>
 					<span class="nav-label">Dashboard</span></a></li>
 			<li class="has-submenu">
 				<a href="agent.jsp"><i
 					class="ion-eye"></i> <span class="nav-label">Agent</span></a>
 				<ul class="list-unstyled">
-					<li><a href="${pageContext.request.contextPath }//agentMain.do">Main</a></li>
+					<li><a href="${pageContext.request.contextPath }/agentMain.do">Main</a></li>
 				</ul>
 			</li>
 			<li class="has-submenu"><a href="network.jsp"><i
 					class="ion-network"></i> <span class="nav-label">Network</span> <!--<span class="badge bg-success">New</span>--></a>
 				<ul class="list-unstyled">
-					<li><a href="${pageContext.request.contextPath }//network.do">Main</a></li>
+					<li><a href="${pageContext.request.contextPath }/network.do">Main</a></li>
 				</ul>
 			</li>
 			<li class="has-submenu"><a href="#"><i
