@@ -142,6 +142,7 @@
 
 	<script src="js/agent.js"></script>
 	<script>
+		agentInit();
 		info = getAgentList();
 		parse = JSON.parse(info);
 		

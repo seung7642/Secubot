@@ -10,9 +10,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description"
-	content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
-<meta name="author" content="Coderthemes">
 
 <link rel="shortcut icon" href="img/SecuBot_logo.png">
 
@@ -60,7 +57,7 @@ div.tab-pane div.panel.panel-default {
 	<%
 		HttpSession httpSession = request.getSession(false);
 		if (httpSession == null || httpSession.getAttribute("authUser") == null) {
-			response.sendRedirect("/SIEM/login.do");
+			response.sendRedirect("/Secubot/login.do");
 		}
 	%>
 
@@ -350,24 +347,6 @@ div.tab-pane div.panel.panel-default {
 	<script src="js/jquery.dashboard.js"></script>
 
 	<script src="js/agent.js"></script>
-	<script>
-		$(document).ready(function() {
-			$(function() {
-				$(".tab_content").hide();
-				$(".tab_content:first").show();
-
-				$("ul.tabs li").click(function() {
-					$("ul.tabs li").removeClass("active").css("color", "#333");
-					//$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
-					$(this).addClass("active").css("color", "darkred");
-					$(".tab_content").hide()
-					var activeTab = $(this).attr("rel");
-					$("#" + activeTab).fadeIn()
-				});
-			});
-		});
-	</script>
-
 
 </body>
 </html>

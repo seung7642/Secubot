@@ -1,4 +1,11 @@
+function agentInit() {
+	console.log($(this));
+	document.querySelector('nav > ul');
+}
+
 function TabPanel(selector) {
+	
+	// Properties
 	this.$tabPanel = null;
 	this.$tabMenu = null;
 	this.$tabMenuItems = null;
@@ -7,6 +14,7 @@ function TabPanel(selector) {
 	this.$tabContents = null;
 	this.$selectTabContent = null;
 	
+	// Method 
 	this.init(selector);
 	this.initEvent();
 	this.initTabContents();
