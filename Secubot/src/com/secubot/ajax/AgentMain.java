@@ -7,7 +7,7 @@ import com.secubot.mvc.command.CommandHandler;
 
 public class AgentMain implements CommandHandler {
 
-	private static final String FORM_VIEW = "/WEB-INF/aside/agent/main.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/aside/agent/agentList.jsp";
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {

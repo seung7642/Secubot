@@ -3,9 +3,6 @@
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
 <%@ page import="java.net.URLEncoder"%>
 <%@ page import="java.net.URLDecoder"%>
-<%@ page import="java.util.List"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="com.secubot.network.model.NetworkModel"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 
 <!DOCTYPE html>
@@ -21,6 +18,9 @@
 <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap-reset.css" rel="stylesheet">
+
+<!-- animate CSS -->
+<link href="css/animate.css" rel="stylesheet">
 
 <!--Icon-fonts css-->
 <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
@@ -61,7 +61,7 @@
 					<div class="portlet">
 						<!-- /primary heading -->
 						<div class="portlet-heading">
-							<h3 class="portlet-title text-dark">Agent 관리 목록</h3>
+							<h3 class="portlet-title text-dark">에이전트 관리 목록</h3>
 						</div>
 						
 						<div id="portlet" class="panel-collapse collapse in">
@@ -131,30 +131,23 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/modernizr.min.js"></script>
 	<script src="js/pace.min.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/jquery.nicescroll.js"></script>
+	<script src="js/jquery.scrollTo.min.js"></script>
 
 	<script src="js/jquery.app.js"></script>
 
 	<!-- Dashboard -->
 	<script src="js/jquery.dashboard.js"></script>
 
+	<script src="js/agent.js"></script>
 	<script>
-		function getAgentList() {
-			var bodyContent = $.ajax({
-				url: "http://211.193.58.162:2222/AgentList?MD5=",
-				global: false,
-				type: "GET",
-				async: false
-			}).responseText;
-			return bodyContent;
-		}
-		
 		info = getAgentList();
 		parse = JSON.parse(info);
-		console.log(parse);
 		
 		for (i in parse.AgentList) {
 			document.querySelector('table').innerHTML += "<tbody>" + "<td><div class='material-switch pull-left'><input id='someSwitchOptionPrimary' name='someSwitchOption001' type='checkbox' /> <label for='someSwitchOptionPrimary' class='label-primary'></label></div></td>"
-			+ "<td><a href='/Secubot/agentInformation.do'>" + parse.AgentList[i].UserName + "</a></td>"
+			+ "<td><a href='/Secubot/agentInfo.do'>" + parse.AgentList[i].UserName + "</a></td>"
 			+ "<td>" + parse.AgentList[i].userPhone + "</td>" + "<td></td>" + "<td>" + parse.AgentList[i].AgentID + "</td>" + "</tbody>";
 		}
 	</script>

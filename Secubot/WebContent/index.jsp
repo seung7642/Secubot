@@ -20,6 +20,9 @@
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/bootstrap-reset.css" rel="stylesheet">
 
+<!-- animate CSS -->
+<link href="css/animate.css" rel="stylesheet">
+
 <!--Icon-fonts css-->
 <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href="assets/ionicon/css/ionicons.min.css" rel="stylesheet" />
@@ -33,8 +36,6 @@
 
 <!-- d3 -->
 <link href="css/d3.css?ver=2" rel="stylesheet">
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet">
 
 </head>
 
@@ -106,6 +107,9 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/modernizr.min.js"></script>
 	<script src="js/pace.min.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/jquery.nicescroll.js"></script>
+	<script src="js/jquery.scrollTo.min.js"></script>
 
 	<script src="js/jquery.app.js"></script>
 
@@ -114,10 +118,6 @@
 	
 	<!-- d3.js -->
 	<script src="js/d3.v3.min.js"></script>
-	<!-- <script src="js/visualization.js"></script> -->
-	<script src="js/geodesic.js"></script>
-	<script src="js/testChart.js"></script>
-	<script src="js/topojson.v1.min.js"></script>
 	
 	<!-- ajax -->
 	<script src="js/ajax.js"></script>

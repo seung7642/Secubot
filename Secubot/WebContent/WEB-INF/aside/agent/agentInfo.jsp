@@ -23,7 +23,7 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap-reset.css" rel="stylesheet">
 
-<!--Animation css-->
+<!-- animate CSS -->
 <link href="css/animate.css" rel="stylesheet">
 
 <!--Icon-fonts css-->
@@ -341,16 +341,15 @@ div.tab-pane div.panel.panel-default {
 	<script src="js/modernizr.min.js"></script>
 	<script src="js/pace.min.js"></script>
 	<script src="js/wow.min.js"></script>
+	<script src="js/jquery.nicescroll.js"></script>
 	<script src="js/jquery.scrollTo.min.js"></script>
-	<script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-	<script src="assets/chat/moment-2.2.1.js"></script>
 
 	<script src="js/jquery.app.js"></script>
 
 	<!-- Dashboard -->
 	<script src="js/jquery.dashboard.js"></script>
 
-	<script src="js/agentinformation.js"></script>
+	<script src="js/agent.js"></script>
 	<script>
 		$(document).ready(function() {
 			$(function() {

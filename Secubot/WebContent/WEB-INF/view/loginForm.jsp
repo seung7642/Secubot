@@ -16,6 +16,9 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap-reset.css" rel="stylesheet">
 
+<!-- animate CSS -->
+<link href="css/animate.css" rel="stylesheet">
+
 <!--Icon-fonts css-->
 <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href="assets/ionicon/css/ionicons.min.css" rel="stylesheet" />
@@ -96,14 +99,17 @@
     
 
 
-<!-- js placed at the end of the document so the pages load faster -->
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/pace.min.js"></script>
-<!-- <script src="js/passwordCheck.js"></script> -->
-
-<!--common script for all pages-->
-<script src="js/jquery.app.js"></script>
+	<!-- js placed at the end of the document so the pages load faster -->
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/pace.min.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/jquery.nicescroll.js"></script>
+	<script src="js/jquery.scrollTo.min.js"></script>
+	<!-- <script src="js/passwordCheck.js"></script> -->
+	
+	<!--common script for all pages-->
+	<script src="js/jquery.app.js"></script>
 
 </body>
 </html>

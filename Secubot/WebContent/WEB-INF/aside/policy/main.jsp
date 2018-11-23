@@ -297,7 +297,6 @@ div.tab-pane div.panel.panel-default {
 	<script src="js/wow.min.js"></script>
 	<script src="js/jquery.scrollTo.min.js"></script>
 	<script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-	<script src="assets/chat/moment-2.2.1.js"></script>
 
 	<script src="js/jquery.app.js"></script>
 

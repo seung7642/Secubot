@@ -3,9 +3,6 @@
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
 <%@ page import="java.net.URLEncoder"%>
 <%@ page import="java.net.URLDecoder"%>
-<%@ page import="java.util.List"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="com.secubot.network.model.NetworkModel"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 
 <!DOCTYPE html>
@@ -207,14 +204,13 @@ div#search {
 	<script src="js/wow.min.js"></script>
 	<script src="js/jquery.scrollTo.min.js"></script>
 	<script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-	<script src="assets/chat/moment-2.2.1.js"></script>
 
 	<script src="js/jquery.app.js"></script>
 
 	<!-- Dashboard -->
 	<script src="js/jquery.dashboard.js"></script>
 
-	<script src="js/agentinformation.js"></script>
+	<script src="js/agentinfo.js"></script>
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
 	<script>
