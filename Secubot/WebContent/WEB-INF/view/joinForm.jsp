@@ -20,16 +20,9 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap-reset.css" rel="stylesheet">
 
-<!--Animation css-->
-<link href="css/animate.css" rel="stylesheet">
-
 <!--Icon-fonts css-->
 <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href="assets/ionicon/css/ionicons.min.css" rel="stylesheet" />
-
-<!--Morris Chart CSS -->
-<link rel="stylesheet" href="assets/morris/morris.css">
-
 
 <!-- Custom styles for this template -->
 <link href="css/style.css" rel="stylesheet">
@@ -132,13 +125,10 @@
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/pace.min.js"></script>
-<script src="js/wow.min.js"></script>
-<script src="/js/jquery.nicescroll.js" type="text/javascript"></script>
-<script src="js/joinForm.js"></script>
+<script src="js/passwordCheck.js"></script>
     
 <!--common script for all pages-->
 <script src="js/jquery.app.js"></script>
-
 
 </body>
 </html>

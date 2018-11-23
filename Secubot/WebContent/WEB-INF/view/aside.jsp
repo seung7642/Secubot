@@ -7,7 +7,7 @@
 	<!-- brand -->
 	<div class="logo">
 		<a href="${pageContext.request.contextPath }/index.jsp" class="logo-expanded">
-			<i><img src="${pageContext.request.contextPath }/img/logo_0_0.png"></i> <span class="nav-label">SECUBOT</span>
+			<i><img src="${pageContext.request.contextPath }/img/logo_0_0.png"></i> <span class="nav-label">Secubot</span>
 		</a>
 	</div>
 	<!-- / brand -->
@@ -15,47 +15,62 @@
 	<!-- Navbar Start -->
 	<nav class="navigation">
 		<ul class="list-unstyled">
-			<li class="active"><a href="${pageContext.request.contextPath }/index.jsp"><i class="ion-home"></i>
-					<span class="nav-label">Dashboard</span></a></li>
+			<!-- Dashboard -->
+			<li class="active">
+				<a href="${pageContext.request.contextPath }/index.jsp"><i class="ion-home"></i>
+				<span class="nav-label">Dashboard</span></a>
+			</li>
+			
+			<!-- Agent -->
 			<li class="has-submenu">
-				<a href="agent.jsp"><i
-					class="ion-eye"></i> <span class="nav-label">Agent</span></a>
+				<a href="#"><i class="ion-eye"></i> <span class="nav-label">Agent</span></a>
 				<ul class="list-unstyled">
-					<li><a href="${pageContext.request.contextPath }/agentMain.do">Main</a></li>
+					<li><a href="${pageContext.request.contextPath }/agentMain.do">Agent List</a></li>
 				</ul>
 			</li>
-			<li class="has-submenu"><a href="network.jsp"><i
-					class="ion-network"></i> <span class="nav-label">Network</span> <!--<span class="badge bg-success">New</span>--></a>
+			
+			<!-- Network -->
+			<li class="has-submenu">
+				<a href="#"><i class="ion-network"></i> <span class="nav-label">Network</span></a>
 				<ul class="list-unstyled">
 					<li><a href="${pageContext.request.contextPath }/network.do">Main</a></li>
 				</ul>
 			</li>
-			<li class="has-submenu"><a href="#"><i
-					class="ion-clipboard"></i> <span class="nav-label">Policy</span></a>
+			
+			<!-- Policy -->
+			<li class="has-submenu">
+				<a href="#"><i class="ion-clipboard"></i> <span class="nav-label">Policy</span></a>
 				<ul class="list-unstyled">
 					<li><a href="${pageContext.request.contextPath }/policy.do">Main</a></li>
 				</ul>
 			</li>
-			<li class="has-submenu"><a href="#"><i class="ion-podium"></i>
-					<span class="nav-label">analysis</span></a>
+			
+			<!-- Analysis -->
+			<li class="has-submenu">
+				<a href="#"><i class="ion-podium"></i><span class="nav-label">Analysis</span></a>
 				<ul class="list-unstyled">
 					<li><a href="#">Main</a></li>
 				</ul>
 			</li>
-			<li class="has-submenu"><a href="#"><i
-					class="ion-headphone"></i> <span class="nav-label">Desk</span></a>
-					<ul class="list-unstyled">
-						<li><a href="${pageContext.request.contextPath }/article/list.do">Complaints</a></li>
-					</ul>		
+			
+			<!-- Desk -->
+			<li class="has-submenu">
+				<a href="#"><i class="ion-headphone"></i> <span class="nav-label">Desk</span></a>
+				<ul class="list-unstyled">
+					<li><a href="${pageContext.request.contextPath }/article/list.do">Complaints</a></li>
+				</ul>		
 			</li>
-			<li class="has-submenu"><a href="#"><i
-					class="ion-document"></i> <span class="nav-label">Report</span></a>
+			
+			<!-- Report -->
+			<li class="has-submenu">
+				<a href="#"><i class="ion-document"></i> <span class="nav-label">Report</span></a>
 				<ul class="list-unstyled">
 					<li><a href="#">Security</a></li>
 				</ul>
 			</li>
 		</ul>
 	</nav>
+	<!-- Navbar Ends -->
 
 </aside>
 <!-- Aside Ends-->

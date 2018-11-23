@@ -22,9 +22,6 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap-reset.css" rel="stylesheet">
 
-<!--Animation css-->
-<link href="css/animate.css" rel="stylesheet">
-
 <!--Icon-fonts css-->
 <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href="assets/ionicon/css/ionicons.min.css" rel="stylesheet" />
@@ -64,7 +61,7 @@
 					<div class="portlet">
 						<!-- /primary heading -->
 						<div class="portlet-heading">
-							<h3 class="portlet-title text-dark">Agent 메인화면</h3>
+							<h3 class="portlet-title text-dark">Agent 관리 목록</h3>
 						</div>
 						
 						<div id="portlet" class="panel-collapse collapse in">
@@ -76,28 +73,16 @@
 										<a href=""><i class="fa fa-search"></i></a>
 									</form>
 								</div>
-								<table class="table table-striped table-hover">
+								<table class="table table-hover table-striped table-sm">
 									<thead>
 										<th width="10%">상태</th>
-										<th width="20%">IP</th>
-										<th width="20%">MAC</th>
-										<th width="30%">AgentID</th>
-										<th width="10%">사용자명</th>
-										<th width="10%">전화번호</th>
+										<th width="20%">사용자명</th>
+										<th width="20%">Phone</th>
+										<th width="30%">MAC</th>
+										<th width="10%">AgentID</th>
 									</thead>
 									<tbody>
-										<td>
-											<div class="material-switch pull-left">
-												<input id="someSwitchOptionPrimary"
-													name="someSwitchOption001" type="checkbox" /> <label
-													for="someSwitchOptionPrimary" class="label-primary"></label>
-											</div>
-										</td>
-										<td><a href="/Secubot/agentInformation.do">192.168.120.15</a></td>
-										<td>00:00:00:00:00:00</td>
-										<td>TEST-PC</td>
-										<td>직원그룹</td>
-										<td>직원정책</td>
+									
 									</tbody>
 								</table>
 								
@@ -146,16 +131,33 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/modernizr.min.js"></script>
 	<script src="js/pace.min.js"></script>
-	<script src="js/wow.min.js"></script>
-	<script src="js/jquery.scrollTo.min.js"></script>
-	<script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-	<script src="assets/chat/moment-2.2.1.js"></script>
 
 	<script src="js/jquery.app.js"></script>
 
 	<!-- Dashboard -->
 	<script src="js/jquery.dashboard.js"></script>
 
+	<script>
+		function getAgentList() {
+			var bodyContent = $.ajax({
+				url: "http://211.193.58.162:2222/AgentList?MD5=",
+				global: false,
+				type: "GET",
+				async: false
+			}).responseText;
+			return bodyContent;
+		}
+		
+		info = getAgentList();
+		parse = JSON.parse(info);
+		console.log(parse);
+		
+		for (i in parse.AgentList) {
+			document.querySelector('table').innerHTML += "<tbody>" + "<td><div class='material-switch pull-left'><input id='someSwitchOptionPrimary' name='someSwitchOption001' type='checkbox' /> <label for='someSwitchOptionPrimary' class='label-primary'></label></div></td>"
+			+ "<td><a href='/Secubot/agentInformation.do'>" + parse.AgentList[i].UserName + "</a></td>"
+			+ "<td>" + parse.AgentList[i].userPhone + "</td>" + "<td></td>" + "<td>" + parse.AgentList[i].AgentID + "</td>" + "</tbody>";
+		}
+	</script>
 
 </body>
 </html>

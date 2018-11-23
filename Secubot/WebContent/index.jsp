@@ -20,9 +20,6 @@
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/bootstrap-reset.css" rel="stylesheet">
 
-<!--Animation css-->
-<link href="css/animate.css" rel="stylesheet">
-
 <!--Icon-fonts css-->
 <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href="assets/ionicon/css/ionicons.min.css" rel="stylesheet" />
@@ -109,16 +106,11 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/modernizr.min.js"></script>
 	<script src="js/pace.min.js"></script>
-	<script src="js/wow.min.js"></script>
-	<script src="js/jquery.scrollTo.min.js"></script>
-	<script src="js/jquery.nicescroll.js" type="text/javascript"></script>
 
 	<script src="js/jquery.app.js"></script>
 
 	<!-- Dashboard -->
 	<script src="js/jquery.dashboard.js"></script>
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
 	
 	<!-- d3.js -->
 	<script src="js/d3.v3.min.js"></script>

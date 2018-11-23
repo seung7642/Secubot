@@ -14,8 +14,6 @@
     //initializing various charts and components
     Dashboard.prototype.init = function() {
 
-        //Chat application -> You can initialize/add chat application in any page.
-        $.ChatApp.init();
     },
     //init dashboard
     $.Dashboard = new Dashboard, $.Dashboard.Constructor = Dashboard
