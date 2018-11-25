@@ -346,7 +346,5 @@ div.tab-pane div.panel.panel-default {
 	<!-- Dashboard -->
 	<script src="js/jquery.dashboard.js"></script>
 
-	<script src="js/agent.js"></script>
-
 </body>
 </html>

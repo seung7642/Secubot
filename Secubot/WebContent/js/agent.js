@@ -4,7 +4,7 @@ function agentInit() {
 }
 
 function TabPanel(selector) {
-	
+	console.log(selector);
 	// Properties
 	this.$tabPanel = null;
 	this.$tabMenu = null;

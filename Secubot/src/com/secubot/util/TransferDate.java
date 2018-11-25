@@ -19,11 +19,11 @@ public class TransferDate {
 		}
 		
 		else if (diffMinute < 60) {
-			return diffMinute + "년";
+			return diffMinute + "분";
 		}
 		
 		else if (diffTime < 24) {
-			return diffTime + "월";
+			return diffTime + "시";
 		}
 		
 		else if (diffDay < 7) {
