@@ -28,7 +28,7 @@ public class MyNotiDao {
 		}
 	}
 	
-	public List<MyNotification> getMyNotiList(Connection conn, int myId) throws SQLException {
+	public List<MyNotification> getMyNotiList(Connection conn, String myId) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -37,8 +37,8 @@ public class MyNotiDao {
 					+ "on mynoti.another_member_id = members.member_id "
 					+ "where my_id=? and another_member_id not in (?) "
 					+ "order by noti_no desc");
-			pstmt.setInt(1, myId);
-			pstmt.setInt(2, myId);
+			pstmt.setString(1, myId);
+			pstmt.setString(2, myId);
 			rs = pstmt.executeQuery();
 			List<MyNotification> notiList = new ArrayList<>();
 			while (rs.next()) {
@@ -61,5 +61,62 @@ public class MyNotiDao {
 	
 	private Date toDate(Timestamp ts) {
 		return new Date(ts.getTime());
+	}
+	
+	public int selectById(Connection conn, int no) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement("select noti_no from mynoti where noti_no=?");
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			int notiNo = 0;
+			if (rs.next()) {
+				notiNo = rs.getInt("noti_no");
+			}
+			
+			return notiNo;
+			
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+	}
+	
+	public int update(Connection conn, int no) throws SQLException {
+		try (PreparedStatement pstmt = conn.prepareStatement("update mynoti set read_check=true "
+				+ "where noti_no=?")) {
+			pstmt.setInt(1, no);
+			return pstmt.executeUpdate();
+		}
+	}
+	
+	public int delete(Connection conn, int no) throws SQLException {
+		try (PreparedStatement pstmt = conn.prepareStatement(""
+				+ "delete from mynoti where noti_no=?")) {
+			pstmt.setInt(1, no);
+			return pstmt.executeUpdate();
+		}
+	}
+	
+	public int selectFalseCount(Connection conn, String myId) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement("select count(*) from mynoti "
+					+ "where my_id=? and read_check=false another_memberid not in (?)");
+			pstmt.setString(1, myId);
+			pstmt.setString(2, myId);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+			return 0;
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
 	}
 }
