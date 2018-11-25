@@ -56,10 +56,10 @@
 							<h3 class="portlet-title text-dark">보안 업무 형상관리</h3>
 						</div>
 						<div class="portlet-body">
-							<table class="table table-hover" border="1">
+							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th>번호</th>
+										<th>#</th>
 										<th>제목</th>
 										<th>작성자</th>
 										<th>조회수</th>
@@ -73,7 +73,7 @@
 							</c:if>
 							<c:forEach var="article" items="${articlePage.content}">
 								<tr>
-									<td>${article.number}</td>
+									<td><strong>${article.number}</strong></td>
 									<td>
 									<a href="read.do?no=${article.number}&pageNo=${articlePage.currentPage}">
 									<c:out value="${article.title}"/>
@@ -84,35 +84,29 @@
 								</tr>
 							</c:forEach>
 								</tbody>
-								
+							</table>
+							<a class="btn btn-default pull-right" href="write.do">글 작성</a>
 							<c:if test="${articlePage.hasArticles()}">
 								<tr>
 									<td colspan="4">
 										<c:if test="${articlePage.startPage > 5}">
-										<a href="list.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
+											<a href="list.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
 										</c:if>
 										<c:forEach var="pNo" 
 												   begin="${articlePage.startPage}" 
 												   end="${articlePage.endPage}">
-										<a href="list.do?pageNo=${pNo}">[${pNo}]</a>
+											<div class="text-center">
+											<ul class="pagination">
+												<li><a href="list.do?pageNo=${pNo}">${pNo}</a></li>
+											</ul>
+											</div>
 										</c:forEach>
 										<c:if test="${articlePage.endPage < articlePage.totalPages}">
-										<a href="list.do?pageNo=${articlePage.startPage + 5}">[다음]</a>
+											<a href="list.do?pageNo=${articlePage.startPage + 5}">[다음]</a>
 										</c:if>
 									</td>
 								</tr>
 							</c:if>
-							</table>
-							<a class="btn btn-default pull-right" href="write.do">글 작성</a>
-							<div class="text-center">
-								<ul class="pagination">
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-								</ul>
-							</div>
 						</div>
 					</div>
 				</div>

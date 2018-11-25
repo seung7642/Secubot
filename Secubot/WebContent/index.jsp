@@ -28,7 +28,7 @@
 <link href="assets/ionicon/css/ionicons.min.css" rel="stylesheet" />
 
 <!-- Custom styles for this template -->
-<link href="css/style.css?ver=1" rel="stylesheet">
+<link href="css/style.css?version=2" rel="stylesheet">
 <link href="css/helper.css" rel="stylesheet">
 
 <!-- myCSS -->
@@ -38,7 +38,6 @@
 <link href="css/d3.css?ver=2" rel="stylesheet">
 
 </head>
-
 <body>
 
 	<%
@@ -53,7 +52,7 @@
 	<!-- Main Content Start -->
 	<section class="content">
 		<%@ include file="/WEB-INF/view/header.jsp"%>
-
+		
 		<!-- Page Content Start -->
 		<!-- ================== -->
 		<div class="wraper container-fluid">
