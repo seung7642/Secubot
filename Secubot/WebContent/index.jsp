@@ -67,7 +67,9 @@
 						<div class="portlet-heading">
 							<h3 class="portlet-title text-dark">보안 위협 시각화</h3>
 						</div>
-						<svg id="visualization" class="portlet-body"></svg>
+						<div id="visualization" class="portlet-body">
+							<svg></svg>
+						</div>
 					</div>
 				</div>
 				<!-- end row -->
@@ -116,9 +118,12 @@
 	
 	<!-- ajax -->
 	<script src="js/ajax.js"></script>
+	<script src="js/visualization.js"></script>
 	
 	<script>
-		getElasticData();
+		var data = getElasticData();
+		var parse = JSON.parse(data);
+		visualization(parse);
 	</script>
 	
 </body>
