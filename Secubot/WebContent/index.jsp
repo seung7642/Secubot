@@ -117,11 +117,11 @@
 	<script src="js/d3.v3.min.js"></script>
 	
 	<!-- ajax -->
-	<script src="js/ajax.js"></script>
+	<script src="js/ajax.js?ver=1"></script>
 	<script src="js/visualization.js"></script>
 	
 	<script>
-		var data = getElasticData();
+		var data = getProcessList();
 		var parse = JSON.parse(data);
 		visualization(parse);
 	</script>

@@ -1,8 +1,3 @@
-function agentInit() {
-	console.log($(this));
-	document.querySelector('nav > ul');
-}
-
 function TabPanel(selector) {
 	console.log(selector);
 	// Properties
@@ -69,14 +64,4 @@ TabPanel.prototype.showContentAt = function(index) {
 	$showContent.css({opacity: 1});
 	
 	this.$selectTabContent = $showContent;
-}
-
-function getAgentList() {
-	var bodyContent = $.ajax({
-		url: "http://211.193.58.162:2222/AgentList",
-		global: false,
-		type: "GET",
-		async: false
-	}).responseText;
-	return bodyContent;
 }

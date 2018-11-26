@@ -73,7 +73,7 @@
 										<a href=""><i class="fa fa-search"></i></a>
 									</form>
 								</div>
-								<table class="table table-hover table-striped table-sm">
+								<table class="table table-hover table-sm">
 									<thead>
 										<th width="10%">상태</th>
 										<th width="20%">사용자명</th>
@@ -85,9 +85,28 @@
 									
 									</tbody>
 								</table>
-								
-								<div class="text-center">
-									<ul class="pagination m-b-5">
+								<c:if test="${articlePage.hasArticles()}">
+									<tr>
+										<td colspan="4">
+											<c:if test="${articlePage.startPage > 5}">
+												<a href="list.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
+											</c:if>
+											<c:forEach var="pNo" begin="${articlePage.startPage}" 
+											end="${articlePage.endPage}">
+												<div class="text-center">
+													<ul class="pagination">
+														<li><a href="list.do?pageNo=${pNo}">${pNo}</a></li>
+													</ul>
+												</div>
+											</c:forEach>
+											<c:if test="${articlePage.endPage < articlePage.totalPages}">
+												<a href="list.do?pageNo=${articlePage.startPage + 5}">[다음]</a>
+											</c:if>
+										</td>
+									</tr>
+								</c:if>
+								<div id="paginationArea" class="text-center">
+									<%-- <ul class="pagination m-b-5">
 	                                    <li>
 	                                      <a href="#" aria-label="Previous">
 	                                        <i class="fa fa-angle-left"></i>
@@ -95,14 +114,13 @@
 	                                    </li>
 	                                    <li class="active"><a href="#">1</a></li>
 	                                    <li><a href="#">2</a></li>
-	                                    <li><a href="#">3</a></li>
-	                                    <li><a href="#">4</a></li>
-	                                    <li><a href="#">5</a></li>
 	                                    <li>
 	                                      <a href="#" aria-label="Next">
 	                                        <i class="fa fa-angle-right"></i>
 	                                      </a>
 	                                    </li>
+	                                </ul> --%>
+	                                <ul class="pagination m-b-5">
 	                                </ul>
                                 </div>
 							</div>
@@ -140,17 +158,48 @@
 	<!-- Dashboard -->
 	<script src="js/jquery.dashboard.js"></script>
 
-	<script src="js/agent.js"></script>
+	<!-- ajax -->
+	<script src="js/ajax.js?ver=2"></script>
 	<script>
-		agentInit();
-		info = getAgentList();
-		parse = JSON.parse(info);
-		
+		data = getAgentList();
+		parse = JSON.parse(data);
 		for (i in parse.AgentList) {
 			document.querySelector('table').innerHTML += "<tbody>" + "<td><div class='material-switch pull-left'><input id='someSwitchOptionPrimary' name='someSwitchOption001' type='checkbox' /> <label for='someSwitchOptionPrimary' class='label-primary'></label></div></td>"
 			+ "<td><a href='/Secubot/agentInfo.do'>" + parse.AgentList[i].UserName + "</a></td>"
-			+ "<td>" + parse.AgentList[i].userPhone + "</td>" + "<td></td>" + "<td>" + parse.AgentList[i].AgentID + "</td>" + "</tbody>";
+			+ "<td>" + parse.AgentList[i].userPhone + "</td>" + "<td></td>" + "<td></td>" + "</tbody>";
 		}
+		
+		/*
+		 *	페이징 처리할 부분
+		 */
+		var size = 5; // 1페이지당 갯수
+		var arr = parse.AgentList; // 에이전트 리스트 객체들을 담을 배열
+		console.log("test: " + arr.length);
+		var arrLen = arr.length;
+		var page = parseInt(arrLen / size);
+		var arrList = new Array(page);
+		for (var i=0; i<=page; i++) {
+			arrList[i] = new Array();
+			console.log("success");
+		}
+		
+		var tmp = 0;
+		for (var i=0; i<=1; i++) {
+			for (var j=0; j<size; j++) {
+				if (arrLen != tmp) {
+					arrList[i][j] = arr[tmp++];
+				}
+			}
+		}
+		console.log(arrList);
+		
+		var area = document.querySelector('#paginationArea > ul');
+		for (var i=0; i<=page; i++) {
+			/* area.innerHTML += '<ul class="pagination m-b-5"><li>' + 
+			i + '</li></ul>' */
+			area.innerHTML += '<li>' + i + '</li>';
+		}
+		
 	</script>
 
 </body>
