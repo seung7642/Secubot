@@ -20,7 +20,7 @@
 	Management</title>
 
 <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/bootstrap-reset.css" rel="stylesheet">
 
 <!--Animation css-->
@@ -31,7 +31,7 @@
 <link href="assets/ionicon/css/ionicons.min.css" rel="stylesheet" />
 
 <!-- Custom styles for this template -->
-<link href="css/style.css" rel="stylesheet">
+<link href="css/style.css?version=1" rel="stylesheet">
 <link href="css/helper.css" rel="stylesheet">
 
 <link href="css/withyou.css" rel="stylesheet">
@@ -53,9 +53,6 @@ div.tab-pane div.panel.panel-default {
 	width: 100%;
 	height: 400px;
 	border: 1px solid lightgray;
-}
-
-div#search {
 }
 </style>
 
@@ -95,7 +92,7 @@ div#search {
 									class="fa fa-user"></i></span> <span class="hidden-xs">Topology</span>
 						</a></li>
 					</ul>
-					<div class="tab-content" style="border:1px solid gray;box-shadow:10px 10px 10px 10px;">
+					<div class="tab-content">
 						<div class="tab-pane active" id="node">
 							<div class="table-responsive" data-pattern="priority-columns">
 								<div id="search">

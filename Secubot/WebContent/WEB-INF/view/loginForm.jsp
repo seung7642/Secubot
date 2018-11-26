@@ -13,7 +13,7 @@
 <title>Adaptive SIEM & Security Configuration Management</title>
 
 <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/bootstrap-reset.css" rel="stylesheet">
 
 <!-- animate CSS -->
@@ -24,8 +24,8 @@
 <link href="assets/ionicon/css/ionicons.min.css" rel="stylesheet" />
 
 <!-- Custom styles for this template -->
-<link href="css/style.css" rel="stylesheet">
-<link href="css/helper.css" rel="stylesheet">
+<link href="css/style.css?ver=1" rel="stylesheet">
+<link href="css/helper.css?ver=1" rel="stylesheet">
         
 <style>
 .help-block {

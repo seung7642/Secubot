@@ -37,7 +37,8 @@ function getElasticData() {
 					// d3.select("#visualization").select("svg").append("g").attr("id", "yAxisG").call(yAxis);
 					
 					// data() 메서드의 매개변수 타입은 배열이다.
-					var allG = d3.select("#visualization").select("svg").append("g").attr("class", "allG");
+					// var allG = d3.select("#visualization").select("svg").append("g").attr("class", "allG");
+					var allG = d3.select("svg").append("g").attr("class", "allG");
 					allG.selectAll("circle.tweets").data(data.ProcessList).enter().append("circle")
 					.attr("class", "tweets")
 					.attr("r", 5)

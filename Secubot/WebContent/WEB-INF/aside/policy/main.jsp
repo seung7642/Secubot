@@ -91,7 +91,7 @@ div.tab-pane div.panel.panel-default {
 									class="fa fa-envelope-o"></i></span> <span class="hidden-xs">Group Policy</span>
 						</a></li>
 					</ul>
-					<div class="tab-content" style="border: 1px solid gray;box-shadow:10px 10px 10px 10px;">
+					<div class="tab-content">
 						<div class="tab-pane active" id="default">
 							<div class="table-responsive" data-pattern="priority-columns">
 								<table id="datatable"

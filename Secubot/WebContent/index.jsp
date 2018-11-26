@@ -28,7 +28,7 @@
 <link href="assets/ionicon/css/ionicons.min.css" rel="stylesheet" />
 
 <!-- Custom styles for this template -->
-<link href="css/style.css?version=2" rel="stylesheet">
+<link href="css/style.css?version=1" rel="stylesheet">
 <link href="css/helper.css" rel="stylesheet">
 
 <!-- myCSS -->
@@ -67,11 +67,7 @@
 						<div class="portlet-heading">
 							<h3 class="portlet-title text-dark">보안 위협 시각화</h3>
 						</div>
-						<div class="portlet-body">
-							<div id="visualization">
-								<svg></svg>
-							</div>
-						</div>
+						<svg id="visualization" class="portlet-body"></svg>
 					</div>
 				</div>
 				<!-- end row -->
