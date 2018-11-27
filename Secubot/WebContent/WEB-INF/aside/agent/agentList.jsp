@@ -26,6 +26,9 @@
 <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href="assets/ionicon/css/ionicons.min.css" rel="stylesheet" />
 
+<!-- DataTables -->
+<link href="assets/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+        
 <!-- Custom styles for this template -->
 <link href="css/style.css?version=1" rel="stylesheet">
 <link href="css/helper.css?version=1" rel="stylesheet">
@@ -65,34 +68,27 @@ button.active {
 			</div>
 
 			<div class="row">
-				<div class="col-lg-12">
-					<div class="portlet">
-						<!-- /primary heading -->
-						<div class="portlet-heading">
-							<h3 class="portlet-title text-dark">에이전트 관리 목록</h3>
+				<div class="col-md-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title text-dark">에이전트 관리 목록</h3>
 						</div>
-						
-						<div id="portlet" class="panel-collapse collapse in">
-							<div class="portlet-body">
-								<div id="search">
-									<!-- Search -->
-									<form role="search" class="navbar-right app-search pull-right hidden-xs">
-										<input type="text" placeholder="Search..." class="form-control">
-										<a href=""><i class="fa fa-search"></i></a>
-									</form>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12">
+									<table id="datatable" class="table table-hover table-sm">
+										<thead>
+											<th width="20%">등록날짜</th>
+											<th width="20%">사용자명</th>
+											<th width="20%">Phone</th>
+											<th width="20%">IP</th>
+											<th width="20%">MAC</th>
+										</thead>
+									</table>
+									<%-- <div id="paginationArea" class="text-center">
+		                                <ul class="pagination m-b-5"></ul>
+									</div> --%>
 								</div>
-								<table class="table table-hover table-sm" style="height:250px;">
-									<thead>
-										<th width="10%">상태</th>
-										<th width="20%">사용자명</th>
-										<th width="20%">Phone</th>
-										<th width="30%">MAC</th>
-										<th width="10%">AgentID</th>
-									</thead>
-								</table>
-								<div id="paginationArea" class="text-center">
-	                                <ul class="pagination m-b-5"></ul>
-                                </div>
 							</div>
 						</div>
 					</div>
@@ -131,8 +127,19 @@ button.active {
 	<!-- ajax -->
 	<script src="js/ajax.js?ver=2"></script>
 	<script>
-		data = getAgentList();
-		parse = JSON.parse(data);
+		var data = getAgentList();
+		var parse = JSON.parse(data);
+		for (var i=0; i<parse.AgentList.length; i++) {
+			document.querySelector('table').innerHTML += '<tbody>'
+				+ '<tr>' 
+				+ "<td width='20%'></td>"
+				+ "<td width='20%'><a href='/Secubot/agentInfo.do'>" + parse.AgentList[i].UserName + "</a></td>"
+				+ "<td width='20%'>" + parse.AgentList[i].userPhone + "</td>" 
+				+ "<td width='20%'></td>" 
+				+ "<td width='20%'></td>"
+				+ '</tr>';
+				+ '</tbody>';
+		}
 		
 		/*
 		 *	페이징 처리할 부분
@@ -156,7 +163,7 @@ button.active {
 			}
 		}
 		
-		var area = document.querySelector('#paginationArea > ul');
+		/* var area = document.querySelector('#paginationArea > ul');
 		for (var i=0; i<=page; i++) {
 			area.innerHTML += '<button class="page-link btn btn-default" onclick=' + '"paginationButton(event, ' + i + ')">' + (i+1) + '</a></li>';
 		}
@@ -169,7 +176,7 @@ button.active {
 				+ "<td width='20%'>" + arrList[i][j].userPhone + "</td>" + "<td width='30%'></td>" + "<td width='10%'></td>";
 			}
 			document.querySelector('table').innerHTML += '</tbody>';
-		}
+		} */
 		
 		/*
 		 *	버튼 클릭에 따른 패널 전환 처리 함수
@@ -192,6 +199,14 @@ button.active {
 		}
 		
 	</script>
-
+	
+	<!-- datatable -->
+	<script src="${pageContext.request.contextPath }/assets/datatables/jquery.dataTables.min.js"></script>
+	<script src="${pageContext.request.contextPath }/assets/datatables/dataTables.bootstrap.js"></script>
+	<script type="text/javascript">
+	    $(document).ready(function() {
+	        $('#datatable').dataTable();
+	    });
+	</script>
 </body>
 </html>

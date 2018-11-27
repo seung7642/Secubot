@@ -21,6 +21,9 @@
 <link href="${pageContext.request.contextPath }/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath }/assets/ionicon/css/ionicons.min.css" rel="stylesheet" />
 
+<!-- DataTables -->
+<link href="${pageContext.request.contextPath }/assets/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+        
 <!-- Custom styles for this template -->
 <link href="${pageContext.request.contextPath }/css/style.css?ver=2" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/css/helper.css" rel="stylesheet">
@@ -49,64 +52,67 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-12">
-					<div class="portlet">
-						<!-- /primary heading -->
-						<div class="portlet-heading">
-							<h3 class="portlet-title text-dark">보안 업무 형상관리</h3>
+				<div class="col-md-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title text-dark">보안 업무 형상관리</h3>
 						</div>
-						<div class="portlet-body">
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th>#</th>
-										<th>제목</th>
-										<th>작성자</th>
-										<th>조회수</th>
-									</tr>
-								</thead>
-								<tbody>
-							<c:if test="${articlePage.hasNoArticles()}">
-								<tr>
-									<td colspan="4">게시글이 없습니다.</td>
-								</tr>
-							</c:if>
-							<c:forEach var="article" items="${articlePage.content}">
-								<tr>
-									<td><strong>${article.number}</strong></td>
-									<td>
-									<a href="read.do?no=${article.number}&pageNo=${articlePage.currentPage}">
-									<c:out value="${article.title}"/>
-									</a>
-									</td>
-									<td>${article.writer.name}</td>
-									<td>${article.readCount}</td>
-								</tr>
-							</c:forEach>
-								</tbody>
-							</table>
-							<a class="btn btn-default pull-right" href="write.do">글 작성</a>
-							<c:if test="${articlePage.hasArticles()}">
-								<tr>
-									<td colspan="4">
-										<c:if test="${articlePage.startPage > 5}">
-											<a href="list.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
-										</c:if>
-										<c:forEach var="pNo" 
-												   begin="${articlePage.startPage}" 
-												   end="${articlePage.endPage}">
-											<div class="text-center">
-											<ul class="pagination">
-												<li><a href="list.do?pageNo=${pNo}">${pNo}</a></li>
-											</ul>
-											</div>
-										</c:forEach>
-										<c:if test="${articlePage.endPage < articlePage.totalPages}">
-											<a href="list.do?pageNo=${articlePage.startPage + 5}">[다음]</a>
-										</c:if>
-									</td>
-								</tr>
-							</c:if>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12">
+									<table id="datatable" class="table table-hover">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>제목</th>
+												<th>작성자</th>
+												<th>조회수</th>
+											</tr>
+										</thead>
+										<tbody>
+									<c:if test="${articlePage.hasNoArticles()}">
+										<tr>
+											<td colspan="4">게시글이 없습니다.</td>
+										</tr>
+									</c:if>
+									<c:forEach var="article" items="${articlePage.content}">
+										<tr>
+											<td><strong>${article.number}</strong></td>
+											<td>
+											<a href="read.do?no=${article.number}&pageNo=${articlePage.currentPage}">
+											<c:out value="${article.title}"/>
+											</a>
+											</td>
+											<td>${article.writer.name}</td>
+											<td>${article.readCount}</td>
+										</tr>
+									</c:forEach>
+										</tbody>
+									</table>
+									<a class="btn btn-default pull-right" href="write.do">글 작성</a>
+									<%-- <c:if test="${articlePage.hasArticles()}">
+										<tr>
+											<td colspan="4">
+												<c:if test="${articlePage.startPage > 5}">
+													<a href="list.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
+												</c:if>
+												<c:forEach var="pNo" 
+														   begin="${articlePage.startPage}" 
+														   end="${articlePage.endPage}">
+													<div class="text-center">
+													<ul class="pagination">
+														<li><a href="list.do?pageNo=${pNo}">${pNo}</a></li>
+													</ul>
+													</div>
+												</c:forEach>
+												<c:if test="${articlePage.endPage < articlePage.totalPages}">
+													<a href="list.do?pageNo=${articlePage.startPage + 5}">[다음]</a>
+												</c:if>
+											</td>
+										</tr>
+									</c:if> --%>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -140,5 +146,14 @@
 
 	<!-- Dashboard -->
 	<script src="${pageContext.request.contextPath }/js/jquery.dashboard.js"></script>
+	
+	<!-- datatable -->
+	<script src="${pageContext.request.contextPath }/assets/datatables/jquery.dataTables.min.js"></script>
+	<script src="${pageContext.request.contextPath }/assets/datatables/dataTables.bootstrap.js"></script>
+	<script type="text/javascript">
+	    $(document).ready(function() {
+	        $('#datatable').dataTable();
+	    });
+	</script>
 </body>
 </html>
