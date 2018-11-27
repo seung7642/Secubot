@@ -81,7 +81,7 @@ button.active {
 										<a href=""><i class="fa fa-search"></i></a>
 									</form>
 								</div>
-								<table class="table table-hover table-sm">
+								<table class="table table-hover table-sm" style="height:250px;">
 									<thead>
 										<th width="10%">상태</th>
 										<th width="20%">사용자명</th>
@@ -91,22 +91,7 @@ button.active {
 									</thead>
 								</table>
 								<div id="paginationArea" class="text-center">
-									<%-- <ul class="pagination m-b-5">
-	                                    <li>
-	                                      <a href="#" aria-label="Previous">
-	                                        <i class="fa fa-angle-left"></i>
-	                                      </a>
-	                                    </li>
-	                                    <li class="active"><a href="#">1</a></li>
-	                                    <li><a href="#">2</a></li>
-	                                    <li>
-	                                      <a href="#" aria-label="Next">
-	                                        <i class="fa fa-angle-right"></i>
-	                                      </a>
-	                                    </li>
-	                                </ul> --%>
-	                                <ul class="pagination m-b-5">
-	                                </ul>
+	                                <ul class="pagination m-b-5"></ul>
                                 </div>
 							</div>
 						</div>
@@ -173,7 +158,7 @@ button.active {
 		
 		var area = document.querySelector('#paginationArea > ul');
 		for (var i=0; i<=page; i++) {
-			area.innerHTML += '<button class="page-link" onclick=' + '"paginationButton(event, ' + i + ')">' + (i+1) + '</a></li>';
+			area.innerHTML += '<button class="page-link btn btn-default" onclick=' + '"paginationButton(event, ' + i + ')">' + (i+1) + '</a></li>';
 		}
 		
 		for (var i=0; i<=page; i++) {
@@ -187,7 +172,7 @@ button.active {
 		}
 		
 		/*
-		 *	버튼 클릭에 따른 패널 전환 처리함수
+		 *	버튼 클릭에 따른 패널 전환 처리 함수
 		 */
 		function paginationButton(evt, pageNumber) {
 			var pageContent, pageLinks;
