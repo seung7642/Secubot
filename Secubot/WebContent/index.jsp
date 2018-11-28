@@ -35,7 +35,7 @@
 <link href="css/myCSS.css" rel="stylesheet">
 
 <!-- d3 -->
-<link href="css/d3.css?ver=2" rel="stylesheet">
+<link href="css/d3.css?ver=1" rel="stylesheet">
 
 </head>
 <body>
@@ -61,18 +61,25 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-6">
 					<div class="portlet">
-						<!-- /primary heading -->
 						<div class="portlet-heading">
 							<h3 class="portlet-title text-dark">보안 위협 시각화</h3>
 						</div>
-						<div id="visualization" class="portlet-body">
+						<div class="portlet-body" id="visualization">
 							<svg></svg>
 						</div>
 					</div>
 				</div>
-				<!-- end row -->
+				
+				<div class="col-lg-6">
+					<div class="portlet">
+						<div class="portlet-heading">
+							<h3 class="portlet-title text-dark">누적 대응 건수</h3>
+						</div>
+						<div class="portlet-body" id="line"></div>
+					</div>				
+				</div>
 			</div>
 			<!-- end row -->
 
@@ -118,12 +125,15 @@
 	
 	<!-- ajax -->
 	<script src="js/ajax.js?ver=1"></script>
-	<script src="js/visualization.js"></script>
+	<script src="js/visualization.js?ver=1"></script>
 	
 	<script>
 		var data = getProcessList();
 		var parse = JSON.parse(data);
 		visualization(parse);
+		
+		/* line Chart */
+		lineChart();
 	</script>
 	
 </body>
