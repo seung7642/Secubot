@@ -37,6 +37,15 @@
 <!-- d3 -->
 <link href="css/d3.css?ver=1" rel="stylesheet">
 
+<style>
+h2:hover {
+	transform: scale(1.05);
+	-webkit-transform: scale(1.05);
+	-moz-transform: scale(1.05);
+	transition: all 0.3s ease-in-out;
+}
+</style>
+
 </head>
 <body>
 
@@ -59,7 +68,37 @@
 			<div class="page-title">
 				<h3 class="title"></h3>
 			</div>
-
+			<div class="row">
+				<div class="col-lg-3 col-sm-6">
+					<div class="widget-panel widget-style-2 white-bg">
+						<i class="fa fa-shield text-pink"></i> 
+						<h2 class="m-0 counter" style="cursor:pointer;">8956</h2>
+						<div>Total responses</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="widget-panel widget-style-2 white-bg">
+						<i class="ion-social-freebsd-devil text-purple"></i> 
+						<h2 class="m-0 counter" style="cursor:pointer;">50</h2>
+						<div>Today's responses</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="widget-panel widget-style-2 white-bg">
+						<i class="ion-android-search text-info"></i> 
+						<h2 class="m-0 counter" style="cursor:pointer;">126</h2>
+						<div>Count of Process</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="widget-panel widget-style-2 white-bg">
+						<i class="ion-ios7-compose text-success"></i> 
+						<h2 class="m-0 counter" style="cursor:pointer;">145</h2>
+						<div>Count of complain</div>
+					</div>
+				</div>
+			</div> <!-- end row -->
+                
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="portlet">
@@ -125,7 +164,7 @@
 	
 	<!-- ajax -->
 	<script src="js/ajax.js?ver=1"></script>
-	<script src="js/visualization.js?ver=1"></script>
+	<script src="js/visualization.js?ver=2"></script>
 	
 	<script>
 		var data = getProcessList();

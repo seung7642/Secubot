@@ -1,11 +1,15 @@
 function visualization(data) {
 	d3.select("svg").selectAll("*").remove();
 	
-	var xScale = d3.scale.linear().domain([data.minX, data.maxX]).range([20, 200]);
-	var yScale = d3.scale.linear().domain([data.minY, data.maxY]).range([480, 0]);
+	var margin = { top: 30, right: 20, bottom: 30, left: 50 },
+		width = 600 - (margin.left + margin.right);
+		height = 500 - (margin.top + margin.bottom);
 	
-	var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickSize(1100);
-	var yAxis = d3.svg.axis().scale(yScale).orient("right").ticks(10).tickSize(1050);
+	var xScale = d3.scale.linear().domain([0, data.maxX]).range([0, width]);
+	var yScale = d3.scale.linear().domain([0, data.maxY]).range([height, 0]);
+	
+	var xAxis = d3.svg.axis().scale(xScale).orient("bottom").ticks(5).tickValues([1, 2, 3, 4, 5]);
+	var yAxis = d3.svg.axis().scale(yScale).orient("left").tickPadding(10);
 	
 	var zoom = 
 		d3.behavior.zoom()
@@ -17,15 +21,22 @@ function visualization(data) {
 			});
 	
 	var svg = 
-		d3.select("#visualization").select("svg").call(zoom)
+		d3.select("#visualization")
+		.select("svg")
+			.attr("width", width + margin.left + margin.right)
+			.attr("height", height + margin.top + margin.bottom)
+			.call(zoom)
 		.append("g")
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 			.attr("class", "behaviorG");
+	svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
+	svg.append("g").attr("class", "y axis").call(yAxis);
 	
 	svg.selectAll("circle.behavior").data(data.ProcessList).enter()
 	.append("circle")
 		.attr("class", "behavior")
 		.attr("r", 5)
-		.attr("cx", function(d) { return 200 - xScale(d.x); })
+		.attr("cx", function(d) { return width - xScale(d.x); })
 		.attr("cy", function(d) { return yScale(d.y); })
 		.style("fill", "black");
 	
@@ -50,29 +61,6 @@ function visualization(data) {
 	function evtOut(d) {
 		// TODO: mouseout 이벤트 로직
 		d3.select(this).transition().duration(500).attr("r", 5);
-	}
-}
-
-function dragFunc() {
-	var drag = d3.behavior.drag()
-	.origin(function(d) { return d; })
-	.on("dragstart", dragstarted)
-	.on("drag", dragged)
-	.on("dragend", dragended);
-	
-	function dragstarted(d) {
-		d3.event.sourceEvent.stopPropagation();
-		d3.select(this).classed("dragging", true);
-	}
-	
-	function dragged(d) {
-		d3.select(this)
-		.attr("cx", d.x = d3.event.x)
-		.attr("cy", d.y = d3.event.y);
-	}
-	
-	function dragended(d) {
-		d3.select(this).classed("dragging", false);
 	}
 }
 
