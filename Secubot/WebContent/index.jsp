@@ -164,7 +164,7 @@ h2:hover {
 	
 	<!-- ajax -->
 	<script src="js/ajax.js?ver=1"></script>
-	<script src="js/visualization.js?ver=2"></script>
+	<script src="js/visualization.js?ver=1"></script>
 	
 	<script>
 		var data = getProcessList();

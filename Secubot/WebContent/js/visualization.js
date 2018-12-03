@@ -7,6 +7,7 @@ function visualization(data) {
 	
 	var xScale = d3.scale.linear().domain([0, data.maxX]).range([0, width]);
 	var yScale = d3.scale.linear().domain([0, data.maxY]).range([height, 0]);
+	var colorScale = d3.scale.linear().domain([0, data.maxY]).range([0, 255]);
 	
 	var xAxis = d3.svg.axis().scale(xScale).orient("bottom").ticks(5).tickValues([1, 2, 3, 4, 5]);
 	var yAxis = d3.svg.axis().scale(yScale).orient("left").tickPadding(10);
@@ -38,7 +39,9 @@ function visualization(data) {
 		.attr("r", 5)
 		.attr("cx", function(d) { return width - xScale(d.x); })
 		.attr("cy", function(d) { return yScale(d.y); })
-		.style("fill", "black");
+		.style("fill", function(d) {
+			return "rgb(" + colorScale(d.y) + ", 0, 0)";
+		});
 	
 	d3.select("g.behaviorG").selectAll("circle")
 		.on("click", evtClick)
