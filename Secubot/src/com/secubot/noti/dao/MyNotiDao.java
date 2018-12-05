@@ -16,14 +16,13 @@ public class MyNotiDao {
 
 	public void insert(Connection conn, MyNotification myNoti) throws SQLException {
 		try (PreparedStatement pstmt = conn.prepareStatement("insert into mynoti "
-				+ "(article_no, another_member_id, noti_type, read_check, regdate, my_id) "
-				+ "values(?, ?, ?, ?, ?, ?)")) {
+				+ "(article_no, writer_id, writer_name, read_check, regdate)"
+				+ "values(?, ?, ?, ?, ?)")) {
 			pstmt.setInt(1, myNoti.getArticleNo());
-			pstmt.setInt(2, myNoti.getAnotherMemberId());
-			pstmt.setString(3, myNoti.getType());
+			pstmt.setString(2, myNoti.getId());
+			pstmt.setString(3, myNoti.getName());
 			pstmt.setBoolean(4, myNoti.isReadCheck());
 			pstmt.setTimestamp(5, new Timestamp(myNoti.getRegdate().getTime()));
-			pstmt.setInt(6, myNoti.getMyId());
 			pstmt.executeUpdate();
 		}
 	}
@@ -54,22 +53,25 @@ public class MyNotiDao {
 	}
 	
 	private MyNotification convertNoti(ResultSet rs) throws SQLException {
-		return new MyNotification(rs.getInt("noti_no"),
-				rs.getInt("article_no"), rs.getInt("another_member_id"), rs.getString("noti_type"),
-				rs.getBoolean("read_check"), toDate(rs.getTimestamp("regdate")), rs.getInt("my_id"));
+		return new MyNotification(
+				rs.getInt("article_no"),
+				rs.getString("writer_id"),
+				rs.getString("writer_name"),
+				rs.getBoolean("read_check"), 
+				toDate(rs.getTimestamp("regdate")));
 	}
 	
 	private Date toDate(Timestamp ts) {
 		return new Date(ts.getTime());
 	}
 	
-	public int selectById(Connection conn, int no) throws SQLException {
+	public int selectByNotiNo(Connection conn, int noti_no) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
 			pstmt = conn.prepareStatement("select noti_no from mynoti where noti_no=?");
-			pstmt.setInt(1, no);
+			pstmt.setInt(1, noti_no);
 			rs = pstmt.executeQuery();
 			int notiNo = 0;
 			if (rs.next()) {
@@ -100,20 +102,19 @@ public class MyNotiDao {
 		}
 	}
 	
-	public int selectFalseCount(Connection conn, String myId) throws SQLException {
+	public int notiCount(Connection conn) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
 			pstmt = conn.prepareStatement("select count(*) from mynoti "
-					+ "where my_id=? and read_check=false another_memberid not in (?)");
-			pstmt.setString(1, myId);
-			pstmt.setString(2, myId);
+				+ "where read_check=0");
 			rs = pstmt.executeQuery();
+			int notiCount = 0;
 			if (rs.next()) {
-				return rs.getInt(1);
+				notiCount = rs.getInt(1);
 			}
-			return 0;
+			return notiCount;
 		} finally {
 			JdbcUtil.close(pstmt);
 			JdbcUtil.close(rs);

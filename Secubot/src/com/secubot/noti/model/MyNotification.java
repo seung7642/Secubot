@@ -5,44 +5,28 @@ import java.util.Date;
 import com.secubot.util.TransferDate;
 
 public class MyNotification {
-	private Integer number;
+	private Integer notiNo;
 	private Integer articleNo;
-	private Integer anotherMemberId;
-	private String anotherUserNickname;
-	private String type;
+	private String writer_id;
+	private String writer_name;
 	private boolean readCheck;
 	private Date regdate;
-	private int myId;
 
-	public MyNotification(Integer number, Integer articleNo, Integer anotherMemberId,
-			String type, boolean readCheck, Date regdate, int myId) {
-		this.number = number;
+	public MyNotification(Integer articleNo, String writer_id, 
+			String writer_name, boolean readCheck, Date regdate) {
 		this.articleNo = articleNo;
-		this.anotherMemberId = anotherMemberId;
-		this.type = type;
+		this.writer_id = writer_id;
+		this.writer_name = writer_name;
 		this.readCheck = readCheck;
 		this.regdate = regdate;
-		this.myId = myId;
-	}
-	
-	public MyNotification(Integer number, Integer articleNo, Integer anotherMemberId, String anotherUserNickname,
-			String type, boolean readCheck, Date regdate, int myId) {
-		this.number = number;
-		this.articleNo = articleNo;
-		this.anotherMemberId = anotherMemberId;
-		this.anotherUserNickname = anotherUserNickname;
-		this.type = type;
-		this.readCheck = readCheck;
-		this.regdate = regdate;
-		this.myId = myId;
 	}
 
-	public Integer getNumber() {
-		return number;
+	public Integer getNotiNo() {
+		return notiNo;
 	}
 
-	public void setNumber(Integer number) {
-		this.number = number;
+	public void setNotiNo(Integer notiNo) {
+		this.notiNo = notiNo;
 	}
 
 	public Integer getArticleNo() {
@@ -52,29 +36,21 @@ public class MyNotification {
 	public void setArticleNo(Integer articleNo) {
 		this.articleNo = articleNo;
 	}
-
-	public Integer getAnotherMemberId() {
-		return anotherMemberId;
+	
+	public String getId() {
+		return writer_id;
 	}
-
-	public void setAnotherMemberId(Integer anotherMemberId) {
-		this.anotherMemberId = anotherMemberId;
+	
+	public void setId(String writer_id) {
+		this.writer_id = writer_id;
 	}
-
-	public String getAnotherUserNickname() {
-		return anotherUserNickname;
+	
+	public String getName() {
+		return writer_name;
 	}
-
-	public void setAnotherUserNickname(String anotherUserNickname) {
-		this.anotherUserNickname = anotherUserNickname;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
+	
+	public void setName(String writer_name) {
+		this.writer_name = writer_name;
 	}
 
 	public boolean isReadCheck() {
@@ -93,14 +69,6 @@ public class MyNotification {
 		this.regdate = regdate;
 	}
 
-	public int getMyId() {
-		return myId;
-	}
-
-	public void setMyId(int myId) {
-		this.myId = myId;
-	}
-	
 	public String getTransferRegDate() {
 		return TransferDate.getDate(regdate);
 	}

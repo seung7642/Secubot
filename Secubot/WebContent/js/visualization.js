@@ -33,6 +33,19 @@ function visualization(data) {
 	svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
 	svg.append("g").attr("class", "y axis").call(yAxis);
 	
+	/*var widthLine = d3.svg.line().x(0).y(height/2);
+	var heightLine = d3.svg.line().x(width/2).y(0);
+	
+	d3.select("#visualization").select("svg").append("path")
+	.attr("d", widthLine)
+	.attr("fill", "black")
+	.attr("stroke-width", "2px");
+	
+	d3.select("#visualization").select("svg").append("path")
+	.attr("d", heightLine)
+	.attr("fill", "black")
+	.attr("stroke-width", "2px");*/
+	
 	svg.selectAll("circle.behavior").data(data.ProcessList).enter()
 	.append("circle")
 		.attr("class", "behavior")

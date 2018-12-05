@@ -163,7 +163,7 @@ h2:hover {
 	<script src="js/d3.v3.min.js"></script>
 	
 	<!-- ajax -->
-	<script src="js/ajax.js?ver=1"></script>
+	<script src="js/ajax.js?ver=2"></script>
 	<script src="js/visualization.js?ver=1"></script>
 	
 	<script>
@@ -173,6 +173,9 @@ h2:hover {
 		
 		/* line Chart */
 		lineChart();
+		
+		/* Notification */
+		checkMyNoti();
 	</script>
 	
 </body>

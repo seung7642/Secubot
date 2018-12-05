@@ -11,7 +11,7 @@
 	<!-- Right navbar -->
 	<ul class="list-inline navbar-right top-menu top-right-menu">
 		
-		<!-- Notification -->
+		<!-- Notification dropdown start -->
 		<li class="dropdown">
 		    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 		        <i class="fa fa-bell-o"></i>
@@ -32,7 +32,7 @@
 		        </li>
 		    </ul>
 		</li>
-		<!-- /Notification -->
+		<!-- Notification dropdown end -->
 		
 		<!-- user login dropdown start-->
 		<li class="dropdown text-center">

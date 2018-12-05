@@ -23,10 +23,10 @@ public class ReadMyNotiService {
 	
 	public Boolean isNotiCheck(String myId) {
 		try (Connection conn = ConnectionProvider.getConnection()) {
-			int falseCnt = notiDao.selectFalseCount(conn, myId);
-			if (falseCnt == 0) {
-				return true;
-			}
+//			int falseCnt = notiDao.selectFalseCount(conn, myId);
+//			if (falseCnt == 0) {
+//				return true;
+//			}
 			return false;
 		} catch (SQLException e) {
 			throw new RuntimeException();

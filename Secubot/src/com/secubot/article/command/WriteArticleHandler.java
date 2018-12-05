@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.secubot.article.model.Writer;
 import com.secubot.article.service.WriteArticleService;
 import com.secubot.article.service.WriteRequest;
+import com.secubot.noti.service.UpdateMyNotiService;
 import com.secubot.auth.service.User;
 import com.secubot.mvc.command.CommandHandler;
 
@@ -16,6 +17,7 @@ public class WriteArticleHandler implements CommandHandler {
 
 	private static final String FORM_VIEW = "/WEB-INF/aside/desk/writeComplaints.jsp";
 	private WriteArticleService writeService = new WriteArticleService();
+	private UpdateMyNotiService notiService = new UpdateMyNotiService();
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) {
@@ -46,6 +48,7 @@ public class WriteArticleHandler implements CommandHandler {
 		}
 		
 		int newArticleNo = writeService.write(writeReq);
+		notiService.insert(newArticleNo, writeReq);
 		req.setAttribute("newArticleNo", newArticleNo);
 		
 		return "/WEB-INF/aside/desk/writeSuccess.jsp";

@@ -10,7 +10,7 @@ function getProcessList() {
 		url: 'http://211.193.58.162:2222/ProcessList',
 		type: 'GET',
 		async: false,
-		success: function (el) {
+		success: function(el) {
 			console.log("success");
 		}
 	}).responseText;
@@ -26,4 +26,16 @@ function getAgentList() {
 		async: false
 	}).responseText;
 	return bodyContent;
+}
+
+function checkMyNoti() {
+	var data = $.ajax({
+		url: 'checkMyNoti',
+		type: 'GET',
+		async: false,
+		success: function(el) {
+			console.log("Success: '/checkMyNoti'");
+		}
+	}).responseText;
+	setTimeout("checkMyNoti()", 20000);
 }

@@ -33,7 +33,7 @@ public class UserInfo extends HttpServlet {
 			conn = ConnectionProvider.getConnection();
 			memberDao = new MemberDao();
 			int countNum = 0;
-			countNum = memberDao.select(conn); // TODO: MemberDao�뿉 List<Member>�뿉 �쉶�썝�젙蹂� �떞�븘�꽌 諛섑솚�븯�뒗 硫붿꽌�뱶 留뚮뱾湲�
+			countNum = memberDao.select(conn); // TODO: 
 			
 			res.getWriter().write("Hello");
 			req.getSession().setAttribute("userCount", countNum);
