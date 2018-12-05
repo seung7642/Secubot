@@ -1,8 +1,10 @@
 function visualization(data) {
 	d3.select("svg").selectAll("*").remove();
+	var chartDiv = document.getElementById("visualization");
 	
 	var margin = { top: 30, right: 20, bottom: 30, left: 50 },
-		width = 600 - (margin.left + margin.right);
+//		width = 600 - (margin.left + margin.right);
+		width = chartDiv.clientWidth;
 		height = 500 - (margin.top + margin.bottom);
 	
 	var xScale = d3.scale.linear().domain([0, data.maxX]).range([0, width]);
@@ -24,8 +26,12 @@ function visualization(data) {
 	var svg = 
 		d3.select("#visualization")
 		.select("svg")
-			.attr("width", width + margin.left + margin.right)
-			.attr("height", height + margin.top + margin.bottom)
+//			.attr("width", width + margin.left + margin.right)
+//			.attr("height", height + margin.top + margin.bottom)
+			.attr({
+				"width": '100%',
+				"height": height + margin.top + margin.bottom
+			})
 			.call(zoom)
 		.append("g")
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
@@ -81,8 +87,9 @@ function visualization(data) {
 }
 
 function lineChart() {
+	var chartDiv = document.getElementById("line");
 	var margin = { top: 30, right: 20, bottom: 30, left: 50 },
-		width = 600 - (margin.left + margin.right),
+		width = chartDiv.clientWidth,
 		height = 500 - (margin.top + margin.bottom);
 	
 	var parseDate = d3.time.format("%d-%b-%y").parse;
@@ -104,8 +111,12 @@ function lineChart() {
 	
 	var svg = d3.select("#line")
 	.append("svg")
-		.attr("width", width + margin.left + margin.right)
-		.attr("height", height + margin.top + margin.bottom)
+//		.attr("width", width + margin.left + margin.right)
+//		.attr("height", height + margin.top + margin.bottom)
+		.attr({
+			"width": '100%',
+			"height": height + margin.top + margin.bottom
+		})
 	.append("g")
 		.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 		.call(d3.behavior.zoom().on("zoom", function() {
