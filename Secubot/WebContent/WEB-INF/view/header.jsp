@@ -15,7 +15,7 @@
 		<li class="dropdown">
 		    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 		        <i class="fa fa-bell-o"></i>
-		        <span class="badge badge-sm up bg-pink count">1</span>
+		        <span class="badge badge-sm up bg-pink count"></span>
 		    </a>
 		    <ul class="dropdown-menu extended fadeInUp animated nicescroll" tabindex="5002">
 		        <li class="noti-header">
@@ -23,8 +23,8 @@
 		        </li>
 		        <li>
 		            <a href="#">
-		                <span class="pull-left"><i class="fa fa-user-plus fa-2x text-info"></i></span>
-		                <span>Content<br><small class="text-muted">5 minutes ago</small></span>
+		                <span class="pull-left"><i class="ion-close-circled fa-2x text-danger"></i></span>
+		                <span>알림이 없습니다.<br><small class="text-muted">5 minutes ago</small></span>
 		            </a>
 		        </li>
 		        <li>

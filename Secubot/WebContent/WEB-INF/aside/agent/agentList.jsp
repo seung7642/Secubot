@@ -76,14 +76,36 @@ button.active {
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-md-12 col-sm-12 col-xs-12">
-									<table id="datatable" class="table table-hover table-sm">
+									<table id="datatable" class="table table-hover">
 										<thead>
-											<th width="20%">등록날짜</th>
-											<th width="20%">사용자명</th>
-											<th width="20%">Phone</th>
-											<th width="20%">IP</th>
-											<th width="20%">MAC</th>
+											<tr>
+												<th>#</th>
+												<th>사용자명</th>
+												<th>Phone</th>
+												<th>IP</th>
+												<th>MAC</th>
+											</tr>
 										</thead>
+										<tbody>
+											<c:if test="${agentList.hasNoArticles()}">
+												<tr>
+													<td colspan="4">등록된 에이전트가 없습니다.</td>
+												</tr>
+											</c:if>
+											<c:forEach var="article" items="${agentList.content}">
+												<tr>
+													<td><strong>${agentList.number}</strong></td>
+													<td>
+													<a href="/Secubot/agentInfo.do">
+													<c:out value="${agentList.title}"/>
+													</a>
+													</td>
+													<td>${agentList.writer.name}</td>
+													<td>${agentList.readCount}</td>
+													<td>${agentList.readCount}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
 									</table>
 									<%-- <div id="paginationArea" class="text-center">
 		                                <ul class="pagination m-b-5"></ul>

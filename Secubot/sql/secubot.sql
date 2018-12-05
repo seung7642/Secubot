@@ -47,6 +47,18 @@ create table secubot.mynoti (
 	references article(article_no) on update cascade
 ) engine=InnoDB default character set=utf8;
 
+create table secubot.agentlist (
+	agent_no int auto_increment primary key,
+	user_name varchar(20) not null,
+	user_phone varchar(20) not null,
+	user_ip varchar(20) not null,
+	user_mac varchar(20) not null,
+	agent_hash varchar(50) not null,
+	api_token varchar(50) not null,
+	hddid varchar(20) not null,
+	login_date datetime not null
+) engine=InnoDB default character set=utf8;
+
 create table secubot.count_of_correspond (
 	total_correspond int not null,
 	today_correspond int not null

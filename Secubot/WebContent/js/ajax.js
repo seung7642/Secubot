@@ -35,7 +35,12 @@ function checkMyNoti() {
 		async: false,
 		success: function(el) {
 			console.log("Success: '/checkMyNoti'");
+			console.log(el);
+			if (el.notiCount) {
+				document.querySelector("span.count").innerText = el.notiCount;
+			}
 		}
 	}).responseText;
 	setTimeout("checkMyNoti()", 20000);
+	return data;
 }

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 
 import java.io.IOException;
 
+import org.json.simple.JSONObject;
 import com.secubot.noti.service.CheckMyNotiService;
 
 @WebServlet("/checkMyNoti")
@@ -24,7 +25,11 @@ public class CheckMyNotiHandler extends HttpServlet {
 		try {
 			// 알림의 총 갯수를 받아온다.
 			int notiCount = checkMyNotiService.check();
+			JSONObject json = new JSONObject();
+			json.put("notiCount", notiCount);
+			res.setContentType("application/json");
 			req.getSession().setAttribute("notiCount", notiCount);
+			res.getWriter().println(json);
 		} finally {
 			// TODO: Nothing
 		}
