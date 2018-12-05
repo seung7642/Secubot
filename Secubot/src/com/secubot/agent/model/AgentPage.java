@@ -20,7 +20,15 @@ public class AgentPage {
 		this.total = total;
 	}
 	
+	public List<LoginSession> getList() {
+		return list;
+	}
+	
 	public boolean hasAgentList() {
 		return total > 0;
+	}
+	
+	public boolean hasNoAgentList() {
+		return total == 0;
 	}
 }

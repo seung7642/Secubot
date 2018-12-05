@@ -4,10 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-import com.secubot.agent.model.LoginSession;
+import com.secubot.agent.model.AgentPage;
 import com.secubot.agent.service.ListAgentService;
 import com.secubot.mvc.command.CommandHandler;
 
@@ -29,8 +27,8 @@ public class ListAgentHandler implements CommandHandler {
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) throws SQLException {
-		List<LoginSession> loginSession = agentService.getAgentList();
-		req.getSession().setAttribute("loginSession", loginSession);
+		AgentPage agentPage = agentService.getAgentList();
+		req.getSession().setAttribute("agentPage", agentPage);
 		return FORM_VIEW;
 	}
 

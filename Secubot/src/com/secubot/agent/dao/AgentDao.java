@@ -16,6 +16,7 @@ public class AgentDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
+		// TODO: 로직 재검사
 		try {
 			pstmt = conn.prepareStatement("select * from login_session");
 			rs = pstmt.executeQuery();
@@ -43,9 +44,12 @@ public class AgentDao {
 		ResultSet rs = null;
 		
 		try {
-			pstmt = conn.prepareStatement("select Count(*) as total from login_session");
+			pstmt = conn.prepareStatement("select count(*) from login_session");
 			rs = pstmt.executeQuery();
-			return rs.getInt("total");
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+			return 0;
 		} finally {
 			JdbcUtil.close(pstmt);
 			JdbcUtil.close(rs);

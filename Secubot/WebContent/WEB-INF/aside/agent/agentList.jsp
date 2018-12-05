@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
-<%@ page import="java.net.URLEncoder"%>
-<%@ page import="java.net.URLDecoder"%>
-<%@ page trimDirectiveWhitespaces="true"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -87,29 +83,24 @@ button.active {
 											</tr>
 										</thead>
 										<tbody>
-											<c:if test="${agentList.hasNoArticles()}">
+											<!-- 
+											<c:if test="${agentPage.hasAgentList()}">
 												<tr>
-													<td colspan="4">등록된 에이전트가 없습니다.</td>
+													<td colspan="5">등록된 에이전트가 없습니다.</td>
 												</tr>
 											</c:if>
-											<c:forEach var="article" items="${agentList.content}">
+											-->
+											<c:forEach var="agent" items="${agentPage.list}">
 												<tr>
-													<td><strong>${agentList.number}</strong></td>
-													<td>
-													<a href="/Secubot/agentInfo.do">
-													<c:out value="${agentList.title}"/>
-													</a>
-													</td>
-													<td>${agentList.writer.name}</td>
-													<td>${agentList.readCount}</td>
-													<td>${agentList.readCount}</td>
+													<td><strong>#</strong></td>
+													<td>${agent.getName() }</td>
+													<td>${agent.getPhone()}</td>
+													<td>${agent.getIp()}</td>
+													<td>${agent.getMac()}</td>
 												</tr>
 											</c:forEach>
 										</tbody>
 									</table>
-									<%-- <div id="paginationArea" class="text-center">
-		                                <ul class="pagination m-b-5"></ul>
-									</div> --%>
 								</div>
 							</div>
 						</div>
@@ -151,6 +142,7 @@ button.active {
 	<script>
 		var data = getAgentList();
 		var parse = JSON.parse(data);
+		/*
 		for (var i=0; i<parse.AgentList.length; i++) {
 			document.querySelector('table').innerHTML += '<tbody>'
 				+ '<tr>' 
@@ -162,6 +154,7 @@ button.active {
 				+ '</tr>';
 				+ '</tbody>';
 		}
+		*/
 		
 		/*
 		 *	페이징 처리할 부분
