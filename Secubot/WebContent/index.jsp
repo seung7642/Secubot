@@ -106,7 +106,7 @@ li.nonActive {
 			</div> <!-- end row -->
                 
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-lg-12">
 					<div class="portlet">
 						<div class="portlet-heading">
 							<h3 class="portlet-title text-dark">보안 위협 시각화</h3>
@@ -117,6 +117,7 @@ li.nonActive {
 					</div>
 				</div>
 				
+				<!-- 
 				<div class="col-lg-6">
 					<div class="portlet">
 						<div class="portlet-heading">
@@ -125,6 +126,7 @@ li.nonActive {
 						<div class="portlet-body" id="line"></div>
 					</div>				
 				</div>
+				-->
 			</div>
 			<!-- end row -->
 
