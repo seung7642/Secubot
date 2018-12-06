@@ -147,6 +147,9 @@
 	<!-- Dashboard -->
 	<script src="${pageContext.request.contextPath }/js/jquery.dashboard.js"></script>
 	
+	<!-- ajax -->
+	<script src="${pageContext.request.contextPath }/js/ajax.js?ver=1"></script>
+	
 	<!-- datatable -->
 	<script src="${pageContext.request.contextPath }/assets/datatables/jquery.dataTables.min.js"></script>
 	<script src="${pageContext.request.contextPath }/assets/datatables/dataTables.bootstrap.js"></script>
@@ -154,6 +157,8 @@
 	    $(document).ready(function() {
 	        $('#datatable').dataTable();
 	    });
+	    
+	    checkMyNoti();
 	</script>
 </body>
 </html>

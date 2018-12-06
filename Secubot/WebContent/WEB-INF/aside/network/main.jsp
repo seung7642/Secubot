@@ -209,8 +209,13 @@ div.tab-pane div.panel.panel-default {
 
 	<script src="js/agentinfo.js"></script>
 	
+	<!-- ajax -->
+	<script src="js/ajax.js?ver=1"></script>
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
 	<script>
+		checkMyNoti();
+	
 		var nodes = new vis.DataSet([
 			{id: 1, label: 'SecuBot'},
 			{id: 2, label: 'Agent'},

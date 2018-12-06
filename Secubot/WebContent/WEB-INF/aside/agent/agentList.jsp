@@ -83,8 +83,8 @@ button.active {
 											</tr>
 										</thead>
 										<tbody>
-											<!-- 
-											<c:if test="${agentPage.hasAgentList()}">
+											<!--
+											<c:if test="${agentPage.hasNoAgentList()}">
 												<tr>
 													<td colspan="5">등록된 에이전트가 없습니다.</td>
 												</tr>
@@ -218,10 +218,16 @@ button.active {
 	<!-- datatable -->
 	<script src="${pageContext.request.contextPath }/assets/datatables/jquery.dataTables.min.js"></script>
 	<script src="${pageContext.request.contextPath }/assets/datatables/dataTables.bootstrap.js"></script>
+	
+	<!-- ajax -->
+	<script src="${pageContext.request.contextPath }/js/ajax.js?ver=1"></script>
+	
 	<script type="text/javascript">
 	    $(document).ready(function() {
 	        $('#datatable').dataTable();
 	    });
+	    
+	    checkMyNoti();
 	</script>
 </body>
 </html>

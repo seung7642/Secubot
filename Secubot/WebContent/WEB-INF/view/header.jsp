@@ -24,7 +24,7 @@
 		        <li>
 		            <a href="#">
 		                <span class="pull-left"><i class="ion-close-circled fa-2x text-danger"></i></span>
-		                <span>알림이 없습니다.<br><small class="text-muted">5 minutes ago</small></span>
+		                <span>알림이 없습니다.<br><small class="text-muted">Nothing else</small></span>
 		            </a>
 		        </li>
 		        <li>
@@ -44,8 +44,6 @@
 				tabindex="5003" style="overflow: hidden; outline: none;">
 				<li><a href="#"><i class="fa fa-briefcase"></i>Profile</a></li>
 				<li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-				<li><a href="#"><i class="fa fa-bell"></i> Notifacation <span
-						class="label label-info pull-right mail-info">5</span></a></li>
 				<li><a href="${pageContext.request.contextPath }/logout.do"><i
 						class="fa fa-sign-out"></i> Log Out</a></li>
 			</ul>

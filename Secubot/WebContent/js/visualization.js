@@ -26,8 +26,6 @@ function visualization(data) {
 	var svg = 
 		d3.select("#visualization")
 		.select("svg")
-//			.attr("width", width + margin.left + margin.right)
-//			.attr("height", height + margin.top + margin.bottom)
 			.attr({
 				"width": '100%',
 				"height": height + margin.top + margin.bottom

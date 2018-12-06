@@ -303,6 +303,9 @@ div.tab-pane div.panel.panel-default {
 	<!-- Dashboard -->
 	<script src="js/jquery.dashboard.js"></script>
 	
+	<!-- ajax -->
+	<script src="js/ajax.js?ver=1"></script>
+	
 	<script src="assets/datatables/jquery.dataTables.min.js"></script>
 	<script src="assets/datatables/dataTables.bootstrap.js"></script>
 
@@ -311,6 +314,8 @@ div.tab-pane div.panel.panel-default {
 		$(document).ready(function() {
 			$('#datatable').dataTable();
 		});
+		
+		checkMyNoti();
 	</script>
 
 </body>

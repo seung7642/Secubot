@@ -101,11 +101,15 @@ textarea {
 	<!-- Dashboard -->
 	<script src="${pageContext.request.contextPath }/js/jquery.dashboard.js"></script>
 	
+	<!-- ajax -->
+	<script src="${pageContext.request.contextPath }/js/ajax.js?ver=1"></script>
+	
 	<!-- Summernote -->
 	<script src="${pageContext.request.contextPath }/js/summernote.js"></script>
 	
 	<script>
 		$('#summernote').summernote();
+		checkMyNoti();
 	</script>
 	
 </body>

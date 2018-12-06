@@ -121,6 +121,11 @@ textarea {
 	<!-- Dashboard -->
 	<script src="${pageContext.request.contextPath }/js/jquery.dashboard.js"></script>
 	
+	<!-- ajax -->
+	<script src="${pageContext.request.contextPath }/js/ajax.js?ver=1"></script>
 	
+	<script>
+		checkMyNoti();
+	</script>
 </body>
 </html>
