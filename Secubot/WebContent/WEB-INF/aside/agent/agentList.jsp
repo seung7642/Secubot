@@ -38,6 +38,12 @@
 button.active {
 	background-color: #ccc;
 }
+li.notiActive {
+	display: inline-block;
+}
+li.nonActive {
+	display: none;
+}
 </style>
 </head>
 

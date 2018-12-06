@@ -44,6 +44,12 @@ h2:hover {
 	-moz-transform: scale(1.05);
 	transition: all 0.3s ease-in-out;
 }
+li.notiActive {
+	display: inline-block;
+}
+li.nonActive {
+	display: none;
+}
 </style>
 
 </head>

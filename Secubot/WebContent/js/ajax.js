@@ -30,7 +30,7 @@ function getAgentList() {
 
 function checkMyNoti() {
 	var data = $.ajax({
-		url: 'checkMyNoti',
+		url: 'http://localhost:8080/Secubot/checkMyNoti',
 		type: 'GET',
 		async: false,
 		success: function(el) {
@@ -38,9 +38,28 @@ function checkMyNoti() {
 			console.log(el);
 			if (el.notiCount) {
 				document.querySelector("span.count").innerText = el.notiCount;
+				document.querySelector("span > strong").innerText = el.notiCount;
+				$(".xAlarm").removeClass("notiActive");
+				$(".oAlarm").removeClass("notiActive");
+				$(".xAlarm").removeClass("nonActive");
+				$(".oAlarm").removeClass("nonActive");
+				$(".xAlarm").addClass(" nonActive");
+				$(".oAlarm").addClass(" notiActive");
+			} else {
+				$(".xAlarm").removeClass("notiActive");
+				$(".oAlarm").removeClass("notiActive");
+				$(".xAlarm").removeClass("nonActive");
+				$(".oAlarm").removeClass("nonActive");
+				$(".xAlarm").addClass(" notiActive");
+				$(".oAlarm").addClass(" nonActive");
 			}
 		}
 	}).responseText;
-	setTimeout("checkMyNoti()", 20000);
+	setTimeout("checkMyNoti()", 5000);
 	return data;
+}
+
+function getContextPath() {
+	var hostIndex = location.href.indexOf(location.host) + location.host.length;
+	return location.href.substring(hostIndex, location.href.indexOf('/', hostIndex+1));
 }

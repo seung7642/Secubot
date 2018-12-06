@@ -33,6 +33,12 @@ textarea {
 	width: 100%;
 	height: 600px;
 }
+li.notiActive {
+	display: inline-block;
+}
+li.nonActive {
+	display: none;
+}
 </style>
 
 </head>
@@ -106,7 +112,7 @@ textarea {
 	<script src="${pageContext.request.contextPath }/js/jquery.dashboard.js"></script>
 	
 	<!-- ajax -->
-	<script src="${pageContext.request.contextPath }/js/ajax.js?ver=1"></script>
+	<script src="${pageContext.request.contextPath }/js/ajax.js?ver=2"></script>
 	
 	<!-- Summernote -->
 	<script src="${pageContext.request.contextPath }/js/summernote.js"></script>

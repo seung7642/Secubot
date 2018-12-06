@@ -48,7 +48,7 @@ public class WriteArticleHandler implements CommandHandler {
 		}
 		
 		int newArticleNo = writeService.write(writeReq);
-		notiService.insert(newArticleNo, writeReq);
+		notiService.insert(newArticleNo, writeReq); // 글 작성함과 동시에 mynoti 테이블에 레코드를 추가한다.
 		req.setAttribute("newArticleNo", newArticleNo);
 		
 		return "/WEB-INF/aside/desk/writeSuccess.jsp";

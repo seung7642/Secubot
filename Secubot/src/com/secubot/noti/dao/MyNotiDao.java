@@ -88,7 +88,7 @@ public class MyNotiDao {
 	
 	public int update(Connection conn, int no) throws SQLException {
 		try (PreparedStatement pstmt = conn.prepareStatement("update mynoti set read_check=true "
-				+ "where noti_no=?")) {
+				+ "where article_no=?")) {
 			pstmt.setInt(1, no);
 			return pstmt.executeUpdate();
 		}
@@ -106,6 +106,7 @@ public class MyNotiDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
+		// mynoti 테이블에 있는 레코드 값들 중 read_check=0 인 레코드들의 갯수를 반환한다.
 		try {
 			pstmt = conn.prepareStatement("select count(*) from mynoti "
 				+ "where read_check=0");

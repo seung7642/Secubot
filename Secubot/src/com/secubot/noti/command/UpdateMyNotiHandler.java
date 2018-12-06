@@ -11,19 +11,10 @@ import com.secubot.mvc.command.CommandHandler;
 public class UpdateMyNotiHandler implements CommandHandler {
 
 	private UpdateMyNotiService updateNotiService = new UpdateMyNotiService();
-	private ReadMyNotiService readNotiService = new ReadMyNotiService();
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		User authUser = (User)req.getSession().getAttribute("authUser");
-		
-		String noti_no = req.getParameter("noti_no");
-		int notiNo = Integer.parseInt(noti_no);
-		
-		updateNotiService.update(notiNo);
-		
-		boolean notiCheck = readNotiService.isNotiCheck(authUser.getId());
-		req.getSession().setAttribute("notiCheck", notiCheck);
+		// TODO: 게시글을 읽으면 해당 게시글과 같은 article_no를 가진 mynoti 레코드의 read_check 값을 'true'로 수정한다.
 		
 		return null;
 	}

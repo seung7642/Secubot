@@ -28,6 +28,14 @@
 <link href="${pageContext.request.contextPath }/css/style.css?ver=2" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/css/helper.css" rel="stylesheet">
 
+<style>
+li.notiActive {
+	display: inline-block;
+}
+li.nonActive {
+	display: none;
+}
+</style>
 </head>
 <body>
 
@@ -148,7 +156,7 @@
 	<script src="${pageContext.request.contextPath }/js/jquery.dashboard.js"></script>
 	
 	<!-- ajax -->
-	<script src="${pageContext.request.contextPath }/js/ajax.js?ver=1"></script>
+	<script src="${pageContext.request.contextPath }/js/ajax.js?ver=3"></script>
 	
 	<!-- datatable -->
 	<script src="${pageContext.request.contextPath }/assets/datatables/jquery.dataTables.min.js"></script>

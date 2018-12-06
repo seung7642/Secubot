@@ -7,21 +7,23 @@ import com.secubot.article.service.ArticleContentNotFoundException;
 import com.secubot.article.service.ArticleNotFoundException;
 import com.secubot.article.service.ArticleData;
 import com.secubot.article.service.ReadArticleService;
+import com.secubot.noti.service.UpdateMyNotiService;
 import com.secubot.mvc.command.CommandHandler;
 
 public class ReadArticleHandler implements CommandHandler {
 	
 	private ReadArticleService readService = new ReadArticleService();
+	private UpdateMyNotiService updateNotiService = new UpdateMyNotiService();
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
-		// Read 핸들러를 요청할 때, 파라미터로 article_no 값도 같이 넘겨준다.
 		String noVal = req.getParameter("no");
-		int articleNum = Integer.parseInt(noVal);
+		int article_no = Integer.parseInt(noVal);
 		
 		try {
-			ArticleData articleData = readService.getArticle(articleNum, true);
+			ArticleData articleData = readService.getArticle(article_no, true);
+			updateNotiService.update(article_no);
 			req.setAttribute("articleData", articleData);
 			return "/WEB-INF/aside/desk/readComplaints.jsp";
 		} catch (ArticleNotFoundException | ArticleContentNotFoundException e) {

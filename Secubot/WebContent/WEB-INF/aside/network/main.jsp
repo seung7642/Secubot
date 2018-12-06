@@ -54,6 +54,12 @@ div.tab-pane div.panel.panel-default {
 	height: 400px;
 	border: 1px solid lightgray;
 }
+li.notiActive {
+	display: inline-block;
+}
+li.nonActive {
+	display: none;
+}
 </style>
 
 </head>

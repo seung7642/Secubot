@@ -45,9 +45,14 @@ div.tab-pane div.panel.panel-default {
 	float: left;
 	margin-left: 60px;
 }
-
 .panel-clear {
 	clear: both;
+}
+li.notiActive {
+	display: inline-block;
+}
+li.nonActive {
+	display: none;
 }
 </style>
 

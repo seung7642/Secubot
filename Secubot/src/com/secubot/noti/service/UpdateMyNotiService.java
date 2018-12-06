@@ -13,9 +13,10 @@ public class UpdateMyNotiService {
 
 	private MyNotiDao notiDao = new MyNotiDao();
 	
-	public void update(int no) {
+	public void update(int article_no) {
+		// Method for update read_check
 		try (Connection conn = ConnectionProvider.getConnection()) {
-			notiDao.update(conn, no);
+			notiDao.update(conn, article_no);
 			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
