@@ -51,7 +51,7 @@ div.tab-pane div.panel.panel-default {
 li.notiActive {
 	display: inline-block;
 }
-li.nonActive {
+li.nonotiActive {
 	display: none;
 }
 </style>

@@ -21,13 +21,13 @@
 		        <li class="noti-header">
 		            <p>Notifications</p>
 		        </li>
-		        <li class="xAlarm active">
+		        <li class="xAlarm notiActive">
 		            <a href="#">
 		                <span class="pull-left"><i class="ion-close-circled fa-2x text-danger"></i></span>
 		                <span>알림이 없습니다.<br><small class="text-muted">Nothing else</small></span>
 		            </a>
 		        </li>
-		        <li class="oAlarm nonActive">
+		        <li class="oAlarm nonotiActive">
 		        	<a href="#">
 		        		<span class="pull-left"><i class="ion-checkmark-circled fa-2x text-success"></i></span>
 		        		<span><strong></strong> 개의 알림이 있습니다.<br><small class="text-muted">Please check</small></span>

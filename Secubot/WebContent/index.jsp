@@ -47,7 +47,7 @@ h2:hover {
 li.notiActive {
 	display: inline-block;
 }
-li.nonActive {
+li.nonotiActive {
 	display: none;
 }
 </style>

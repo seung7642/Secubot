@@ -41,17 +41,17 @@ function checkMyNoti() {
 				document.querySelector("span > strong").innerText = el.notiCount;
 				$(".xAlarm").removeClass("notiActive");
 				$(".oAlarm").removeClass("notiActive");
-				$(".xAlarm").removeClass("nonActive");
-				$(".oAlarm").removeClass("nonActive");
-				$(".xAlarm").addClass(" nonActive");
+				$(".xAlarm").removeClass("nonotiActive");
+				$(".oAlarm").removeClass("nonotiActive");
+				$(".xAlarm").addClass(" nonotiActive");
 				$(".oAlarm").addClass(" notiActive");
 			} else {
 				$(".xAlarm").removeClass("notiActive");
 				$(".oAlarm").removeClass("notiActive");
-				$(".xAlarm").removeClass("nonActive");
-				$(".oAlarm").removeClass("nonActive");
+				$(".xAlarm").removeClass("nonotiActive");
+				$(".oAlarm").removeClass("nonotiActive");
 				$(".xAlarm").addClass(" notiActive");
-				$(".oAlarm").addClass(" nonActive");
+				$(".oAlarm").addClass(" nonotiActive");
 			}
 		}
 	}).responseText;

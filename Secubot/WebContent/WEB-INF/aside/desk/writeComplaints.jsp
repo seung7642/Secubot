@@ -36,7 +36,7 @@ textarea {
 li.notiActive {
 	display: inline-block;
 }
-li.nonActive {
+li.nonotiActive {
 	display: none;
 }
 </style>
