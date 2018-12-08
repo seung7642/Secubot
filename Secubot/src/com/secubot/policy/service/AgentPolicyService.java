@@ -10,6 +10,7 @@ import com.secubot.jdbc.connection.ConnectionProvider;
 public class AgentPolicyService {
 
 	private AgentPolicy agentPolicy = null;
+	private AgentPolicyPage agentPage = null;
 	private PolicyDao policyDao = new PolicyDao();
 	
 	public void addAgentPolicy(String policy_name, String process_name) throws SQLException {
@@ -17,5 +18,9 @@ public class AgentPolicyService {
 			agentPolicy = new AgentPolicy(policy_name, process_name);
 			policyDao.insert(conn, agentPolicy);
 		}
+	}
+	
+	public AgentPolicyPage listAgentPolicy() throws SQLException {
+		
 	}
 }

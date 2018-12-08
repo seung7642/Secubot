@@ -24,6 +24,8 @@ public class AgentPolicyHandler implements CommandHandler {
 	}
 	
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
+		// TODO: policy_process 테이블의 레코드들을 받아와 req.setAttribute 설정
+		
 		return FORM_VIEW;
 	}
 	
