@@ -12,7 +12,6 @@ import com.secubot.jdbc.connection.ConnectionProvider;
 public class AgentPolicyService {
 
 	private AgentPolicy agentPolicy = null;
-	private AgentPolicyPage agentPage = null;
 	private PolicyDao policyDao = new PolicyDao();
 	
 	public void addAgentPolicy(String policy_name, String process_name) throws SQLException {
@@ -28,9 +27,11 @@ public class AgentPolicyService {
 			List<AgentPolicy> list = new ArrayList<>();
 			total = policyDao.CountAgentPolicy(conn);
 			list = policyDao.listAgentPolicy(conn);
-			agentPage = new AgentPolicyPage(total, list);
+			AgentPolicyPage agentPage = new AgentPolicyPage(total, list);
 			
 			return agentPage;
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
 		}
 	}
 }

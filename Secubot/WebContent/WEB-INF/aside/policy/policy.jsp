@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
-<%@ page import="java.net.URLEncoder"%>
-<%@ page import="java.net.URLDecoder"%>
-<%@ page trimDirectiveWhitespaces="true"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -105,8 +101,8 @@ li.nonotiActive {
 										<c:forEach var="agent" items="${agentPage.list }">
 											<tr>
 												<td>#</td>
-												<td>${agent.getPolicyName }</td>
-												<td>${agent.getProcessName }</td>
+												<td>${agent.getPolicyName() }</td>
+												<td>${agent.getProcessName() }</td>
 											</tr>
 										</c:forEach>
 									</tbody>
