@@ -35,7 +35,6 @@ public class ArticleDao {
 			if (insertedCount > 0) {
 				stmt = conn.createStatement();
 				
-				// last_insert_id() 함수는 MySQL에서 제공되는 함수인가?
 				rs = stmt.executeQuery("select last_insert_id() from article");
 				if (rs.next()) {
 					Integer newNo = rs.getInt(1);

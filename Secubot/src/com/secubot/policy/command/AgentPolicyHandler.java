@@ -28,10 +28,10 @@ public class AgentPolicyHandler implements CommandHandler {
 	}
 	
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		String policy_name = (String)req.getAttribute("policy_name");
-		String process_name = (String)req.getAttribute("process_name");
+		String policy_name = (String)req.getSession(false).getAttribute("policy_name");
+		String process_name = (String)req.getSession(false).getAttribute("process_name");
 		agentService.addAgentPolicy(policy_name, process_name);
 		
-		return null;
+		return "/WEB-INF/aside/policy/policySuccess.jsp";
 	}
 }

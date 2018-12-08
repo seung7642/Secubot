@@ -15,7 +15,7 @@ public class PolicyDao {
 		ResultSet rs = null;
 		
 		try {
-			pstmt = conn.prepareStatement("insert into policy_process values (?, ?)");
+			pstmt = conn.prepareStatement("insert into policy_process (policy_name, process_name) values(?, ?)");
 			pstmt.setString(1, agentPolicy.getPolicyName());
 			pstmt.setString(2, agentPolicy.getProcessName());
 			pstmt.executeUpdate();

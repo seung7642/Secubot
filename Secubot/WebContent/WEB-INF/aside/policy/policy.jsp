@@ -166,34 +166,16 @@ li.nonotiActive {
 					<span aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body">
-					<form class="form col-md-12 center-block" action="#" method="POST">
+					<form class="form col-md-12 center-block" action="${pageContext.request.contextPath }/agentPolicy.do" method="POST">
 						<div class="form-group md-form mb-4">
-							<label for="policyName">정책명</label>
-							<select id="policyName" class="form-control">
-								<option value="policyName">직원</option>
-								<option value="policyName">비직원</option>
-								<option value="policyName">예외</option>
+							<label for="policy_name">정책명</label>
+							<select name="policy_name" id="policy_name" class="form-control">
+								<option value="policy_name">Process Kill</option>
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="policyGroup">적용 그룹</label>
-							<select id="policyGroup" class="form-control">
-								<option value="policyGroup">직원</option>
-								<option value="policyGroup">비직원</option>
-								<option value="policyGroup">PC 이외</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<label for="policy2">적용 정책</label>
-							<select id="policy2" class="form-control" multiple="multiple">
-								<option selected="selected">--------------</option>
-								<option value="policy2">시스템 정보 수집</option>
-								<option value="policy2">에이전트 설치 유도</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<label for="description">설명</label>
-							<input type="text" class="form-control" id="description" placeholder="설명...">
+							<label for="process_name">프로세스명</label>
+							<input name="process_name" type="text" class="form-control" id="process_name" placeholder="Process name...">
 						</div>
 						<div class="form-group">
 							<button class="btn btn-outline-secondary" data-dismiss="modal" aria-hidden="false">Cancle</button>
