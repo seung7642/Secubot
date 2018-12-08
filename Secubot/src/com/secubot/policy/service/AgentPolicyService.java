@@ -22,7 +22,7 @@ public class AgentPolicyService {
 		}
 	}
 	
-	public AgentPolicyPage listAgentPolicy() throws SQLException {
+	public AgentPolicyPage getAgentPage() throws SQLException {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			int total = 0;
 			List<AgentPolicy> list = new ArrayList<>();

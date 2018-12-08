@@ -102,11 +102,13 @@ li.nonotiActive {
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
+										<c:forEach var="agent" items="${agentPage.list }">
+											<tr>
+												<td>#</td>
+												<td>${agent.getPolicyName }</td>
+												<td>${agent.getProcessName }</td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 								<button type="button" class="btn btn-info btn-custom m-b-5" data-toggle="modal"

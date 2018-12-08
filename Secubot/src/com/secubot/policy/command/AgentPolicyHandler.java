@@ -1,8 +1,11 @@
 package com.secubot.policy.command;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.secubot.policy.service.AgentPolicyPage;
 import com.secubot.policy.service.AgentPolicyService;
 import com.secubot.mvc.command.CommandHandler;
 
@@ -23,9 +26,10 @@ public class AgentPolicyHandler implements CommandHandler {
 		}
 	}
 	
-	private String processForm(HttpServletRequest req, HttpServletResponse res) {
+	private String processForm(HttpServletRequest req, HttpServletResponse res) throws SQLException {
 		// TODO: policy_process 테이블의 레코드들을 받아와 req.setAttribute 설정
-		
+		AgentPolicyPage agentPage = agentService.getAgentPage();
+		req.setAttribute("agentPage", agentPage);
 		return FORM_VIEW;
 	}
 	
