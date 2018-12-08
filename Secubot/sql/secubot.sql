@@ -65,12 +65,14 @@ create table secubot.count_of_correspond (
 ) engine=InnoDB default character set=utf8;
 
 create table secubot.policy_process (
-	process_name varchar(20) primary key,
-	process_hash varchar(50) not null,
-	process_kill tinyint(1) not null default 0
+	policy_process_no int auto_increment primary key,
+	policy_name varchar(20) not null,
+	process_name varchar(20) not null
 ) engine=InnoDB default character set=utf8;
 
 create table secubot.policy_network (
+	policy_network_no int auto_increment primary key,
+	policy_name varchar(20) not null,
 	src_ip char(16) not null,
 	dst_ip char(16) not null,
 	port int not null

@@ -10,9 +10,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description"
-	content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
-<meta name="author" content="Coderthemes">
 
 <link rel="shortcut icon" href="img/SecuBot_logo.png">
 
@@ -83,66 +80,32 @@ li.nonotiActive {
 			<div class="row">
 				<div class="col-lg-12">
 					<ul class="nav nav-tabs">
-						<li class="active" style="border: 1px solid;"><a href="#default" data-toggle="tab"
+						<li class="active"><a href="#agentPolicy" data-toggle="tab"
 							aria-expanded="true"> <span class="visible-xs"><i
-									class="fa fa-home"></i></span> <span class="hidden-xs">Node Policy</span>
+									class="fa fa-home"></i></span> <span class="hidden-xs">Agent Policy</span>
 						</a></li>
-						<li class="" style="border: 1px solid;"><a href="#system" data-toggle="tab"
+						<li class=""><a href="#networkPolicy" data-toggle="tab"
 							aria-expanded="false"> <span class="visible-xs"><i
-									class="fa fa-user"></i></span> <span class="hidden-xs">Agent Policy</span>
-						</a></li>
-						<li class="" style="border: 1px solid;"><a href="#software" data-toggle="tab"
-							aria-expanded="false"> <span class="visible-xs"><i
-									class="fa fa-envelope-o"></i></span> <span class="hidden-xs">Group Policy</span>
+									class="fa fa-user"></i></span> <span class="hidden-xs">Network Policy</span>
 						</a></li>
 					</ul>
 					<div class="tab-content">
-						<div class="tab-pane active" id="default">
+						<div class="tab-pane active" id="agentPolicy">
 							<div class="table-responsive" data-pattern="priority-columns">
 								<table id="datatable"
 									class="table table-small-font table-bordered table-striped">
 									<thead>
 										<tr>
-											<th data-priority="1" width="7.5%">순서</th>
-											<th data-priority="3" width="10%">정책명</th>
-											<th data-priority="1" width="10%">적용 그룹</th>
-											<th data-priority="3" width="30%">적용 정책</th>
-											<th data-priority="3" width="20%">설명</th>
-											<th data-priority="6" width="10%">노드 수</th>
-											<th data-priority="6" width="7.5%">적용</th>
+											<th data-priority="1" width="5%">#</th>
+											<th data-priority="3" width="20%">정책명</th>
+											<th data-priority="3" width="20%">프로세스명</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td>1</td>
-											<td>직원정책</td>
-											<td>직원</td>
-											<td>- 시스템정보 수집</td>
-											<td>직원</td>
-											<td>55</td>
-											<td>-</td>
-										</tr>
-									</tbody>
-									<tbody>
-										<tr>
-											<td>2</td>
-											<td>비직원정책</td>
-											<td>비직원</td>
-											<td>- 시스템정보 수집<br/>- 에이전트 설치유도</td>
-											<td>비직원</td>
-											<td>213</td>
-											<td>V</td>
-										</tr>
-									</tbody>
-									<tbody>
-										<tr>
-											<td>3</td>
-											<td>예외정책</td>
-											<td>PC이외</td>
-											<td>- </td>
-											<td>프린터, 스마트폰</td>
-											<td>10</td>
-											<td>V</td>
+											<td></td>
+											<td></td>
+											<td></td>
 										</tr>
 									</tbody>
 								</table>
@@ -151,75 +114,26 @@ li.nonotiActive {
 								data-target="#myModal">추가</button>
 							</div>
 						</div>
-						<div class="tab-pane" id="system">
+						<div class="tab-pane" id="networkPolicy">
 							<div class="table-responsive" data-pattern="priority-columns">
 								<table id="tech-companies-1"
 									class="table table-small-font table-bordered table-striped">
 									<thead>
 										<tr>
-											<th data-priority="1" width="30%">정책명</th>
-											<th data-priority="3" width="25%">수행조건</th>
-											<th data-priority="1" width="20%">적용그룹</th>
-											<th data-priority="3" width="20%">설명</th>
-											<th data-priority="3" width="5%">적용</th>
+											<th data-priority="1" width="30%">#</th>
+											<th data-priority="3" width="25%">정책명</th>
+											<th data-priority="1" width="20%">srcIP</th>
+											<th data-priority="3" width="20%">dstIP</th>
+											<th data-priority="3" width="5%">PORT</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td>백신 검사/배포</td>
-											<td>파일검사</td>
-											<td>-</td>
-											<td>-</td>
-											<td>V</td>
-										</tr>
-									</tbody>
-									<tbody>
-										<tr>
-											<td>소프트웨어 정보수집</td>
-											<td>-</td>
-											<td>-</td>
-											<td>-</td>
-											<td>V</td>
-										</tr>
-									</tbody>
-									<tbody>
-										<tr>
-											<td>블랙리스트 파일 실행차단</td>
-											<td>파일 검사/MD5(위치검사)</td>
-											<td>직원그룹</td>
-											<td>-</td>
-											<td>V</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="tab-pane" id="software">
-							<div class="table-responsive" data-pattern="priority-columns">
-								<table id="tech-companies-1"
-									class="table table-small-font table-bordered table-striped">
-									<thead>
-										<tr>
-											<th data-priority="1" width="20%">그룹명</th>
-											<th data-priority="3" width="20%">노드 수</th>
-											<th data-priority="1" width="45%">정책 내용</th>
-											<th data-priority="3" width="5%">적용</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>직원 그룹</td>
 											<td></td>
-											<td>- 192.168.00.00 IP 차단</td>
-											<td>V</td>
-										</tr>
-									</tbody>
-									<tbody>
-										<tr>
-											<td>비직원 그룹</td>
 											<td></td>
-											<td>- 00:00:00:00:00:00 MAC 차단</td>
-											<td>V</td>
+											<td></td>
+											<td></td>
+											<td></td>
 										</tr>
 									</tbody>
 								</table>

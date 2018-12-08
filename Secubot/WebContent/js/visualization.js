@@ -2,17 +2,18 @@ function visualization(data) {
 	d3.select("svg").selectAll("*").remove();
 	var chartDiv = document.getElementById("visualization");
 	
-	var margin = { top: 30, right: 20, bottom: 30, left: 50 },
-//		width = 600 - (margin.left + margin.right);
-		width = chartDiv.clientWidth;
-		height = 500 - (margin.top + margin.bottom);
+	var margin = { top: 30, right: 20, bottom: 50, left: 100 },
+		width = chartDiv.clientWidth - (margin.left + margin.right);
+		height = 550 - (margin.top + margin.bottom);
 	
 	var xScale = d3.scale.linear().domain([0, data.maxX]).range([0, width]);
 	var yScale = d3.scale.linear().domain([0, data.maxY]).range([height, 0]);
 	var colorScale = d3.scale.linear().domain([0, data.maxY]).range([0, 255]);
 	
-	var xAxis = d3.svg.axis().scale(xScale).orient("bottom").ticks(5).tickValues([1, 2, 3, 4, 5]);
-	var yAxis = d3.svg.axis().scale(yScale).orient("left").tickPadding(10);
+	var xAxis = d3.svg.axis().scale(xScale).orient("bottom").ticks(10).tickSize(height);
+	var yAxis = d3.svg.axis().scale(yScale).orient("left").ticks(10).tickSize(width)
+	.tickSubdivide(3)
+	.tickPadding(10);
 	
 	var zoom = 
 		d3.behavior.zoom()
@@ -23,6 +24,7 @@ function visualization(data) {
 				.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")");
 			});
 	
+	// Selection & Create 'g' tag
 	var svg = 
 		d3.select("#visualization")
 		.select("svg")
@@ -32,24 +34,33 @@ function visualization(data) {
 			})
 			.call(zoom)
 		.append("g")
+			.attr({
+				"width": '100%',
+				"height": '100%'
+			})
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 			.attr("class", "behaviorG");
-	svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
-	svg.append("g").attr("class", "y axis").call(yAxis);
 	
-	/*var widthLine = d3.svg.line().x(0).y(height/2);
-	var heightLine = d3.svg.line().x(width/2).y(0);
+	// Axis component
+	svg.append("g").attr("class", "x axis")
+	.call(xAxis);
+	svg.append("g").attr("class", "y axis")
+	.attr("transform", "translate(" + width + ", 0)")
+	.call(yAxis);
 	
-	d3.select("#visualization").select("svg").append("path")
-	.attr("d", widthLine)
-	.attr("fill", "black")
-	.attr("stroke-width", "2px");
+	// Axis labels
+	svg.append("text")
+		.attr("text-anchor", "middle")
+		.attr("transform", "translate(-50," + height/2 + ")rotate(-90)")
+		.attr("class", "y labels")
+		.text("독립성");
+	svg.append("text")
+		.attr("text-anchor", "middle")
+		.attr("transform", "translate(" + width/2 + "," + (height + 30) + ")")
+		.attr("class", "x labels")
+		.text("지속성");
 	
-	d3.select("#visualization").select("svg").append("path")
-	.attr("d", heightLine)
-	.attr("fill", "black")
-	.attr("stroke-width", "2px");*/
-	
+	// Create circle
 	svg.selectAll("circle.behavior").data(data.ProcessList).enter()
 	.append("circle")
 		.attr("class", "behavior")
@@ -60,14 +71,13 @@ function visualization(data) {
 			return "rgb(" + colorScale(d.y) + ", 0, 0)";
 		});
 	
+	// Event Handleing of g.behaviorG
 	d3.select("g.behaviorG").selectAll("circle")
 		.on("click", evtClick)
 		.on("mouseover", evtOver)
 		.on("mouseout", evtOut);
 	
 	function evtClick(d) {
-		// TODO: circle를 클릭했을 때 popup이 뜨는 로직
-		console.log(d.MD5);
 		var that = d3.select(this);
 		var popUrl = "/Secubot/popup.jsp?md5=" + d.MD5 + "&imagename=" + d.ImageName;
 		var popOption = "width=700, height=400, scrollbars=no, status=no;";

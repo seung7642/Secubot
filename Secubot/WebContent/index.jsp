@@ -35,7 +35,7 @@
 <link href="css/myCSS.css" rel="stylesheet">
 
 <!-- d3 -->
-<link href="css/d3.css?ver=1" rel="stylesheet">
+<link href="css/d3.css?ver=1.234" rel="stylesheet">
 
 <style>
 h2:hover {
@@ -104,7 +104,7 @@ li.nonotiActive {
 					</div>
 				</div>
 			</div> <!-- end row -->
-                
+
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="portlet">
@@ -171,8 +171,8 @@ li.nonotiActive {
 	<script src="js/d3.v3.min.js"></script>
 	
 	<!-- ajax -->
-	<script src="js/ajax.js?ver=5"></script>
-	<script src="js/visualization.js?ver=2"></script>
+	<script src="js/ajax.js?ver=6"></script>
+	<script src="js/visualization.js?ver=2.4"></script>
 	
 	<script>
 		var data = getProcessList();
@@ -180,10 +180,10 @@ li.nonotiActive {
 		visualization(parse);
 		
 		/* line Chart */
-		lineChart();
+		//lineChart();
 		
 		/* Notification */
-		var notiCount = checkMyNoti();
+		checkMyNoti();
 	</script>
 	
 </body>
