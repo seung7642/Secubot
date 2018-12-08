@@ -1,5 +1,8 @@
 package com.secubot.policy.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,4 +30,20 @@ public class PolicyDao {
 		}
 	}
 	
+	public List<AgentPolicy> listAgentPolicy(Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement("select * from policy_process");
+			rs = pstmt.executeQuery();
+			List<AgentPolicy> agentList = new ArrayList<>();
+			while (rs.next()) {
+				agentList.add(rs.);
+			}
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+	}
 }
