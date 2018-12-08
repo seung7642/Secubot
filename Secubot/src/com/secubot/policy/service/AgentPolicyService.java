@@ -26,9 +26,11 @@ public class AgentPolicyService {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			int total = 0;
 			List<AgentPolicy> list = new ArrayList<>();
-			total = policyDao.
+			total = policyDao.CountAgentPolicy(conn);
 			list = policyDao.listAgentPolicy(conn);
 			agentPage = new AgentPolicyPage(total, list);
+			
+			return agentPage;
 		}
 	}
 }

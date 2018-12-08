@@ -57,7 +57,7 @@ public class PolicyDao {
 		
 		try {
 			pstmt = conn.prepareStatement("select count(*) from policy_process");
-			rs = pstmt.executeUpdate();
+			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				return rs.getInt(1);
 			}
