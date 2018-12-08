@@ -1,5 +1,7 @@
 package com.secubot.policy.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -21,6 +23,12 @@ public class AgentPolicyService {
 	}
 	
 	public AgentPolicyPage listAgentPolicy() throws SQLException {
-		
+		try (Connection conn = ConnectionProvider.getConnection()) {
+			int total = 0;
+			List<AgentPolicy> list = new ArrayList<>();
+			total = policyDao.
+			list = policyDao.listAgentPolicy(conn);
+			agentPage = new AgentPolicyPage(total, list);
+		}
 	}
 }

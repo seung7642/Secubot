@@ -39,8 +39,29 @@ public class PolicyDao {
 			rs = pstmt.executeQuery();
 			List<AgentPolicy> agentList = new ArrayList<>();
 			while (rs.next()) {
-				agentList.add(rs.);
+				agentList.add(new AgentPolicy(
+						rs.getString("policy_name"),
+						rs.getString("process_name")
+						));
 			}
+			return agentList;
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+	}
+	
+	public int CountAgentPolicy(Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement("select count(*) from policy_process");
+			rs = pstmt.executeUpdate();
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+			return 0;
 		} finally {
 			JdbcUtil.close(pstmt);
 			JdbcUtil.close(rs);
