@@ -170,7 +170,7 @@ li.nonotiActive {
 						<div class="form-group md-form mb-4">
 							<label for="policy_name">정책명</label>
 							<select name="policy_name" id="policy_name" class="form-control">
-								<option value="policy_name">Process Kill</option>
+								<option value="process_kill">Process Kill</option>
 							</select>
 						</div>
 						<div class="form-group">
