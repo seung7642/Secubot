@@ -32,7 +32,7 @@ public class NetworkPolicyHandler implements CommandHandler {
 	private String processForm(HttpServletRequest req, HttpServletResponse res) throws SQLException {
 		// TODO: Get to Network Policy List
 		int total = policyService.countPolicy();
-		List<NetworkPolicy> list = new ArrayList<>();
+		List<NetworkPolicy> list = policyService.listPolicy();
 		NetworkPolicyPage networkPage = new NetworkPolicyPage(total, list);
 		req.getSession().setAttribute("networkPage", networkPage);
 		return FORM_VIEW;
