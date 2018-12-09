@@ -19,4 +19,13 @@ public class NetworkPolicyService {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public int countPolicy() throws SQLException {
+		try (Connection conn = ConnectionProvider.getConnection()) {
+			int total = policyDao.countNetworkPolicy(conn);
+			return total;
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

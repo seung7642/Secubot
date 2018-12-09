@@ -55,7 +55,7 @@ public class PolicyDao {
 		}
 	}
 	
-	public int CountAgentPolicy(Connection conn) throws SQLException {
+	public int countAgentPolicy(Connection conn) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -88,6 +88,25 @@ public class PolicyDao {
 			pstmt.setString(3, networkPolicy.getDstIP());
 			pstmt.setString(4, networkPolicy.getPort());
 			pstmt.executeUpdate();
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+	}
+	
+	public int countNetworkPolicy(Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement("select count(*) from policy_network");
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+			return 0;
 		} catch(SQLException e) {
 			throw new RuntimeException(e);
 		} finally {

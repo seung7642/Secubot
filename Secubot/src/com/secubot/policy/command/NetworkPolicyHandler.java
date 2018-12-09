@@ -1,10 +1,14 @@
 package com.secubot.policy.command;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.secubot.policy.model.NetworkPolicy;
+import com.secubot.policy.service.NetworkPolicyPage;
 import com.secubot.policy.service.NetworkPolicyService;
 import com.secubot.mvc.command.CommandHandler;
 
@@ -25,7 +29,11 @@ public class NetworkPolicyHandler implements CommandHandler {
 		}
 	}
 	
-	private String processForm(HttpServletRequest req, HttpServletResponse res) {
+	private String processForm(HttpServletRequest req, HttpServletResponse res) throws SQLException {
+		// TODO: Get to Network Policy List
+		int total = policyService.countPolicy();
+		List<NetworkPolicy> list = new ArrayList<>();
+		NetworkPolicyPage networkPage = new NetworkPolicyPage();
 		return FORM_VIEW;
 	}
 	

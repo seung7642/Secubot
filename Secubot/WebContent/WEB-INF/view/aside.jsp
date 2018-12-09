@@ -45,7 +45,7 @@
 					<li><a href="${pageContext.request.contextPath }/agentPolicy.do">process</a></li>
 				</ul>
 				<ul class="list-unstyled">
-					<li><a href="${pageContext.request.contextPath }/agentPolicy.do">network</a></li>
+					<li><a href="${pageContext.request.contextPath }/networkPolicy.do">network</a></li>
 				</ul>
 			</li>
 			

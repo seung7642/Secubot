@@ -25,7 +25,7 @@ public class AgentPolicyService {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			int total = 0;
 			List<AgentPolicy> list = new ArrayList<>();
-			total = policyDao.CountAgentPolicy(conn);
+			total = policyDao.countAgentPolicy(conn);
 			list = policyDao.listAgentPolicy(conn);
 			AgentPolicyPage agentPage = new AgentPolicyPage(total, list);
 			
