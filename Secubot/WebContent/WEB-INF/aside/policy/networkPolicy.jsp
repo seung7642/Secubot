@@ -75,33 +75,40 @@ li.nonotiActive {
 
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="table-responsive" data-pattern="priority-columns">
-						<table id="datatable"
-							class="table table-small-font table-bordered table-striped">
-							<thead>
-								<tr>
-									<th data-priority="1" width="5%">#</th>
-									<th data-priority="3" width="20%">정책명</th>
-									<th data-priority="3" width="20%">srcIP</th>
-									<th data-priority="3" width="20%">dstIP</th>
-									<th data-priority="3" width="20%">port</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="network" items="${networkPage.list }">
-									<tr>
-										<td>#</td>
-										<td>${network.getPolicyName() }</td>
-										<td>${network.getSrcIP() }</td>
-										<td>${network.getDstIP() }</td>
-										<td>${network.getPort() }</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-						<button type="button" class="btn btn-info btn-custom m-b-5" data-toggle="modal"
-						data-placement="right" title="정책을 추가합니다."
-						data-target="#myModal">추가</button>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title text-dark">네트워크 정책목록</h3>
+						</div>
+						<div class="panel-body">
+							<div class="table-responsive" data-pattern="priority-columns">
+								<table id="datatable"
+									class="table table-small-font table-bordered table-striped">
+									<thead>
+										<tr>
+											<th data-priority="1" width="5%">#</th>
+											<th data-priority="3" width="20%">정책명</th>
+											<th data-priority="3" width="20%">srcIP</th>
+											<th data-priority="3" width="20%">dstIP</th>
+											<th data-priority="3" width="20%">port</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="network" items="${networkPage.list }">
+											<tr>
+												<td>#</td>
+												<td>${network.getPolicyName() }</td>
+												<td>${network.getSrcIP() }</td>
+												<td>${network.getDstIP() }</td>
+												<td>${network.getPort() }</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+								<button type="button" class="btn btn-info btn-custom m-b-5" data-toggle="modal"
+								data-placement="right" title="정책을 추가합니다."
+								data-target="#myModal">추가</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

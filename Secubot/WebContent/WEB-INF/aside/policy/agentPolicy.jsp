@@ -75,29 +75,36 @@ li.nonotiActive {
 
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="table-responsive" data-pattern="priority-columns">
-						<table id="datatable"
-							class="table table-small-font table-bordered table-striped">
-							<thead>
-								<tr>
-									<th data-priority="1" width="5%">#</th>
-									<th data-priority="3" width="20%">정책명</th>
-									<th data-priority="3" width="20%">프로세스명</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="agent" items="${agentPage.list }">
-									<tr>
-										<td>#</td>
-										<td>${agent.getPolicyName() }</td>
-										<td>${agent.getProcessName() }</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-						<button type="button" class="btn btn-info btn-custom m-b-5" data-toggle="modal"
-						data-placement="right" title="정책을 추가합니다."
-						data-target="#myModal">추가</button>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title text-dark">에이전트 정책목록</h3>
+						</div>
+						<div class="panel-body">
+							<div class="table-responsive" data-pattern="priority-columns">
+								<table id="datatable"
+									class="table table-small-font table-bordered table-striped">
+									<thead>
+										<tr>
+											<th data-priority="1" width="5%">#</th>
+											<th data-priority="3" width="20%">정책명</th>
+											<th data-priority="3" width="20%">프로세스명</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="agent" items="${agentPage.list }">
+											<tr>
+												<td>#</td>
+												<td>${agent.getPolicyName() }</td>
+												<td>${agent.getProcessName() }</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+								<button type="button" class="btn btn-info btn-custom m-b-5" data-toggle="modal"
+								data-placement="right" title="정책을 추가합니다."
+								data-target="#myModal">추가</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
