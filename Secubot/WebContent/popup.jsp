@@ -13,25 +13,47 @@
 <!-- Custom styles for this template -->
 <link href="css/style.css?ver=1" rel="stylesheet">
 <link href="css/helper.css" rel="stylesheet">
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet">
 <style>
 body {
 	font: sans-serif;
 }
 div#window {
+	width: auto;
+	height: auto;
+    margin: 0px auto;
+	padding: 0px;
+	
+}
+#window_0, #window_1{
+	width: 50%;
+	height: 200px;
+	float: left;
+	border: 1px solid gray;
+	overflow-y: auto;
+	padding: 10px 10px;
+	position:relative;
+}
+#cap{
+	position:absolute;
+}
+#in{
+    margin:10px;
+    height: 100%;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+	overflow-y: auto;
+}
+#window_2 {
 	width: 100%;
 	height: auto;
-	border: 1px solid gray;
-	padding: 10px;
-}
-#window_0, #window_1, #window_2 {
-	width: 31.5%;
-	height: 500px;
-	border: 1px solid gray;
-	box-shadow: 3px 3px 3px 3px;
-	margin: 10px;
 	float: left;
-	overflow-y: auto;
+    margin: 30px 10px ;
+    overflow-y: auto;
 }
 table > tbody > tr > td {
 	cursor: pointer;
@@ -55,46 +77,62 @@ label {
 	String imagename = request.getParameter("imagename");
 %>
 	<div id="window">
-		<h1>프로세스명: <% out.println(imagename); %></h1>
+		<h1>프로세스명: <%	out.print(imagename); %></h1>
 		<div id="window_0">
 			<table class="table table-hover table-striped table-sm">
-				<caption>Process 에이전트 리스트</caption>
+				<caption class="cap">Process 에이전트 리스트</caption>
 				<thead class="thead-dark">
 					<tr>
 						<th>Name</th>
 						<th>Phone</th>
 					</tr>
 				</thead>
-				<tbody id="forData">
+				<tbody class="tData"  id="forData">
 				</tbody>
 			</table>
 		</div>
 		<div id="window_1">
 			<table class="table table-hover table-striped table-sm">
-				<caption>프로세스 세션</caption>
+				<caption class="cap">프로세스 세션</caption>
 				<thead class="thead-dark">
 					<tr>
 						<th>세션</th>
 					</tr>
 				</thead>
-				<tbody id="forData2">
+				<tbody class="tData" id="forData2">
 					<tr>
 					</tr>
 				</tbody>
 			</table>
 		</div>
+
+    <br>
 		<div id="window_2">
 			<table class="table table-hover table-striped table-sm">
 				<caption>행위 리스트</caption>
 				<thead class="thead-dark">
+						<colgroup>
+							<col width="10%">
+							<col width="5%">
+							<col width="5%">
+							<col width="35%">
+							<col width="5%">
+							<col width="20%">
+							<col width="3%">
+							<col width="5%">
+						</colgroup>
 					<tr>
-						<th>UtcTime</th>
-						<th>Type</th>
+						<th width="10%">UtcTime</th>
+						<th width="5%">ParentPID</th>
+						<th width="5%">PID</th>
+						<th width="35%">Command Line</th>
+						<th width="5%">RuleName</th>
+						<th width="20%">Image Path</th>
+						<th width="3%">IOC</th>
+						<th width="5%">Stage</th>
 					</tr>
 				</thead>
-				<tbody id="forData3">
-					<tr>
-					</tr>
+				<tbody  id="forData3">
 				</tbody>
 			</table>
 		</div>
@@ -113,159 +151,29 @@ label {
 
 
 	<script>
-	function pausecomp(millis)
-	{
-	    var date = new Date();
-	    var curDate = null;
-	    do { curDate = new Date(); }
-	    while(curDate-date < millis);
-	}
-	var Base64 = {
-
-			// private property
-_keyStr : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
-
-		  // public method for encoding
-		  encode : function (input) {
-			  var output = "";
-			  var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
-			  var i = 0;
-
-			  input = Base64._utf8_encode(input);
-
-			  while (i < input.length) {
-
-				  chr1 = input.charCodeAt(i++);
-				  chr2 = input.charCodeAt(i++);
-				  chr3 = input.charCodeAt(i++);
-
-				  enc1 = chr1 >> 2;
-				  enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
-				  enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
-				  enc4 = chr3 & 63;
-
-				  if (isNaN(chr2)) {
-					  enc3 = enc4 = 64;
-				  } else if (isNaN(chr3)) {
-					  enc4 = 64;
-				  }
-
-				  output = output +
-					  this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) +
-					  this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
-
-			  }
-
-			  return output;
-		  },
-
-		  // public method for decoding
-decode : function (input) {
-			 var output = "";
-			 var chr1, chr2, chr3;
-			 var enc1, enc2, enc3, enc4;
-			 var i = 0;
-
-			 input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
-
-			 while (i < input.length) {
-
-				 enc1 = this._keyStr.indexOf(input.charAt(i++));
-				 enc2 = this._keyStr.indexOf(input.charAt(i++));
-				 enc3 = this._keyStr.indexOf(input.charAt(i++));
-				 enc4 = this._keyStr.indexOf(input.charAt(i++));
-
-				 chr1 = (enc1 << 2) | (enc2 >> 4);
-				 chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
-				 chr3 = ((enc3 & 3) << 6) | enc4;
-
-				 output = output + String.fromCharCode(chr1);
-
-				 if (enc3 != 64) {
-					 output = output + String.fromCharCode(chr2);
-				 }
-				 if (enc4 != 64) {
-					 output = output + String.fromCharCode(chr3);
-				 }
-
-			 }
-
-			 output = Base64._utf8_decode(output);
-
-			 return output;
-
-		 },
-
-		 // private method for UTF-8 encoding
-_utf8_encode : function (string) {
-				   string = string.replace(/\r\n/g,"\n");
-				   var utftext = "";
-
-				   for (var n = 0; n < string.length; n++) {
-
-					   var c = string.charCodeAt(n);
-
-					   if (c < 128) {
-						   utftext += String.fromCharCode(c);
-					   }
-					   else if((c > 127) && (c < 2048)) {
-						   utftext += String.fromCharCode((c >> 6) | 192);
-						   utftext += String.fromCharCode((c & 63) | 128);
-					   }
-					   else {
-						   utftext += String.fromCharCode((c >> 12) | 224);
-						   utftext += String.fromCharCode(((c >> 6) & 63) | 128);
-						   utftext += String.fromCharCode((c & 63) | 128);
-					   }
-
-				   }
-
-				   return utftext;
-			   },
-
-			   // private method for UTF-8 decoding
-_utf8_decode : function (utftext) {
-				   var string = "";
-				   var i = 0;
-				   var c = c1 = c2 = 0;
-
-				   while ( i < utftext.length ) {
-
-					   c = utftext.charCodeAt(i);
-
-					   if (c < 128) {
-						   string += String.fromCharCode(c);
-						   i++;
-					   }
-					   else if((c > 191) && (c < 224)) {
-						   c2 = utftext.charCodeAt(i+1);
-						   string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
-						   i += 2;
-					   }
-					   else {
-						   c2 = utftext.charCodeAt(i+1);
-						   c3 = utftext.charCodeAt(i+2);
-						   string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
-						   i += 3;
-					   }
-
-				   }
-
-				   return string;
-			   },
-
-URLEncode : function (string) {
-				return escape(this._utf8_encode(string));
-			},
-
-			// public method for url decoding
-URLDecode : function (string) {
-				return this._utf8_decode(unescape(string));
-			}
-		}</script>
+		function pausecomp(millis) {
+		    var date = new Date();
+		    var curDate = null;
+		    do { curDate = new Date(); }
+		    while(curDate-date < millis);
+		}
+	</script>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+
 	<script>
+		function deleteElement(name){
+			var container = name;
+			if (container.length == 0)
+				return;
+				
+			if(container.hasChildNodes()){
+				while ( container.hasChildNodes() ) { 
+					container.removeChild( container.firstChild ); 
+				} 
+				return;
+			}
+		}
 		var urlString = window.location.href;
 		var url = new URL(urlString);
 		var md5 = url.searchParams.get("md5");
@@ -285,8 +193,6 @@ URLDecode : function (string) {
 		for (var i in parse.ProcessAgentList) {
 			document.querySelector("#forData").innerHTML += "<td>" + parse.ProcessAgentList[i].UserName + "</td>" +
 			"<td class=" + parse.ProcessAgentList[i].AgentID + ">" + parse.ProcessAgentList[i].userPhone + "</td>";
-			//parse.ProcessAgentList[i].AgentID
-			
 		}
 		
 		var forData = document.querySelector("#forData");
@@ -304,33 +210,77 @@ URLDecode : function (string) {
 				for (var i in parse.ProcessGuidList){
 					document.querySelector("#forData2").innerHTML += "<td class=" + e.target.className +">" + parse.ProcessGuidList[i] + "</td>";
 				}
-
+				document.querySelector("#forData3").innerHTML = "";
+				
 				
 		}, false);
 		var forData = document.querySelector("#forData2");
 		console.log(forData);
 		forData.addEventListener('click', function(e) {
-				var bodyContent = $.ajax({
-					url: "http://211.193.58.162:2222/ProcessEventList?Guid=" + e.target.innerText + "&AgentID=" +e.target.className,
-					global: false,
-					type: "GET",
-					async: false
-				}).responseText;
-				parse = JSON.parse(bodyContent);
-				document.querySelector("#forData3").innerHTML = "";
-				for (var i in parse.ProcessEventList){
-					document.querySelector("#forData3").innerHTML +=  "<td class=" + Base64.encode(JSON.stringify(parse.ProcessEventList[i])) + "</td>" + parse.ProcessEventList[i].UtcTime +  
-					"</td>"+"<td class=" + Base64.encode(JSON.stringify(parse.ProcessEventList[i])) + ">" + parse.ProcessEventList[i].type + 
-					"</td>";
-				}
-
+			var bodyContent = $.ajax({
+				url: "http://211.193.58.162:2222/ProcessFamilyList?Guid=" + e.target.innerText + "&AgentID=" +e.target.className,
+				global: false,
+				type: "GET",
+				async: false
+			}).responseText;
+			parse = JSON.parse(bodyContent);
+			document.querySelector("#forData3").innerHTML = "";
+			window["ProcessChain"] = {};
+			for (var i in parse.ProcessFamilyList){
+				var image = parse.ProcessFamilyList[i].Image;
+				var imageName = image.split("\\");
+				imageName = imageName[imageName.length-1];
+				var command = parse.ProcessFamilyList[i].CommandLine.replace(image,imageName);
+				var Cname = "Proc" + i.toString();
 				
+				window["ProcessChain"][Cname] = parse.ProcessFamilyList[i];
+				document.querySelector("#forData3").innerHTML += 
+					"<tr>" +
+					"<td class=" + Cname + ">" + parse.ProcessFamilyList[i].UtcTime +"</td>"+
+					"<td class=" + Cname + ">" + parse.ProcessFamilyList[i].ParentProcessId +"</td>"+
+					"<td class=" + Cname + ">" + parse.ProcessFamilyList[i].ProcessId +"</td>"+
+					"<td class=" + Cname + ">" + command +"</td>"+
+					"<td class=" + Cname + ">" + parse.ProcessFamilyList[i].RuleName +"</td>"+
+					"<td class=" + Cname + ">" + parse.ProcessFamilyList[i].Image +"</td>"+
+					"<td class=" + Cname + ">"   +"</td>"+
+					"<td class=" + Cname + ">"   +"</td>"+
+					"</tr>" +
+					"<tr><td colspan=\"8\"><div id=" +"TimeLine" +Cname +">"+ "</div></td></tr>";
+			}
 		}, false);
 		var forData = document.querySelector("#forData3");
 		console.log(forData);
 		forData.addEventListener('click', function(e) {
-				alert(Base64.decode(e.target.className));
+			var container = $("#TimeLine" +e.target.className);
+			if(container[0].hasChildNodes()){
+				deleteElement(container[0]);
+				return;
+			}
 
+			var d = [];
+			procData = window["ProcessChain"][e.target.className];
+			
+			var bodyContent = $.ajax({
+				url: "http://211.193.58.162:2222/ProcessEventList?Guid=" + procData.ProcessGuid + "&AgentID=" + procData.AgentID,
+				global: false,
+				type: "GET",
+				async: false
+			}).responseText;
+			parse = JSON.parse(bodyContent);
+			
+			for (var i in parse.ProcessEventList){
+				var tmp={};
+				tmp.id = Number(i);
+				tmp.content = parse.ProcessEventList[i].type;
+				if (parse.ProcessEventList[i].type == "Image_load"){
+					tmp.content += " " +  parse.ProcessEventList[i].ImageLoaded;
+				}
+				tmp.start = parse.ProcessEventList[i].UtcTime;
+				d.push(tmp);
+			}
+			var items = new vis.DataSet(d)
+			var options = {verticalScroll: true, clickToUse:true,height: '500px',zoomKey: 'ctrlKey'}
+			var timeline = new vis.Timeline(container[0],items,options);
 		}, false);
 	</script>
 </body>

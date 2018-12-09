@@ -44,11 +44,9 @@ div.tab-pane div.panel.panel-default {
 	float: left;
 	margin-left: 60px;
 }
-
 .panel-clear {
 	clear: both;
 }
-
 #mynetwork {
 	width: 100%;
 	height: 400px;
@@ -221,24 +219,25 @@ li.nonotiActive {
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
 	<script>
 		checkMyNoti();
-	
-		var nodes = new vis.DataSet([
-			{id: 1, label: 'SecuBot'},
-			{id: 2, label: 'Agent'},
-			{id: 3, label: 'Agent'},
-			{id: 4, label: 'Agent'},
-			{id: 5, label: 'Agent'},
-		]);
 		
-		var edges = new vis.DataSet([
-			{from: 1, to: 2},
-			{from: 1, to: 3},
-			{from: 1, to: 4},
-			{from: 1, to: 5},
-		]);
-		
+		var bodyContent = $.ajax({
+			url: "http://211.193.58.162:2222/NetworkTopology",
+			global: false,
+			type: 'GET',
+			async: false,
+		}).responseText;
+		parse = JSON.parse(bodyContent);
+		nodeList = []
+		edgeList = []
+		for (var i in parse.allEntity){
+			nodeList.push({id: parse.allEntity[i], label:parse.allEntity[i]});
+		}
+		for (var i in parse.allConnection){
+			edgeList.push({from: parse.allConnection[i][0], to:parse.allConnection[i][1]});
+		}
+		var nodes = new vis.DataSet(nodeList);
+		var edges = new vis.DataSet(edgeList);
 		var container = document.getElementById('mynetwork');
-		
 		var data = {
 				nodes: nodes,
 				edges: edges
@@ -248,10 +247,7 @@ li.nonotiActive {
 				height: '100%',
 				width: '100%',
 		};
-		
 		var network = new vis.Network(container, data, options);
 	</script>
-
-
 </body>
 </html>

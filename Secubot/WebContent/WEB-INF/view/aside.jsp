@@ -78,3 +78,24 @@
 
 </aside>
 <!-- Aside Ends-->
+
+<script src="${pageContext.request.contextPath }/js/jquery.js"></script>
+<script>
+	$(document).ready(function() {
+		var url = window.location;
+		var element = $("body > aside > nav > ul > li.has-submenu > a");
+		var element1 = $("body > aside > nav > ul > li.has-submenu > ul > li > a");
+		
+		for (var i=0; i<element.length; i++) {
+			if (element[i].href.slice(-1) != "#" && element[i].href.indexOf(url.href) != -1 || url.href.indexOf(element[i].href) != -1) {
+				element[i].closest("li.has-submenu").className += " active";
+			}
+		}
+		
+		for (var i=0; i<element1.length; i++) {
+			if (element1[i].href.slice(-1) !="#" && element1[i].href.indexOf(url.href) != -1 || url.href.indexOf(element1[i].href) != -1) {
+				element1[i].closest("li.has-submenu").className += " active";
+			}
+		}
+	})
+</script>
