@@ -33,7 +33,8 @@ public class NetworkPolicyHandler implements CommandHandler {
 		// TODO: Get to Network Policy List
 		int total = policyService.countPolicy();
 		List<NetworkPolicy> list = new ArrayList<>();
-		NetworkPolicyPage networkPage = new NetworkPolicyPage();
+		NetworkPolicyPage networkPage = new NetworkPolicyPage(total, list);
+		req.getSession().setAttribute("networkPage", networkPage);
 		return FORM_VIEW;
 	}
 	
