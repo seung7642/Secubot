@@ -42,7 +42,10 @@
 			<li class="has-submenu">
 				<a href="#"><i class="ion-clipboard"></i> <span class="nav-label">Policy</span></a>
 				<ul class="list-unstyled">
-					<li><a href="${pageContext.request.contextPath }/agentPolicy.do">Main</a></li>
+					<li><a href="${pageContext.request.contextPath }/agentPolicy.do">process</a></li>
+				</ul>
+				<ul class="list-unstyled">
+					<li><a href="${pageContext.request.contextPath }/agentPolicy.do">network</a></li>
 				</ul>
 			</li>
 			

@@ -17,7 +17,7 @@ public class AgentPolicyService {
 	public void addAgentPolicy(String policy_name, String process_name) throws SQLException {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			agentPolicy = new AgentPolicy(policy_name, process_name);
-			policyDao.insert(conn, agentPolicy);
+			policyDao.insertAgent(conn, agentPolicy);
 		}
 	}
 	
