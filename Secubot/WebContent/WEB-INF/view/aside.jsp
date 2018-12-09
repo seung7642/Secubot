@@ -17,7 +17,7 @@
 	<nav class="navigation">
 		<ul class="list-unstyled">
 			<!-- Dashboard -->
-			<li class="active">
+			<li class="has-submenu">
 				<a href="${pageContext.request.contextPath }/index.jsp"><i class="ion-home"></i>
 				<span class="nav-label">Dashboard</span></a>
 			</li>

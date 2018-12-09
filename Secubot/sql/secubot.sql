@@ -59,11 +59,6 @@ create table secubot.agentlist (
 	login_date datetime not null
 ) engine=InnoDB default character set=utf8;
 
-create table secubot.count_of_correspond (
-	total_correspond int not null,
-	today_correspond int not null
-) engine=InnoDB default character set=utf8;
-
 create table secubot.policy_process (
 	policy_process_no int auto_increment primary key,
 	policy_name varchar(20) not null,
@@ -76,4 +71,12 @@ create table secubot.policy_network (
 	src_ip char(16) not null,
 	dst_ip char(16) not null,
 	port int not null
+) engine=InnoDB default character set=utf8;
+
+create table secubot.report (
+	report_date datetime not null,
+	count_receipt_complaint int not null,
+	count_treatment_complaint int not null,
+	count_detection int not null,
+	count_correspond int not null
 ) engine=InnoDB default character set=utf8;

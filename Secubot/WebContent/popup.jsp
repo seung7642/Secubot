@@ -166,11 +166,11 @@ label {
 			var container = name;
 			if (container.length == 0)
 				return;
-				
+			
 			if(container.hasChildNodes()){
-				while ( container.hasChildNodes() ) { 
-					container.removeChild( container.firstChild ); 
-				} 
+				while ( container.hasChildNodes() ) {
+					container.removeChild( container.firstChild );
+				}
 				return;
 			}
 		}
