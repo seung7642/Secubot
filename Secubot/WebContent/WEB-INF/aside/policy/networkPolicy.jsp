@@ -88,13 +88,13 @@ li.nonotiActive {
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="agent" items="${agentPage.list }">
+								<c:forEach var="network" items="${networkPage.list }">
 									<tr>
 										<td>#</td>
-										<td>${agent.getPolicyName() }</td>
-										<td>${agent.getProcessName() }</td>
-										<td>${agent.getProcessName() }</td>
-										<td>${agent.getProcessName() }</td>
+										<td>${network.getPolicyName() }</td>
+										<td>${network.getSrcIP() }</td>
+										<td>${network.getDstIP() }</td>
+										<td>${network.getPort() }</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -129,16 +129,24 @@ li.nonotiActive {
 					<span aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body">
-					<form class="form col-md-12 center-block" action="${pageContext.request.contextPath }/agentPolicy.do" method="POST">
+					<form class="form col-md-12 center-block" action="${pageContext.request.contextPath }/networkPolicy.do" method="POST">
 						<div class="form-group md-form mb-4">
 							<label for="policy_name">정책명</label>
 							<select name="policy_name" id="policy_name" class="form-control">
-								<option value="process_kill">Process Kill</option>
+								<option value="process_kill">Network Block</option>
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="process_name">프로세스명</label>
-							<input name="process_name" type="text" class="form-control" id="process_name" placeholder="Process name...">
+							<label for="src_ip">srcIP</label>
+							<input name="src_ip" type="text" class="form-control" id="src_ip" placeholder="srcIP...">
+						</div>
+						<div class="form-group">
+							<label for="dst_ip">dstIP</label>
+							<input name="dst_ip" type="text" class="form-control" id="dst_ip" placeholder="dstIP...">
+						</div>
+						<div class="form-group">
+							<label for="port">port</label>
+							<input name="port" type="text" class="form-control" id="port" placeholder="port...">
 						</div>
 						<div class="form-group">
 							<button class="btn btn-outline-secondary" data-dismiss="modal" aria-hidden="false">Cancle</button>
