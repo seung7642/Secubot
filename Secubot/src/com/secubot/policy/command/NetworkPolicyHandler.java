@@ -14,7 +14,7 @@ import com.secubot.mvc.command.CommandHandler;
 
 public class NetworkPolicyHandler implements CommandHandler {
 
-	private static final String FORM_VIEW = "/WEB-INF/aside/policy/policy.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/aside/policy/networkPolicy.jsp";
 	private NetworkPolicyService policyService = new NetworkPolicyService();
 	
 	@Override
