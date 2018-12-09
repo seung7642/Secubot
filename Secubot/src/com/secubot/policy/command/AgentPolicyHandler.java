@@ -11,7 +11,7 @@ import com.secubot.mvc.command.CommandHandler;
 
 public class AgentPolicyHandler implements CommandHandler {
 
-	private static final String FORM_VIEW = "/WEB-INF/aside/policy/policy.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/aside/policy/agentPolicy.jsp";
 	private AgentPolicyService agentService = new AgentPolicyService();
 	
 	@Override
