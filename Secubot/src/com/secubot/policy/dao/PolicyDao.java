@@ -96,6 +96,31 @@ public class PolicyDao {
 		}
 	}
 	
+	public List<NetworkPolicy> listNetworkPolicy(Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement("select * from policy_network");
+			rs = pstmt.executeQuery();
+			List<NetworkPolicy> list = new ArrayList<>();
+			while (rs.next()) {
+				list.add(new NetworkPolicy(
+						rs.getString("policy_name"),
+						rs.getString("src_ip"),
+						rs.getString("dst_ip"),
+						rs.getString("port")
+						));
+			}
+			return list;
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+	}
+	
 	public int countNetworkPolicy(Connection conn) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
