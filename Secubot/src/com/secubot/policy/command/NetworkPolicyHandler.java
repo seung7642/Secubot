@@ -1,5 +1,7 @@
 package com.secubot.policy.command;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,7 +14,7 @@ public class NetworkPolicyHandler implements CommandHandler {
 	private NetworkPolicyService policyService = new NetworkPolicyService();
 	
 	@Override
-	public String process(HttpServletRequest req, HttpServletResponse res) {
+	public String process(HttpServletRequest req, HttpServletResponse res) throws SQLException {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, res);
 		} else if (req.getMethod().equalsIgnoreCase("POST")) {
@@ -27,7 +29,7 @@ public class NetworkPolicyHandler implements CommandHandler {
 		return FORM_VIEW;
 	}
 	
-	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
+	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws SQLException {
 		String policy_name = req.getParameter("policy_name");
 		String src_ip = req.getParameter("src_ip");
 		String dst_ip = req.getParameter("dst_ip");
