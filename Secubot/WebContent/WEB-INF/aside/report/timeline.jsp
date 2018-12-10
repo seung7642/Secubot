@@ -75,15 +75,8 @@ li.nonotiActive {
 
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title text-dark">Report</h3>
-						</div>
-						<div class="panel-body">
-							<div class="table-responsive" data-pattern="priority-columns">
-							
-							</div>
-						</div>
+					<div class="chart-container" style="position: relative;">
+						<canvas id="myChart" width="400" height="400" aria-label="timeline" role="img"></canvas>
 					</div>
 				</div>
 			</div>
@@ -121,14 +114,57 @@ li.nonotiActive {
 	
 	<script src="assets/datatables/jquery.dataTables.min.js"></script>
 	<script src="assets/datatables/dataTables.bootstrap.js"></script>
-
-
+	
+	<!-- Chart.js -->
+	<script src="js/Chart.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+	
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#datatable').dataTable();
 		});
 		
 		checkMyNoti();
+		
+		Chart.defaults.global.hover.mode = 'nearest';
+		
+		var ctx = document.getElementById("myChart").getContext('2d');
+		var myChart = new Chart(ctx, {
+			type: 'scatter',
+			data: {
+				labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+				datasets: [{
+					label: 'Scatter Dataset',
+					data: [{
+						x: -10,
+						y: 0
+					}, {
+						x: 0,
+						y: 10
+					}, {
+						x: 10,
+						y: 5
+					}]
+				}]
+			},
+			options: {
+				scales: {
+					xAxis: [{
+						type: 'linear',
+						position: 'bottom'
+					}]
+				},
+				responsiveAnimationDuration: 500,
+				layout: {
+					padding: {
+						left: 50,
+						right: 0,
+						top: 0,
+						bottom: 0
+					}
+				}
+			}
+		});
 	</script>
 
 </body>

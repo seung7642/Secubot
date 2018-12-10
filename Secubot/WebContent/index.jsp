@@ -50,6 +50,11 @@ li.notiActive {
 li.nonotiActive {
 	display: none;
 }
+canvas {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
 </style>
 
 </head>
@@ -112,7 +117,11 @@ li.nonotiActive {
 							<h3 class="portlet-title text-dark">보안 위협 시각화</h3>
 						</div>
 						<div class="portlet-body" id="visualization">
-							<svg></svg>
+							<!-- <svg></svg> -->
+							<div>
+								<canvas id="canvas"></canvas>
+							</div>
+							<button id="randomizeData">random</button>
 						</div>
 					</div>
 				</div>
@@ -170,6 +179,12 @@ li.nonotiActive {
 	<!-- d3.js -->
 	<script src="js/d3.v3.min.js"></script>
 	
+	<!-- Chart.js -->
+	<script src="js/Chart.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+	<script src="js/utils.js"></script>
+	<script src="js/Chart.bundle.js"></script>
+	
 	<!-- ajax -->
 	<script src="js/ajax.js?ver=6"></script>
 	<script src="js/visualization.js?ver=2.4"></script>
@@ -177,13 +192,98 @@ li.nonotiActive {
 	<script>
 		var data = getProcessList();
 		var parse = JSON.parse(data);
-		visualization(parse);
+		// visualization(parse);
 		
 		/* line Chart */
 		//lineChart();
 		
 		/* Notification */
 		checkMyNoti();
+		
+		/* Chart.js */
+		var color = Chart.helpers.color;
+		var scatterChartData = {
+			datasets: [{
+				label: 'My First dataset',
+				borderColor: window.chartColors.red,
+				backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
+				data: [{
+					x: randomScalingFactor(),
+					y: randomScalingFactor(),
+				}, {
+					x: randomScalingFactor(),
+					y: randomScalingFactor(),
+				}, {
+					x: randomScalingFactor(),
+					y: randomScalingFactor(),
+				}, {
+					x: randomScalingFactor(),
+					y: randomScalingFactor(),
+				}, {
+					x: randomScalingFactor(),
+					y: randomScalingFactor(),
+				}, {
+					x: randomScalingFactor(),
+					y: randomScalingFactor(),
+				}, {
+					x: randomScalingFactor(),
+					y: randomScalingFactor(),
+				}]
+			}, {
+				label: 'My Second dataset',
+				borderColor: window.chartColors.blue,
+				backgroundColor: color(window.chartColors.blue).alpha(0.2).rgbString(),
+				data: [{
+					x: randomScalingFactor(),
+					y: randomScalingFactor(),
+				}, {
+					x: randomScalingFactor(),
+					y: randomScalingFactor(),
+				}, {
+					x: randomScalingFactor(),
+					y: randomScalingFactor(),
+				}, {
+					x: randomScalingFactor(),
+					y: randomScalingFactor(),
+				}, {
+					x: randomScalingFactor(),
+					y: randomScalingFactor(),
+				}, {
+					x: randomScalingFactor(),
+					y: randomScalingFactor(),
+				}, {
+					x: randomScalingFactor(),
+					y: randomScalingFactor(),
+				}]
+			}]
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myScatter = Chart.Scatter(ctx, {
+				data: scatterChartData,
+				options: {
+					title: {
+						display: true,
+						text: 'Chart.js Scatter Chart'
+					},
+				}
+			});
+		};
+
+		document.getElementById('randomizeData').addEventListener('click', function() {
+			scatterChartData.datasets.forEach(function(dataset) {
+				dataset.data = dataset.data.map(function() {
+					return {
+						x: randomScalingFactor(),
+						y: randomScalingFactor()
+					};
+				});
+			});
+			window.myScatter.update();
+		});
+		
+		
 	</script>
 	
 </body>
