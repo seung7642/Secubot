@@ -114,7 +114,7 @@ canvas {
 				<div class="col-lg-12">
 					<div class="portlet">
 						<div class="portlet-heading">
-							<h3 class="portlet-title text-dark">보안 위협 시각화</h3>
+							<h3 class="portlet-title text-dark"></h3>
 						</div>
 						<div class="portlet-body" id="visualization">
 							<!-- <svg></svg> -->
@@ -192,69 +192,42 @@ canvas {
 	<script>
 		var data = getProcessList();
 		var parse = JSON.parse(data);
-		// visualization(parse);
-		
-		/* line Chart */
-		//lineChart();
+		var xScale = d3.scale.linear().domain([0, 2500000]).range([-100, 100]);
+		var yScale = d3.scale.linear().domain([0, 2000]).range([-100, 100]);
+		for (i in parse.ProcessList) {
+			parse.ProcessList[i].x = xScale(parse.ProcessList[i].x);
+			parse.ProcessList[i].y = yScale(parse.ProcessList[i].y);
+		}
 		
 		/* Notification */
 		checkMyNoti();
 		
 		/* Chart.js */
+		function updateConfigAsNewObject(chart) {
+			chart.options = {
+					responsive: true,
+					title: {
+						display: true,
+					},
+					scales: {
+						xAxes: [{
+							display: true
+						}],
+						yAxes: [{
+							display: true
+						}]
+					}
+			}
+			chart.update();
+		}
+		
 		var color = Chart.helpers.color;
 		var scatterChartData = {
 			datasets: [{
-				label: 'My First dataset',
+				label: 'Process List',
 				borderColor: window.chartColors.red,
 				backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
-				data: [{
-					x: randomScalingFactor(),
-					y: randomScalingFactor(),
-				}, {
-					x: randomScalingFactor(),
-					y: randomScalingFactor(),
-				}, {
-					x: randomScalingFactor(),
-					y: randomScalingFactor(),
-				}, {
-					x: randomScalingFactor(),
-					y: randomScalingFactor(),
-				}, {
-					x: randomScalingFactor(),
-					y: randomScalingFactor(),
-				}, {
-					x: randomScalingFactor(),
-					y: randomScalingFactor(),
-				}, {
-					x: randomScalingFactor(),
-					y: randomScalingFactor(),
-				}]
-			}, {
-				label: 'My Second dataset',
-				borderColor: window.chartColors.blue,
-				backgroundColor: color(window.chartColors.blue).alpha(0.2).rgbString(),
-				data: [{
-					x: randomScalingFactor(),
-					y: randomScalingFactor(),
-				}, {
-					x: randomScalingFactor(),
-					y: randomScalingFactor(),
-				}, {
-					x: randomScalingFactor(),
-					y: randomScalingFactor(),
-				}, {
-					x: randomScalingFactor(),
-					y: randomScalingFactor(),
-				}, {
-					x: randomScalingFactor(),
-					y: randomScalingFactor(),
-				}, {
-					x: randomScalingFactor(),
-					y: randomScalingFactor(),
-				}, {
-					x: randomScalingFactor(),
-					y: randomScalingFactor(),
-				}]
+				data: parse.ProcessList
 			}]
 		};
 
@@ -265,8 +238,28 @@ canvas {
 				options: {
 					title: {
 						display: true,
-						text: 'Chart.js Scatter Chart'
+						text: '보안 위협 시각화'
 					},
+					scales: {
+						gridLines: {
+							color: "black",
+							lineWidth: 50
+						},
+						yAxes: [{
+							display: true,
+							ticks: {
+								max: 100,
+								min: -100
+							}
+						}],
+						xAxes: [{
+							display: true,
+							ticks: {
+								max: 100,
+								min: -100
+							}
+						}]
+					}
 				}
 			});
 		};
