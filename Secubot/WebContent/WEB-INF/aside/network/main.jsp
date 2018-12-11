@@ -30,6 +30,9 @@
 <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href="assets/ionicon/css/ionicons.min.css" rel="stylesheet" />
 
+<!-- DataTables -->
+<link href="assets/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+
 <!-- Custom styles for this template -->
 <link href="css/style.css?version=1" rel="stylesheet">
 <link href="css/helper.css" rel="stylesheet">
@@ -99,73 +102,26 @@ li.nonotiActive {
 										<a href=""><i class="fa fa-search"></i></a>
 									</form>
 								</div>
-								<table id="tech-companies-1"
-									class="table table-small-font table-bordered table-striped">
+								<table id="datatable" class="table table-hover">
 									<thead>
 										<tr>
-											<th data-priority="1" width="15%">노드 유형</th>
-											<th data-priority="3" width="10%">동작</th>
-											<th data-priority="1" width="10%">IP Address</th>
-											<th data-priority="3" width="5%">MAC Address</th>
-											<th data-priority="3" width="10%">상태 정보</th>
-											<th data-priority="6" width="15%">정책</th>
-											<th data-priority="6" width="20%">사용자</th>
-											<th data-priority="6" width="15%">갱신시간</th>
+											<th>#</th>
+											<th>IP</th>
+											<th>MAC</th>
+											<th>Vendor</th>
+											<th>OS</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>PC, Phone</td>
-											<td>
-												<div class="material-switch pull-left">
-												<input id="someSwitchOptionPrimary"
-													name="someSwitchOption001" type="checkbox" /> <label
-													for="someSwitchOptionPrimary" class="label-primary"></label>
-												</div>
-											</td>
-											<td>192.168.10.20</td>
-											<td>00:00:00:00:00:00</td>
-											<td>-</td>
-											<td>모두 허용</td>
-											<td>장상근 010-0000-0000</td>
-											<td>2018-11-01 00:00:00</td>
-										</tr>
-									</tbody>
-									<tbody>
-										<tr>
-											<td>PC, Phone</td>
-											<td>
-												<div class="material-switch pull-left">
-												<input id="someSwitchOptionPrimary"
-													name="someSwitchOption001" type="checkbox" /> <label
-													for="someSwitchOptionPrimary" class="label-primary"></label>
-												</div>
-											</td>
-											<td>192.168.10.20</td>
-											<td>00:00:00:00:00:00</td>
-											<td>대형 트래픽</td>
-											<td>모두 허용</td>
-											<td>장상근 010-0000-0000</td>
-											<td>2018-11-01 00:00:00</td>
-										</tr>
-									</tbody>
-									<tbody>
-										<tr>
-											<td>PC, Phone</td>
-											<td>
-												<div class="material-switch pull-left">
-												<input id="someSwitchOptionPrimary"
-													name="someSwitchOption001" type="checkbox" /> <label
-													for="someSwitchOptionPrimary" class="label-primary"></label>
-												</div>
-											</td>
-											<td>192.168.10.20</td>
-											<td>00:00:00:00:00:00</td>
-											<td>악성코드</td>
-											<td>모두 허용</td>
-											<td>장상근 010-0000-0000</td>
-											<td>2018-11-01 00:00:00</td>
-										</tr>
+										<c:forEach var="network" items="${networkPage.list}">
+											<tr>
+												<td><strong>#</strong></td>
+												<td>${network.getIp() }</td>
+												<td>${network.getMac() }</td>
+												<td>${network.getVendor() }</td>
+												<td>${network.getOs() }</td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -209,8 +165,16 @@ li.nonotiActive {
 	<!-- ajax -->
 	<script src="js/ajax.js?ver=1"></script>
 	
+	<!-- datatable -->
+	<script src="${pageContext.request.contextPath }/assets/datatables/jquery.dataTables.min.js"></script>
+	<script src="${pageContext.request.contextPath }/assets/datatables/dataTables.bootstrap.js"></script>
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
 	<script>
+		$(document).ready(function() {
+	        $('#datatable').dataTable();
+	    });
+		
 		checkMyNoti();
 		
 		var bodyContent = $.ajax({
