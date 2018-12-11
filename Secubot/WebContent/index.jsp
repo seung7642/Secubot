@@ -272,14 +272,13 @@ canvas {
 					},
 					pan: {
 						enabled: true,
-						mode: 'y'
+						mode: 'xy'
 					},
 					zoom: {
 						enabled: true,
-						drag: true,
-						mode: 'y',
+						mode: 'xy',
 					},
-					events: ['click'],
+					//events: ['click'],
 					// TODO: 해당 Scatter 클릭 시 데이터 받아오는 작업.
 					'onClick': function(evt, item) {
 						var that = this;
