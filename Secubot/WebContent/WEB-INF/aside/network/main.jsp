@@ -49,7 +49,7 @@ div.tab-pane div.panel.panel-default {
 }
 #mynetwork {
 	width: 100%;
-	height: 400px;
+	height: 800px;
 	border: 1px solid lightgray;
 }
 li.notiActive {
@@ -80,11 +80,11 @@ li.nonotiActive {
 			<div class="row">
 				<div class="col-lg-12">
 					<ul class="nav nav-tabs">
-						<li class="active" style="border: 1px solid;"><a href="#node" data-toggle="tab"
+						<li class="active"><a href="#node" data-toggle="tab"
 							aria-expanded="true"> <span class="visible-xs"><i
 									class="fa fa-home"></i></span> <span class="hidden-xs">Node</span>
 						</a></li>
-						<li class="" style="border: 1px solid;"><a href="#topology" data-toggle="tab"
+						<li class=""><a href="#topology" data-toggle="tab"
 							aria-expanded="false"> <span class="visible-xs"><i
 									class="fa fa-user"></i></span> <span class="hidden-xs">Topology</span>
 						</a></li>

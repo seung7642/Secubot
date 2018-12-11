@@ -34,8 +34,6 @@ function checkMyNoti() {
 		type: 'GET',
 		async: false,
 		success: function(el) {
-			console.log("Success: '/checkMyNoti'");
-			console.log(el);
 			if (el.notiCount) {
 				document.querySelector("span.count").innerText = el.notiCount;
 				document.querySelector("span > strong").innerText = el.notiCount;

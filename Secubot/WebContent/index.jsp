@@ -61,10 +61,10 @@ canvas {
 <body>
 
 	<%
-		/* HttpSession httpSession = request.getSession(false);
+		HttpSession httpSession = request.getSession(false);
 		if (httpSession == null || httpSession.getAttribute("authUser") == null) {
 			response.sendRedirect("/Secubot/login.do");
-		} */
+		}
 	%>
 
 	<%@ include file="/WEB-INF/view/aside.jsp"%>
@@ -186,7 +186,7 @@ canvas {
 	<script src="js/Chart.bundle.js"></script>
 	
 	<!-- ajax -->
-	<script src="js/ajax.js?ver=6"></script>
+	<script src="js/ajax.js?ver=6.1"></script>
 	<script src="js/visualization.js?ver=2.4"></script>
 	
 	<script>
@@ -250,6 +250,9 @@ canvas {
 							ticks: {
 								max: 100,
 								min: -100
+							},
+							gridLines: {
+								lineWidth: 1
 							}
 						}],
 						xAxes: [{
@@ -262,8 +265,9 @@ canvas {
 					},
 					events: ['click'],
 					// TODO: 해당 Scatter 클릭 시 데이터 받아오는 작업.
-					onClick: {
-						clickFunc
+					'onClick': (evt, item) => {
+						var that = this;
+						console.log(item[0]._chart);
 					}
 				}
 			});

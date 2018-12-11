@@ -17,9 +17,6 @@ $(document).ready(function() {
     		element1[i].closest("li.has-submenu").className += " active";
     	}
     }
-    //if (element.is('li')) { 
-     //    element.addClass('active').parent().parent('li').addClass('active')
-     //}
 });
 </script>
 <!-- Aside Start-->
@@ -47,7 +44,7 @@ $(document).ready(function() {
 			<li class="has-submenu">
 				<a href="#"><i class="ion-eye"></i> <span class="nav-label">Agent</span></a>
 				<ul class="list-unstyled">
-					<li><a href="${pageContext.request.contextPath }/listAgent.do">Agent List</a></li>
+					<li><a href="${pageContext.request.contextPath }/listAgent.do">agent list</a></li>
 				</ul>
 			</li>
 			
@@ -55,7 +52,7 @@ $(document).ready(function() {
 			<li class="has-submenu">
 				<a href="#"><i class="ion-network"></i> <span class="nav-label">Network</span></a>
 				<ul class="list-unstyled">
-					<li><a href="${pageContext.request.contextPath }/network.do">Main</a></li>
+					<li><a href="${pageContext.request.contextPath }/network.do">network list</a></li>
 				</ul>
 			</li>
 			
@@ -74,7 +71,7 @@ $(document).ready(function() {
 			<li class="has-submenu">
 				<a href="#"><i class="ion-podium"></i><span class="nav-label">Analysis</span></a>
 				<ul class="list-unstyled">
-					<li><a href="#">Main</a></li>
+					<li><a href="${pageContext.request.contextPath }/analysis.do">search</a></li>
 				</ul>
 			</li>
 			
@@ -82,7 +79,7 @@ $(document).ready(function() {
 			<li class="has-submenu">
 				<a href="#"><i class="ion-headphone"></i> <span class="nav-label">Desk</span></a>
 				<ul class="list-unstyled">
-					<li><a href="${pageContext.request.contextPath }/article/list.do">Complaints</a></li>
+					<li><a href="${pageContext.request.contextPath }/article/list.do">complaints</a></li>
 				</ul>		
 			</li>
 			
@@ -90,7 +87,7 @@ $(document).ready(function() {
 			<li class="has-submenu">
 				<a href="#"><i class="ion-document"></i> <span class="nav-label">Report</span></a>
 				<ul class="list-unstyled">
-					<li><a href="${pageContext.request.contextPath }/report.do">Security</a></li>
+					<li><a href="${pageContext.request.contextPath }/report.do">security</a></li>
 				</ul>
 			</li>
 		</ul>

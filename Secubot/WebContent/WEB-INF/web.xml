@@ -56,6 +56,7 @@
 		<url-pattern>/listAgent.do</url-pattern>
 		<url-pattern>/agentPolicy.do</url-pattern>
 		<url-pattern>/networkPolicy.do</url-pattern>
+		<url-pattern>/analysis.do</url-pattern>
 		<url-pattern>/report.do</url-pattern>
 	</filter-mapping>
 	
