@@ -188,6 +188,8 @@ canvas {
 	<!-- ajax -->
 	<script src="js/ajax.js?ver=6.1"></script>
 	<script src="js/visualization.js?ver=2.4"></script>
+	<script src="js/chartjs-plugin-zoom.js"></script>
+	<script src="js/hammer.min.js"></script>
 	
 	<script>
 		var data = getProcessList();
@@ -230,7 +232,6 @@ canvas {
 				data: parse.ProcessList
 			}]
 		};
-
 		window.onload = function() {
 			var ctx = document.getElementById('canvas').getContext('2d');
 			window.myScatter = Chart.Scatter(ctx, {
@@ -267,7 +268,24 @@ canvas {
 					// TODO: 해당 Scatter 클릭 시 데이터 받아오는 작업.
 					'onClick': (evt, item) => {
 						var that = this;
-						console.log(item[0]._chart);
+						console.log(item);
+						console.log(parse.ProcessList[item[0]._index]);
+						var popUrl = "/Secubot/popup.jsp?md5=" + parse.ProcessList[item[0]._index].MD5 + "&imagename=" + parse.ProcessList[item[0]._index].ImageName;
+						var popOption = "width=700, height=400, scrollbars=no, status=no;";
+						window.open(popUrl, popOption);
+					},
+					pan: {
+						enabled: true,
+						mode: 'y'
+					},
+					zoom: {
+						enabled: true,
+						drag: true,
+						mode: 'xy',
+						limits: {
+							max: 10,
+							min: 0.5
+						}
 					}
 				}
 			});
