@@ -30,7 +30,7 @@ function getAgentList() {
 
 function checkMyNoti() {
 	var data = $.ajax({
-		url: 'http://localhost:8080/Secubot/checkMyNoti',
+		url: 'http://localhost:8080/checkMyNoti',
 		type: 'GET',
 		async: false,
 		success: function(el) {
@@ -60,4 +60,43 @@ function checkMyNoti() {
 function getContextPath() {
 	var hostIndex = location.href.indexOf(location.host) + location.host.length;
 	return location.href.substring(hostIndex, location.href.indexOf('/', hostIndex+1));
+}
+
+function todayProcessCount() {
+	var data = $.ajax({
+		url: 'http://211.193.58.162:2222/TodayProcessCount',
+		type: 'GET',
+		async: false,
+		success: function(el) {
+			
+		}
+	}).responseText;
+	setTimeout("todayEventCount", 100000);
+	return data;
+}
+
+function todayNetworkCount() {
+	var data = $.ajax({
+		url: 'http://211.193.58.162:2222/TodayNetworkCount',
+		type: 'GET',
+		async: false,
+		success: function(el) {
+			
+		}
+	}).responseText;
+	setTimeout("todayNetworkCount", 100000);
+	return data;
+}
+
+function todayRuleCount() {
+	var data = $.ajax({
+		url: 'http://211.193.58.162:2222/TodayRuleCount',
+		type: 'GET',
+		async: 'GET',
+		success: function(el) {
+			
+		}
+	}).responseText;
+	setTimeout("todayRuleCount", 100000);
+	return data;
 }

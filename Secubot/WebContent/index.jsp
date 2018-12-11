@@ -63,7 +63,7 @@ canvas {
 	<%
 		HttpSession httpSession = request.getSession(false);
 		if (httpSession == null || httpSession.getAttribute("authUser") == null) {
-			response.sendRedirect("/Secubot/login.do");
+			response.sendRedirect("/login.do");
 		}
 	%>
 
@@ -117,7 +117,6 @@ canvas {
 							<h3 class="portlet-title text-dark"></h3>
 						</div>
 						<div class="portlet-body" id="visualization">
-							<!-- <svg></svg> -->
 							<div>
 								<canvas id="canvas"></canvas>
 							</div>
@@ -181,15 +180,14 @@ canvas {
 	
 	<!-- Chart.js -->
 	<script src="js/Chart.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 	<script src="js/utils.js"></script>
 	<script src="js/Chart.bundle.js"></script>
-	
-	<!-- ajax -->
-	<script src="js/ajax.js?ver=6.1"></script>
-	<script src="js/visualization.js?ver=2.4"></script>
 	<script src="js/chartjs-plugin-zoom.js"></script>
 	<script src="js/hammer.min.js"></script>
+	
+	<!-- ajax -->
+	<script src="js/ajax.js?ver=6.2"></script>
+	<script src="js/visualization.js?ver=2.4"></script>
 	
 	<script>
 		var data = getProcessList();
@@ -226,7 +224,7 @@ canvas {
 		var color = Chart.helpers.color;
 		var scatterChartData = {
 			datasets: [{
-				label: 'Process List',
+				label: 'Process',
 				borderColor: window.chartColors.red,
 				backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
 				data: parse.ProcessList
@@ -242,37 +240,35 @@ canvas {
 						text: '보안 위협 시각화'
 					},
 					scales: {
-						gridLines: {
-							color: "black",
-							lineWidth: 50
-						},
 						yAxes: [{
 							display: true,
+							gridLines: {
+								zeroLineColor: "rgba(0, 255, 0, 1)",
+								lineWidth: 1
+							},
 							ticks: {
 								max: 100,
 								min: -100
 							},
-							gridLines: {
-								lineWidth: 1
+							scaleLabel: {
+								display: true,
+								labelString: "독립성"
 							}
 						}],
 						xAxes: [{
 							display: true,
+							gridLines: {
+								zeroLineColor: "rgba(0, 255, 0, 1)"
+							},
 							ticks: {
 								max: 100,
 								min: -100
+							},
+							scaleLabel: {
+								display: true,
+								labelString: "지속성"
 							}
 						}]
-					},
-					events: ['click'],
-					// TODO: 해당 Scatter 클릭 시 데이터 받아오는 작업.
-					'onClick': (evt, item) => {
-						var that = this;
-						console.log(item);
-						console.log(parse.ProcessList[item[0]._index]);
-						var popUrl = "/Secubot/popup.jsp?md5=" + parse.ProcessList[item[0]._index].MD5 + "&imagename=" + parse.ProcessList[item[0]._index].ImageName;
-						var popOption = "width=700, height=400, scrollbars=no, status=no;";
-						window.open(popUrl, popOption);
 					},
 					pan: {
 						enabled: true,
@@ -281,18 +277,23 @@ canvas {
 					zoom: {
 						enabled: true,
 						drag: true,
-						mode: 'xy',
-						limits: {
-							max: 10,
-							min: 0.5
-						}
+						mode: 'y',
+					},
+					events: ['click'],
+					// TODO: 해당 Scatter 클릭 시 데이터 받아오는 작업.
+					'onClick': function(evt, item) {
+						var that = this;
+						console.log(item);
+						var popUrl = "/popup.jsp?md5=" + parse.ProcessList[item[0]._index].MD5 + "&imagename=" + parse.ProcessList[item[0]._index].ImageName;
+						var popOption = "width=700, height=400, scrollbars=no, status=no;";
+						window.open(popUrl, popOption);
 					}
 				}
 			});
 		};
 		
 		function clickFunc() {
-			var popUrl = "/Secubot/popup.jsp?md5=" + parse.ProcessList[1].MD5 + "&imagename=" + parse.ProcessList[1].ImageName;
+			var popUrl = "/popup.jsp?md5=" + parse.ProcessList[1].MD5 + "&imagename=" + parse.ProcessList[1].ImageName;
 			var popOption = "width=700, height=400, scrollbars=no, status=no;";
 			window.open(popUrl, popOption);
 		}
