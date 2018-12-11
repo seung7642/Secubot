@@ -47,7 +47,7 @@ $(document).ready(function() {
 			<li class="has-submenu">
 				<a href="#"><i class="ion-eye"></i> <span class="nav-label">Agent</span></a>
 				<ul class="list-unstyled">
-					<li><a href="${pageContext.request.contextPath }/agentMain.do">Agent List</a></li>
+					<li><a href="${pageContext.request.contextPath }/listAgent.do">Agent List</a></li>
 				</ul>
 			</li>
 			

@@ -61,10 +61,10 @@ canvas {
 <body>
 
 	<%
-		HttpSession httpSession = request.getSession(false);
+		/* HttpSession httpSession = request.getSession(false);
 		if (httpSession == null || httpSession.getAttribute("authUser") == null) {
 			response.sendRedirect("/Secubot/login.do");
-		}
+		} */
 	%>
 
 	<%@ include file="/WEB-INF/view/aside.jsp"%>
@@ -259,10 +259,21 @@ canvas {
 								min: -100
 							}
 						}]
+					},
+					events: ['click'],
+					// TODO: 해당 Scatter 클릭 시 데이터 받아오는 작업.
+					onClick: {
+						clickFunc
 					}
 				}
 			});
 		};
+		
+		function clickFunc() {
+			var popUrl = "/Secubot/popup.jsp?md5=" + parse.ProcessList[1].MD5 + "&imagename=" + parse.ProcessList[1].ImageName;
+			var popOption = "width=700, height=400, scrollbars=no, status=no;";
+			window.open(popUrl, popOption);
+		}
 
 		document.getElementById('randomizeData').addEventListener('click', function() {
 			scatterChartData.datasets.forEach(function(dataset) {

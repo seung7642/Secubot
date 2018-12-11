@@ -44,13 +44,6 @@ li.nonotiActive {
 </head>
 <body>
 
-	<%
-		HttpSession httpSession = request.getSession(false);
-		if (httpSession == null || httpSession.getAttribute("authUser") == null) {
-			response.sendRedirect("/Secubot/login.do");
-		}
-	%>
-
 	<%@ include file="/WEB-INF/view/aside.jsp"%>
 	
 	<!-- Main Content Start -->

@@ -43,16 +43,21 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
-	<!-- <filter>
+	<filter>
 		<filter-name>LoginCheckFilter</filter-name>
 		<filter-class>com.secubot.filter.LoginCheckFilter</filter-class>
 	</filter>
 	
 	<filter-mapping>
 		<filter-name>LoginCheckFilter</filter-name>
-		<url-pattern>/article/list.do</url-pattern>
-		<url-pattern>/article/write.do</url-pattern>
-	</filter-mapping> -->
+		<url-pattern>/article/*</url-pattern>
+		<url-pattern>/agentInfo.do</url-pattern>
+		<url-pattern>/network.do</url-pattern>
+		<url-pattern>/listAgent.do</url-pattern>
+		<url-pattern>/agentPolicy.do</url-pattern>
+		<url-pattern>/networkPolicy.do</url-pattern>
+		<url-pattern>/report.do</url-pattern>
+	</filter-mapping>
 	
 	<servlet>
 		<servlet-name>ControllerUsingURI</servlet-name>
