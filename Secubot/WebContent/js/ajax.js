@@ -62,15 +62,32 @@ function getContextPath() {
 	return location.href.substring(hostIndex, location.href.indexOf('/', hostIndex+1));
 }
 
-function todayProcessCount() {
+function todayEventCount() {
 	var data = $.ajax({
-		url: 'http://211.193.58.162:2222/TodayProcessCount',
+		url: 'http://211.193.58.162:2222/TodayEventCount',
 		type: 'GET',
 		async: false,
 		success: function(el) {
 			
 		}
 	}).responseText;
+	var parse = JSON.parse(data);
+	document.querySelector('.today-event-count').innerText = parse.result;
+	setTimeout("todayEventCount", 100000);
+	return data;
+}
+
+function todayProcessCount() {
+	var data = $.ajax({
+		url: 'http://211.193.58.162:2222/TodayProcessCount',
+		type: 'GET',
+		async: false,
+		success: function(el) {
+			console.log("Success: todayProcessCount");
+		}
+	}).responseText;
+	var parse = JSON.parse(data);
+	document.querySelector('.today-process-count').innerText = parse.result;
 	setTimeout("todayEventCount", 100000);
 	return data;
 }
@@ -81,9 +98,10 @@ function todayNetworkCount() {
 		type: 'GET',
 		async: false,
 		success: function(el) {
-			
 		}
 	}).responseText;
+	var parse = JSON.parse(data);
+	document.querySelector('.today-network-count').innerText = parse.result;
 	setTimeout("todayNetworkCount", 100000);
 	return data;
 }
@@ -92,11 +110,12 @@ function todayRuleCount() {
 	var data = $.ajax({
 		url: 'http://211.193.58.162:2222/TodayRuleCount',
 		type: 'GET',
-		async: 'GET',
+		async: false,
 		success: function(el) {
-			
 		}
 	}).responseText;
+	var parse = JSON.parse(data);
+	document.querySelector('.today-rule-count').innerText = parse.result;
 	setTimeout("todayRuleCount", 100000);
 	return data;
 }

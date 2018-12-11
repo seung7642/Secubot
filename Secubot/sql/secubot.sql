@@ -80,3 +80,11 @@ create table secubot.report (
 	count_detection int not null,
 	count_correspond int not null
 ) engine=InnoDB default character set=utf8;
+
+/* Network */
+create table network_assets (
+	ip varchar(100),
+	mac varchar(100),
+	vendor varchar(100),
+	os varchar(100)
+) engine=InnoDB default character set=utf8;

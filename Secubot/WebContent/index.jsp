@@ -15,7 +15,7 @@
 
 <title>SECUBOT - Adaptive SIEM & Security Configuration
 	Management</title>
-
+<script src="js/hammer.min.js"></script>
 <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/bootstrap-reset.css" rel="stylesheet">
@@ -56,7 +56,6 @@ canvas {
 	-ms-user-select: none;
 }
 </style>
-
 </head>
 <body>
 
@@ -77,35 +76,35 @@ canvas {
 		<!-- ================== -->
 		<div class="wraper container-fluid">
 			<div class="page-title">
-				<h3 class="title"></h3>
+				<h3 class="title">Main Dashboard for Check of Threat Intelligence</h3>
 			</div>
 			<div class="row">
 				<div class="col-lg-3 col-sm-6">
 					<div class="widget-panel widget-style-2 white-bg">
 						<i class="fa fa-shield text-pink"></i> 
-						<h2 class="m-0 counter" style="cursor:pointer;">8956</h2>
-						<div>Total responses</div>
+						<h2 class="today-process-count m-0 counter" style="cursor:pointer;"></h2>
+						<div>Today's Process</div>
 					</div>
 				</div>
 				<div class="col-lg-3 col-sm-6">
 					<div class="widget-panel widget-style-2 white-bg">
 						<i class="ion-social-freebsd-devil text-purple"></i> 
-						<h2 class="m-0 counter" style="cursor:pointer;">50</h2>
-						<div>Today's responses</div>
+						<h2 class="today-network-count m-0 counter" style="cursor:pointer;"></h2>
+						<div>Today's Network</div>
 					</div>
 				</div>
 				<div class="col-lg-3 col-sm-6">
 					<div class="widget-panel widget-style-2 white-bg">
 						<i class="ion-android-search text-info"></i> 
-						<h2 class="m-0 counter" style="cursor:pointer;">126</h2>
-						<div>Count of Process</div>
+						<h2 class="today-rule-count m-0 counter" style="cursor:pointer;"></h2>
+						<div>Today's Rule</div>
 					</div>
 				</div>
 				<div class="col-lg-3 col-sm-6">
 					<div class="widget-panel widget-style-2 white-bg">
 						<i class="ion-ios7-compose text-success"></i> 
-						<h2 class="m-0 counter" style="cursor:pointer;">145</h2>
-						<div>Count of complain</div>
+						<h2 class="today-event-count m-0 counter" style="cursor:pointer;"></h2>
+						<div>Today's Event</div>
 					</div>
 				</div>
 			</div> <!-- end row -->
@@ -183,10 +182,9 @@ canvas {
 	<script src="js/utils.js"></script>
 	<script src="js/Chart.bundle.js"></script>
 	<script src="js/chartjs-plugin-zoom.js"></script>
-	<script src="js/hammer.min.js"></script>
 	
 	<!-- ajax -->
-	<script src="js/ajax.js?ver=6.2"></script>
+	<script src="js/ajax.js?ver=6.33"></script>
 	<script src="js/visualization.js?ver=2.4"></script>
 	
 	<script>
@@ -272,7 +270,7 @@ canvas {
 					},
 					pan: {
 						enabled: true,
-						mode: 'xy'
+						mode: 'xy',
 					},
 					zoom: {
 						enabled: true,
@@ -309,7 +307,17 @@ canvas {
 			window.myScatter.update();
 		});
 		
+		var todayProcess = todayProcessCount();
+		var parseTodayProcess = JSON.parse(todayProcess);
 		
+		var todayNetwork = todayNetworkCount();
+		var parseTodayNetwork = JSON.parse(todayNetwork);
+		
+		var todayRule = todayRuleCount();
+		var parseTodayRule = JSON.parse(todayRule);
+		
+		var todayEvent = todayEventCount();
+		var parseTodayEvent = JSON.parse(todayEvent);
 	</script>
 	
 </body>
