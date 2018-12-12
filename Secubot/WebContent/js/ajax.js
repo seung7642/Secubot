@@ -30,7 +30,7 @@ function getAgentList() {
 
 function checkMyNoti() {
 	var data = $.ajax({
-		url: 'http://localhost:8080/checkMyNoti',
+		url: 'http://localhost:8080/Secubot/checkMyNoti',
 		type: 'GET',
 		async: false,
 		success: function(el) {

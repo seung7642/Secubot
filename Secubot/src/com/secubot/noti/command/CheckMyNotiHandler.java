@@ -28,6 +28,7 @@ public class CheckMyNotiHandler extends HttpServlet {
 			JSONObject json = new JSONObject();
 			json.put("notiCount", notiCount);
 			res.setContentType("application/json");
+			res.addHeader("Access-Control-Allow-Origin", "*");
 			req.getSession().setAttribute("notiCount", notiCount);
 			res.getWriter().println(json);
 		} finally {

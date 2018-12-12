@@ -11,7 +11,7 @@
 
 <title>SECUBOT - Adaptive SIEM & Security Configuration
 	Management</title>
-
+<script src="js/hammer.min.js"></script>
 <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/bootstrap-reset.css" rel="stylesheet">
@@ -68,8 +68,8 @@ li.nonotiActive {
 
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="chart-container" style="position: relative;">
-						<canvas id="myChart" width="400" height="400" aria-label="timeline" role="img"></canvas>
+					<div class="chart-container">
+						<canvas id="canvas" aria-label="timeline" role="img"></canvas>
 					</div>
 				</div>
 			</div>
@@ -110,7 +110,9 @@ li.nonotiActive {
 	
 	<!-- Chart.js -->
 	<script src="js/Chart.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+	<script src="js/utils.js"></script>
+	<script src="js/Chart.bundle.js"></script>
+	<script src="js/chartjs-plugin-zoom.js"></script>
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -119,45 +121,110 @@ li.nonotiActive {
 		
 		checkMyNoti();
 		
-		Chart.defaults.global.hover.mode = 'nearest';
-		
-		var ctx = document.getElementById("myChart").getContext('2d');
-		var myChart = new Chart(ctx, {
-			type: 'scatter',
-			data: {
-				labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-				datasets: [{
-					label: 'Scatter Dataset',
-					data: [{
-						x: -10,
-						y: 0
+		var config = {
+				type: 'line',
+				data: {
+					labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+					datasets: [{
+						label: 'Process 대응건수',
+						data: [
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor()
+						],
+						backgroundColor: window.chartColors.red,
+						borderColor: window.chartColors.red,
+						fill: false,
+						borderDash: [5, 5],
+						pointRadius: 15,
+						pointHoverRadius: 10,
 					}, {
-						x: 0,
-						y: 10
+						label: 'Network 차단건수',
+						data: [
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor()
+						],
+						backgroundColor: window.chartColors.blue,
+						borderColor: window.chartColors.blue,
+						fill: false,
+						borderDash: [5, 5],
+						pointRadius: [2, 4, 6, 18, 0, 12, 20],
 					}, {
-						x: 10,
-						y: 5
-					}]
-				}]
-			},
-			options: {
-				scales: {
-					xAxis: [{
-						type: 'linear',
-						position: 'bottom'
+						label: 'Complaint 접수건수',
+						data: [
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor()
+						],
+						backgroundColor: window.chartColors.green,
+						borderColor: window.chartColors.green,
+						fill: false,
+						pointHoverRadius: 30,
+					}, {
+						label: 'Rule 추가건수',
+						data: [
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor()
+						],
+						backgroundColor: window.chartColors.yellow,
+						borderColor: window.chartColors.yellow,
+						fill: false,
+						pointHitRadius: 20,
 					}]
 				},
-				responsiveAnimationDuration: 500,
-				layout: {
-					padding: {
-						left: 50,
-						right: 0,
-						top: 0,
-						bottom: 0
+				options: {
+					responsive: true,
+					legend: {
+						position: 'bottom',
+					},
+					hover: {
+						mode: 'index'
+					},
+					scales: {
+						xAxes: [{
+							display: true,
+							scaleLabel: {
+								display: true,
+								labelString: 'Month'
+							}
+						}],
+						yAxes: [{
+							display: true,
+							scaleLabel: {
+								display: true,
+								labelString: 'Value'
+							}
+						}]
+					},
+					title: {
+						display: true,
+						text: '접수/대응 기간별 누적현황'
 					}
 				}
-			}
-		});
+			};
+
+			window.onload = function() {
+				var ctx = document.getElementById('canvas').getContext('2d');
+				window.myLine = new Chart(ctx, config);
+			};
 	</script>
 
 </body>

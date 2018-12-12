@@ -62,7 +62,7 @@ canvas {
 	<%
 		HttpSession httpSession = request.getSession(false);
 		if (httpSession == null || httpSession.getAttribute("authUser") == null) {
-			response.sendRedirect("/login.do");
+			response.sendRedirect("/Secubot/login.do");
 		}
 	%>
 
@@ -115,11 +115,13 @@ canvas {
 						<div class="portlet-heading">
 							<h3 class="portlet-title text-dark"></h3>
 						</div>
+						<button id="randomizeData">Day</button>
+						<button id="randomizeData">Weekend</button>
+						<button id="randomizeData">Month</button>
 						<div class="portlet-body" id="visualization">
 							<div>
 								<canvas id="canvas"></canvas>
 							</div>
-							<button id="randomizeData">random</button>
 						</div>
 					</div>
 				</div>
@@ -201,21 +203,19 @@ canvas {
 		checkMyNoti();
 		
 		/* Chart.js */
-		function updateConfigAsNewObject(chart) {
-			chart.options = {
-					responsive: true,
-					title: {
-						display: true,
-					},
-					scales: {
-						xAxes: [{
-							display: true
-						}],
-						yAxes: [{
-							display: true
-						}]
-					}
-			}
+		function addData(chart, label, data) {
+			chart.data.labels.push(label);
+			chart.data.datasets.forEach((dataset) => {
+				dataset.data.push(data);
+			});
+			chart.update();
+		}
+		
+		function removeData(chart) {
+			chart.data.labels.pop();
+			chart.data.datasets.forEach((dataset) => {
+				dataset.data.pop();
+			});
 			chart.update();
 		}
 		
@@ -277,13 +277,24 @@ canvas {
 						mode: 'xy',
 					},
 					//events: ['click'],
-					// TODO: 해당 Scatter 클릭 시 데이터 받아오는 작업.
 					'onClick': function(evt, item) {
 						var that = this;
 						console.log(item);
-						var popUrl = "/popup.jsp?md5=" + parse.ProcessList[item[0]._index].MD5 + "&imagename=" + parse.ProcessList[item[0]._index].ImageName;
+						var popUrl = "/Secubot/popup.jsp?md5=" + parse.ProcessList[item[0]._index].MD5 + "&imagename=" + parse.ProcessList[item[0]._index].ImageName;
 						var popOption = "width=700, height=400, scrollbars=no, status=no;";
 						window.open(popUrl, popOption);
+					},
+					tooltips: {
+						callbacks: {
+							label: function(tooltipItem, data) {
+								var xLabel = data.datasets[0].data[tooltipItem.index].ImageName;
+								return xLabel;
+							}
+						}
+					},
+					hover: {
+						mode: 'nearest',
+						intersect: true
 					}
 				}
 			});
