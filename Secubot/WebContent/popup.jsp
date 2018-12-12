@@ -7,8 +7,26 @@
 <meta charset="utf-8">
 <title>Agent Details</title>
 
-<!-- Bootstrap -->
+
+<!-- Bootstrap core CSS -->
 <link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-reset.css" rel="stylesheet">
+
+<!--Animation css-->
+<link href="css/animate.css" rel="stylesheet">
+
+<!--Icon-fonts css-->
+<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="assets/ionicon/css/ionicons.min.css" rel="stylesheet" />
+
+<!-- DataTables -->
+<link href="assets/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+
+<!-- Custom styles for this template -->
+<link href="css/style.css" rel="stylesheet">
+<link href="css/helper.css" rel="stylesheet">
+
+<link href="css/withyou.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
 <link href="css/style.css?ver=1" rel="stylesheet">
@@ -17,8 +35,18 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet">
 <style>
+.vis-item.red {
+  background-color: #cc2222;
+  border-color: red;
+  color:#ffffff;
+}
+
+
 body {
 	font: sans-serif;
+}
+#modalData{
+	overflow-y:scroll;
 }
 div#window {
 	width: auto;
@@ -108,27 +136,18 @@ label {
 
     <br>
 		<div id="window_2">
-			<table class="table table-hover table-striped table-sm">
+			<table class="table table-hover table-striped table-sm"  style="table-layout:fixed;word-break:break-all; ">
 				<caption>행위 리스트</caption>
 				<thead class="thead-dark">
-						<colgroup>
-							<col width="10%">
-							<col width="5%">
-							<col width="5%">
-							<col width="35%">
-							<col width="5%">
-							<col width="20%">
-							<col width="3%">
-							<col width="5%">
-						</colgroup>
+
 					<tr>
-						<th width="10%">UtcTime</th>
-						<th width="5%">ParentPID</th>
-						<th width="5%">PID</th>
-						<th width="35%">Command Line</th>
+						<th width="8%">UtcTime</th>
+						<th width="3%">ParentPID</th>
+						<th width="3%">PID</th>
+						<th width="20%">Parent Command Line</th>
+						<th width="20%">Command Line</th>
 						<th width="5%">RuleName</th>
-						<th width="20%">Image Path</th>
-						<th width="3%">IOC</th>
+						<th width="8%">HASH</th>
 						<th width="5%">Stage</th>
 					</tr>
 				</thead>
@@ -149,6 +168,37 @@ label {
 		</div>
 	</div>
 
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span></button>
+				</div>
+				<br>
+				<span class="modal-body">
+					<div class="form col-md-12 center-block">
+						<div class="table-responsive" data-pattern="priority-columns">
+								<table id="datatable" class="table table-small-font table-bordered table-striped" style="table-layout:fixed;word-break:break-all; ">
+									<thead>
+										<tr>
+											<th data-priority="3" width="10%">Column</th>
+											<th data-priority="3" width="30%">Value</th>
+										</tr>
+									</thead>
+									<tbody id="modalData">
+									</tbody>
+								</table>
+							</div>
+					</div>
+				</span>
+				<div class="modal-footer">
+				
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<script>
 		function pausecomp(millis) {
@@ -191,7 +241,8 @@ label {
 		console.log("tmp: " + tmp);
 		parse = JSON.parse(tmp);
 		for (var i in parse.ProcessAgentList) {
-			document.querySelector("#forData").innerHTML += "<td>" + parse.ProcessAgentList[i].UserName + "</td>" +
+			document.querySelector("#forData").innerHTML += 
+			"<td class=" + parse.ProcessAgentList[i].AgentID + ">" + parse.ProcessAgentList[i].UserName + "(" +parse.ProcessAgentList[i].userMac + ")" +  "</td>" +
 			"<td class=" + parse.ProcessAgentList[i].AgentID + ">" + parse.ProcessAgentList[i].userPhone + "</td>";
 		}
 		
@@ -233,17 +284,21 @@ label {
 				var command = parse.ProcessFamilyList[i].CommandLine.replace(image,imageName);
 				var Cname = "Proc" + i.toString();
 				
+				var RuleNameField=""
+				if (parse.ProcessFamilyList[i].RuleName != ""){
+					RuleNameField = "<a target=\"_blank\" href=\"https://attack.mitre.org/techniques/" + parse.ProcessFamilyList[i].RuleName + "\">";
+				}
 				window["ProcessChain"][Cname] = parse.ProcessFamilyList[i];
 				document.querySelector("#forData3").innerHTML += 
 					"<tr>" +
 					"<td class=" + Cname + ">" + parse.ProcessFamilyList[i].UtcTime +"</td>"+
 					"<td class=" + Cname + ">" + parse.ProcessFamilyList[i].ParentProcessId +"</td>"+
 					"<td class=" + Cname + ">" + parse.ProcessFamilyList[i].ProcessId +"</td>"+
-					"<td class=" + Cname + ">" + command +"</td>"+
-					"<td class=" + Cname + ">" + parse.ProcessFamilyList[i].RuleName +"</td>"+
-					"<td class=" + Cname + ">" + parse.ProcessFamilyList[i].Image +"</td>"+
-					"<td class=" + Cname + ">"   +"</td>"+
-					"<td class=" + Cname + ">"   +"</td>"+
+					"<td class=" + Cname + ">" + parse.ProcessFamilyList[i].ParentCommandLine +"</td>"+
+					"<td class=" + Cname + ">" + parse.ProcessFamilyList[i].CommandLine +"</td>"+
+					"<td class=" + Cname + ">" + RuleNameField +"</td>"+
+					"<td class=" + Cname + ">" + "<a target=\"_blank\" href=\"https://www.virustotal.com/#/file/" + parse.ProcessFamilyList[i].MD5 + "\">" + parse.ProcessFamilyList[i].MD5 + "</a></td>"+
+					"<td class=" + Cname + ">" + parse.ProcessFamilyList[i].stage  +"</td>"+
 					"</tr>" +
 					"<tr><td colspan=\"8\"><div id=" +"TimeLine" +Cname +">"+ "</div></td></tr>";
 			}
@@ -267,20 +322,63 @@ label {
 				async: false
 			}).responseText;
 			parse = JSON.parse(bodyContent);
-			
+			window["Timeline"+e.target.className.toString()] = parse.ProcessEventList;
 			for (var i in parse.ProcessEventList){
 				var tmp={};
 				tmp.id = Number(i);
 				tmp.content = parse.ProcessEventList[i].type;
 				if (parse.ProcessEventList[i].type == "Image_load"){
 					tmp.content += " " +  parse.ProcessEventList[i].ImageLoaded;
+				}else if (parse.ProcessEventList[i].type == "process_changed_file_creation_time"){
+					tmp.content += " " +  parse.ProcessEventList[i].TargetFilename;
+				}else if (parse.ProcessEventList[i].type == "Network_connection"){
+					tmp.content += "<br>srcIP:" +  parse.ProcessEventList[i].SourceIp + ":" + parse.ProcessEventList[i].SourcePort +"<br>dstIP:" +  parse.ProcessEventList[i].DestinationIp + ":" + parse.ProcessEventList[i].DestinationPort;
+				}else if (parse.ProcessEventList[i].type == "CreateRemoteThread"){
+					tmp.content += " " +  parse.ProcessEventList[i].TargetImage;
+				}else if (parse.ProcessEventList[i].type == "RawAccessRead"){
+					tmp.content += " " +  parse.ProcessEventList[i].Image;
+				}else if (parse.ProcessEventList[i].type == "ProcessAccess"){
+					tmp.content += " " +  parse.ProcessEventList[i].TargetImage;
+				}else if (parse.ProcessEventList[i].type == "FileCreate"){
+					tmp.content += " " +  parse.ProcessEventList[i].TargetFilename;
+				}else if (parse.ProcessEventList[i].type == "RegistryEvent_create_delete"){
+					tmp.content += "<br>" +  parse.ProcessEventList[i].EventType + " : " + parse.ProcessEventList[i].TargetObject;
+				}else if (parse.ProcessEventList[i].type == "Registry_value_set"){
+					tmp.content += "<br>" +  parse.ProcessEventList[i].TargetObject + "<br>" + parse.ProcessEventList[i].Details;
+				}else if (parse.ProcessEventList[i].type == "File_stream_create"){
+					tmp.content += " " +  parse.ProcessEventList[i].TargetFilename;
+				}else if (parse.ProcessEventList[i].type == "Pipe_Create"){
+					tmp.content += "<br>" +  parse.ProcessEventList[i].Image + " : " + parse.ProcessEventList[i].PipeName;
+				}else if (parse.ProcessEventList[i].type == "Pipe_Connect"){
+					tmp.content += "<br>" +  parse.ProcessEventList[i].Image + " : " + parse.ProcessEventList[i].PipeName;
 				}
+				
 				tmp.start = parse.ProcessEventList[i].UtcTime;
+				window["TimeLine"+e.target.className.toString()][i] = parse.ProcessEventList[i];
+				if (parse.ProcessEventList[i].RuleName !="")
+					tmp.className="red";
+								
 				d.push(tmp);
 			}
 			var items = new vis.DataSet(d)
 			var options = {verticalScroll: true, clickToUse:true,height: '500px',zoomKey: 'ctrlKey'}
 			var timeline = new vis.Timeline(container[0],items,options);
+		    timeline.on('click', function (properties) {
+		    	if (properties.item != null){
+
+			        var j=window[properties.event.currentTarget.parentElement.id.toString()][properties.item];
+			        document.querySelector("#modalData").innerHTML = ""
+			        
+			        Object.keys(j).forEach(function(k){
+			        	document.querySelector("#modalData").innerHTML += 
+			        		"<tr>" +
+							"<td>" + k + "</td>" +
+							"<td>" + j[k] + "</td>" +
+							"</tr>";
+			        });
+			        $("#myModal").modal("show");
+		    	}
+		      });
 		}, false);
 	</script>
 </body>

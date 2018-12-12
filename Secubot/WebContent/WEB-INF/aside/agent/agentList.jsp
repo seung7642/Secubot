@@ -81,21 +81,14 @@ li.nonotiActive {
 												<th>MAC</th>
 											</tr>
 										</thead>
-										<tbody>
-											<!--
-											<c:if test="${agentPage.hasNoAgentList()}">
-												<tr>
-													<td colspan="5">등록된 에이전트가 없습니다.</td>
-												</tr>
-											</c:if>
-											-->
-											<c:forEach var="agent" items="${agentPage.list}">
-												<tr>
-													<td><strong>#</strong></td>
-													<td>${agent.getName() }</td>
-													<td>${agent.getPhone()}</td>
-													<td>${agent.getIp()}</td>
-													<td>${agent.getMac()}</td>
+										<tbody id="agentList">
+											<c:forEach var="agent" items="${agentPage.list}" varStatus="idx">
+												<tr class="data">
+													<td class="${\"Agent\".concat(idx.count)}"><strong>${idx.count}</strong></td>
+													<td class="${\"Agent\".concat(idx.count)}">${agent.getName() }</td>
+													<td class="${\"Agent\".concat(idx.count)}">${agent.getPhone()}</td>
+													<td class="${\"Agent\".concat(idx.count)}">${agent.getIp()}</td>
+													<td class="${\"Agent\".concat(idx.count)}">${agent.getMac()}</td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -138,64 +131,23 @@ li.nonotiActive {
 
 	<!-- ajax -->
 	<script src="js/ajax.js?ver=2"></script>
-	<script>
-		var data = getAgentList();
-		var parse = JSON.parse(data);
-		/*
-		for (var i=0; i<parse.AgentList.length; i++) {
-			document.querySelector('table').innerHTML += '<tbody>'
-				+ '<tr>' 
-				+ "<td width='20%'></td>"
-				+ "<td width='20%'><a href='/Secubot/agentInfo.do'>" + parse.AgentList[i].UserName + "</a></td>"
-				+ "<td width='20%'>" + parse.AgentList[i].userPhone + "</td>" 
-				+ "<td width='20%'></td>" 
-				+ "<td width='20%'></td>"
-				+ '</tr>';
-				+ '</tbody>';
-		}
-		*/
-		
-		/*
-		 *	페이징 처리할 부분
-		 */
-		var size = 5; // 1페이지당 갯수
-		var arr = parse.AgentList; // 에이전트 리스트 객체들을 담을 배열
-		var arrLen = arr.length;
-		var page = parseInt(arrLen / size);
-		var arrList = new Array(page);
-		for (var i=0; i<=page; i++) {
-			arrList[i] = new Array();
-			console.log("success");
-		}
-		
-		var tmp = 0;
-		for (var i=0; i<=1; i++) {
-			for (var j=0; j<size; j++) {
-				if (arrLen != tmp) {
-					arrList[i][j] = arr[tmp++];
-				}
-			}
-		}
-		
-		/* var area = document.querySelector('#paginationArea > ul');
-		for (var i=0; i<=page; i++) {
-			area.innerHTML += '<button class="page-link btn btn-default" onclick=' + '"paginationButton(event, ' + i + ')">' + (i+1) + '</a></li>';
-		}
-		
-		for (var i=0; i<=page; i++) {
-			document.querySelector('table').innerHTML += '<tbody id=' + i + ' class="page-content">';
-			for (var j=0; j<arrList[i].length; j++) {
-				document.getElementById(i).innerHTML += '<tr>' + "<td width='10%'></td>"
-				+ "<td width='20%'><a href='/Secubot/agentInfo.do'>" + arrList[i][j].UserName + "</a></td>"
-				+ "<td width='20%'>" + arrList[i][j].userPhone + "</td>" + "<td width='30%'></td>" + "<td width='10%'></td>";
-			}
-			document.querySelector('table').innerHTML += '</tbody>';
-		} */
-		
-		/*
-		 *	버튼 클릭에 따른 패널 전환 처리 함수
-		 */
-		function paginationButton(evt, pageNumber) {
+	
+	<!-- datatable -->
+	<script src="${pageContext.request.contextPath }/assets/datatables/jquery.dataTables.min.js"></script>
+	<script src="${pageContext.request.contextPath }/assets/datatables/dataTables.bootstrap.js"></script>
+	
+	<!-- ajax -->
+	<script src="${pageContext.request.contextPath }/js/ajax.js?ver=1"></script>
+	
+	<script type="text/javascript">
+	    $(document).ready(function() {
+	        $('#datatable').dataTable();
+	    });
+	    
+	    checkMyNoti();
+	    
+	    // For go to Details
+	    function paginationButton(evt, pageNumber) {
 			var pageContent, pageLinks;
 			
 			pageContent = document.getElementsByClassName('page-content');
@@ -212,21 +164,16 @@ li.nonotiActive {
 			evt.currentTarget.className += " active";
 		}
 		
-	</script>
-	
-	<!-- datatable -->
-	<script src="${pageContext.request.contextPath }/assets/datatables/jquery.dataTables.min.js"></script>
-	<script src="${pageContext.request.contextPath }/assets/datatables/dataTables.bootstrap.js"></script>
-	
-	<!-- ajax -->
-	<script src="${pageContext.request.contextPath }/js/ajax.js?ver=1"></script>
-	
-	<script type="text/javascript">
-	    $(document).ready(function() {
-	        $('#datatable').dataTable();
-	    });
-	    
-	    checkMyNoti();
+		var forData = document.querySelector("#agentList");
+		forData.addEventListener('click', function(e) {
+			var data = e.target.parentElement.innerText.split('\t');
+			var bodyContent = $.ajax({
+				url: "http://211.193.58.162:2222/--" + md5 + "&AgentID=" +e.target.className,
+				global: false,
+				type: "GET",
+				async: false
+			}).responseText;
+		}, false);
 	</script>
 </body>
 </html>

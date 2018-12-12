@@ -145,24 +145,19 @@ li.nonotiActive {
 							<input name="dst_ip" type="text" class="form-control" id="dst_ip" placeholder="dstIP...">
 						</div>
 						<div class="form-group">
-                            <label class="control-label col-md-3">Port</label>
-                            <div class="col-md-4">
-                                <div id="spinner">
-                                    <div class="input-group input-small">
-                                        <input type="text" class="spinner-input form-control" maxlength="3" readonly>
-                                        <div class="spinner-buttons input-group-btn btn-group-vertical">
-                                            <button type="button" class="btn spinner-up btn-xs btn-default">
-                                                <i class="fa fa-angle-up"></i>
-                                            </button>
-                                            <button type="button" class="btn spinner-down btn-xs btn-default">
-                                                <i class="fa fa-angle-down"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                 <span class="help-block">
-                                 </span>
-                            </div>
+							<div id="spinner">
+								<div class="input-group input-small">
+									<input type="text" class="spinner-input form-control" maxlength="3" readonly>
+									<div class="spinner-buttons input-group-btn btn-group-vertical">
+										<button type="button" class="btn spinner-up btn-xs btn-default">
+											<i class="fa fa-angle-up"></i>
+										</button>
+										<button type="button" class="btn spinner-down btn-xs btn-default">
+											<i class="fa fa-angle-down"></i>
+										</button>
+									</div>
+								</div>
+							</div>
                         </div>
 						<div class="form-group">
 							<button class="btn btn-outline-secondary" data-dismiss="modal" aria-hidden="false">Cancle</button>
@@ -196,12 +191,15 @@ li.nonotiActive {
 	
 	<script src="assets/datatables/jquery.dataTables.min.js"></script>
 	<script src="assets/datatables/dataTables.bootstrap.js"></script>
+	<script src="assets/spinner/spinner.min.js"></script>
 
 
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#datatable').dataTable();
+            $('#spinner').spinner();
 		});
+		
 		
 		checkMyNoti();
 	</script>
