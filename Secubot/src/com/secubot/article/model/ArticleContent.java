@@ -6,9 +6,9 @@ public class ArticleContent {
 	private String content;
 	private String src_ip;
 	private String dst_ip;
-	private String dst_port;
+	private Integer dst_port;
 
-	public ArticleContent(int article_no, String content, String src_ip, String dst_ip, String dst_port) {
+	public ArticleContent(int article_no, String content, String src_ip, String dst_ip, Integer dst_port) {
 		this.article_no = article_no;
 		this.content = content;
 		this.src_ip = src_ip;
@@ -48,11 +48,11 @@ public class ArticleContent {
 		this.dst_ip = dst_ip;
 	}
 
-	public String getDst_port() {
+	public Integer getDst_port() {
 		return dst_port;
 	}
 
-	public void setDst_port(String dst_port) {
+	public void setDst_port(Integer dst_port) {
 		this.dst_port = dst_port;
 	}
 

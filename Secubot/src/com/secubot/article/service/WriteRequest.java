@@ -12,11 +12,11 @@ public class WriteRequest {
 	private int trans_type;
 	private String src_ip;
 	private String dst_ip;
-	private String dst_port;
+	private Integer dst_port;
 	private Date regDate;
 	
 	public WriteRequest(Writer writer, String title, String content, int trans_type, 
-			String src_ip, String dst_ip, String dst_port, Date date) {
+			String src_ip, String dst_ip, Integer dst_port, Date date) {
 		this.writer = writer;
 		this.title = title;
 		this.content = content;
@@ -75,11 +75,11 @@ public class WriteRequest {
 		this.src_ip = src_ip;
 	}
 
-	public String getDst_port() {
+	public Integer getDst_port() {
 		return dst_port;
 	}
 
-	public void setDst_port(String dst_port) {
+	public void setDst_port(Integer dst_port) {
 		this.dst_port = dst_port;
 	}
 

@@ -101,18 +101,19 @@ public class ArticleDao {
 		}
 	}
 
-	public Article selectById(Connection conn, int no) throws SQLException {
+	public Article selectById(Connection conn, int article_no) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
-			pstmt = conn.prepareStatement("select * from article " + "where article_no = ?");
-			pstmt.setInt(1, no);
+			pstmt = conn.prepareStatement("select * from article where article_no = ?");
+			pstmt.setInt(1, article_no);
 			rs = pstmt.executeQuery();
 
 			Article article = null;
 			if (rs.next()) {
 				article = new Article(
+						rs.getInt("article_no"),
 						new Writer(rs.getString("writer_id"), rs.getString("writer_name")),
 						rs.getString("title"),
 						new Date(rs.getTimestamp("reg_date").getTime()),

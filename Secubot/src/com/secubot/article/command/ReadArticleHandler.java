@@ -24,7 +24,7 @@ public class ReadArticleHandler implements CommandHandler {
 		
 		try {
 			ArticleData articleData = readService.getArticle(article_no);
-			//updateNotiService.update(article_no);
+//			updateNotiService.update(article_no);
 			req.setAttribute("articleData", articleData);
 			return FORM_VIEW;
 		} catch (ArticleNotFoundException | ArticleContentNotFoundException e) {

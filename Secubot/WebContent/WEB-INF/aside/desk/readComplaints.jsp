@@ -71,51 +71,56 @@ li.nonotiActive {
 						</div>
 						<div class="portlet-body">
 							<table border="1" width="100%">
-								<%-- <tr>
+								<tr>
 									<th class="text-center">번호</th>
 									<td class="text-center">${articleData.article.article_no}</td>
 								</tr>
+								
 								<tr>
 									<th class="text-center">ID</th>
-									<td class="text-center">${articleData.article.writer.id}</td>
+									<td class="text-center">${articleData.article.writer.getId()}</td>
 								</tr>
+								
 								<tr>
 									<th class="text-center">이름</th>
 									<td class="text-center">${articleData.article.writer.name}</td>
 								</tr>
+								
 								<tr>
 									<th class="text-center">날짜</th>
-									<td class="text-center"><c:out
-											value='${articleData.article.reg_date}' /></td>
+									<td class="text-center"><c:out value='${articleData.article.getReg_date()}' /></td>
 								</tr>
+								
 								<tr>
 									<th class="text-center">제목</th>
-									<td class="text-center"><c:out
-											value='${articleData.article.title}' /></td>
+									<td class="text-center"><c:out value='${articleData.article.getTitle()}' /></td>
+								</tr>
+								
 								<tr>
 									<th class="text-center">src_ip</th>
-									<td class="text-center"><c:out
-											value='${articleData.article.src_ip}' /></td>
+									<td class="text-center"><c:out value='${articleData.content.getSrc_ip()}' /></td>
 								</tr>
+								
 								<tr>
 									<th class="text-center">dst_ip</th>
-									<td class="text-center"><c:out
-											value='${articleData.article.dst_ip}' /></td>
+									<td class="text-center"><c:out value='${articleData.content.getDst_ip()}' /></td>
 								</tr>
+								
 								<tr>
 									<th class="text-center">dst_port</th>
-									<td class="text-center"><c:out
-											value='${articleData.article.dst_port}' /></td>
+									<td class="text-center"><c:out value='${articleData.content.getDst_port()}' /></td>
 								</tr>
+								
 								<tr>
 									<th class="text-center" colspan="2">내용</th>
 								</tr>
+								
 								<tr>
 									<td class="text-center" colspan="2" height=100><u:pre
-											value='${articleData.articleContent.content}' /></td>
-								</tr> --%>
+											value='${articleData.content.getContent()}' /></td>
+								</tr>
 								
-								<!-- <a class="btn btn-default pull-right" href="write.do">글 작성</a> -->
+								<a class="btn btn-default pull-right" href="write.do">글 작성</a>
 							</table>
 						</div>
 					</div>

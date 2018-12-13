@@ -22,7 +22,7 @@ public class ArticleContentDao {
 			pstmt.setString(2, content.getContent());
 			pstmt.setString(3, content.getSrc_ip());
 			pstmt.setString(4, content.getDst_ip());
-			pstmt.setString(5, content.getDst_port());
+			pstmt.setInt(5, content.getDst_port());
 			int insertedCount = pstmt.executeUpdate();
 			
 			if (insertedCount > 0) {
@@ -35,13 +35,13 @@ public class ArticleContentDao {
 		}
 	}
 	
-	public ArticleContent selectById(Connection conn, int no) throws SQLException {
+	public ArticleContent selectById(Connection conn, int article_no) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
 			pstmt = conn.prepareStatement("select * from article_content where article_no = ?");
-			pstmt.setInt(1, no);
+			pstmt.setInt(1, article_no);
 			rs = pstmt.executeQuery();
 			
 			ArticleContent content = null;
@@ -51,7 +51,7 @@ public class ArticleContentDao {
 						rs.getString("content"),
 						rs.getString("src_ip"),
 						rs.getString("dst_ip"),
-						rs.getString("dst_port"));
+						rs.getInt("dst_port"));
 			}
 			return content;
 		} finally {

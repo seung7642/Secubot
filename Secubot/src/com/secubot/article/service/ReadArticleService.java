@@ -22,6 +22,7 @@ public class ReadArticleService {
 				throw new ArticleNotFoundException();
 			}
 			
+			// TODO: ArticleContent를 못 받아옴.
 			ArticleContent content = contentDao.selectById(conn, article_no);
 			if (content == null) {
 				throw new ArticleContentNotFoundException();

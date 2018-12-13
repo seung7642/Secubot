@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.ParseConversionEvent;
 
 import com.secubot.article.model.Writer;
 import com.secubot.article.service.WriteArticleService;
@@ -63,7 +64,7 @@ public class WriteArticleHandler implements CommandHandler {
 				req.getParameter("type").equals("TCP")?0:1, // TCP=0, UDP=1
 				req.getParameter("src_ip"),
 				req.getParameter("dst_ip"),
-				req.getParameter("dst_port"),
+				Integer.parseInt(req.getParameter("dst_port")),
 				new Date());
 	}
 }
