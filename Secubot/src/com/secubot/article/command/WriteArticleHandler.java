@@ -2,6 +2,7 @@ package com.secubot.article.command;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,7 +49,7 @@ public class WriteArticleHandler implements CommandHandler {
 		}
 		
 		int newArticleNo = writeService.write(writeReq);
-		notiService.insert(newArticleNo, writeReq); // 글 작성함과 동시에 mynoti 테이블에 레코드를 추가한다.
+		//notiService.insert(newArticleNo, writeReq); 
 		req.setAttribute("newArticleNo", newArticleNo);
 		
 		return "/WEB-INF/aside/desk/writeSuccess.jsp";
@@ -58,6 +59,11 @@ public class WriteArticleHandler implements CommandHandler {
 		return new WriteRequest(
 				new Writer(user.getId(), user.getName()),
 				req.getParameter("title"),
-				req.getParameter("content"));
+				req.getParameter("content"),
+				req.getParameter("type").equals("TCP")?0:1, // TCP=0, UDP=1
+				req.getParameter("src_ip"),
+				req.getParameter("dst_ip"),
+				req.getParameter("dst_port"),
+				new Date());
 	}
 }

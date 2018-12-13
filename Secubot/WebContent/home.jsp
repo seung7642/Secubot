@@ -5,26 +5,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Secubot</title>
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet"> 
-    <link href="css/home/lightbox.css" rel="stylesheet"> 
-	<link href="css/home/home_main.css" rel="stylesheet">
-	<link href="css/home/responsive.css" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SECUBOT - Adaptive SIEM & Security Configuration
+		Management</title>
+		
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<link href="css/animate.css" rel="stylesheet"> 
+<link href="css/home/lightbox.css" rel="stylesheet"> 
+<link href="css/home_main.css?ver=2" rel="stylesheet">
+<link href="css/home/responsive.css" rel="stylesheet">
 
-    <link rel="shortcut icon" href="img/SecuBot_logo.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="img/ico/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="img/SecuBot_logo.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/ico/apple-touch-icon-144-precomposed.png?ver=1">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/ico/apple-touch-icon-114-precomposed.png?ver=1">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/ico/apple-touch-icon-72-precomposed.png?ver=1">
+<link rel="apple-touch-icon-precomposed" href="img/ico/apple-touch-icon-57-precomposed.png?ver=1">
 </head>
 
 <body>
+
+	<%
+		HttpSession httpSession = request.getSession(false);
+		if (httpSession == null || httpSession.getAttribute("authUser") == null) {
+			response.sendRedirect("/Secubot/login.do");
+		}
+	%>
+	
 	<header id="header">      
         <div class="navbar navbar-inverse" role="banner">
             <div class="container">
@@ -47,7 +55,7 @@
                                    
                         <li class="dropdown"><a href="#"> 신청 서비스  <i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
-                                <li><a href="#">방화벽 신청</a></li>
+                                <li><a href="firewall_apply_board.jsp">방화벽 신청</a></li>
                                 <li><a href="#">방화벽 취소</a></li>
                             </ul>
                         </li>                             
@@ -87,8 +95,8 @@
             <div class="row">
                 <div class="main-slider">
                     <div class="slide-text">
-                        <h1>언제나 당신의 보안을 위해</h1>
-                        <p>시큐봇은 당신의 보안을 위해 일하고, 적응해가고 있습니다.</p>
+                        <h1>We are The SECUBOT</h1>
+                        <p>Adaptive SIEM & Security Configuration Management</p>
                     </div>
                     <img src="img/home/SecuBot.png" class="slider-hill" alt="slider image">
                 </div>

@@ -14,7 +14,7 @@ function getProcessList() {
 			console.log("success");
 		}
 	}).responseText;
-	setTimeout("getProcessList()", 20000);
+	//setTimeout("getProcessList()", 20000);
 	return data;
 }
 
@@ -53,7 +53,7 @@ function checkMyNoti() {
 			}
 		}
 	}).responseText;
-	setTimeout("checkMyNoti()", 5000);
+	//setTimeout("checkMyNoti()", 5000);
 	return data;
 }
 

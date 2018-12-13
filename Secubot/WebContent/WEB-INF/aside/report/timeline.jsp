@@ -119,7 +119,7 @@ li.nonotiActive {
 			$('#datatable').dataTable();
 		});
 		
-		checkMyNoti();
+		//checkMyNoti();
 		
 		var config = {
 				type: 'line',

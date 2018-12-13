@@ -67,7 +67,7 @@ li.nonotiActive {
 												<th>#</th>
 												<th>제목</th>
 												<th>작성자</th>
-												<th>조회수</th>
+												<th>날짜</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -78,14 +78,14 @@ li.nonotiActive {
 									</c:if>
 									<c:forEach var="article" items="${articlePage.content}">
 										<tr>
-											<td><strong>${article.number}</strong></td>
+											<td><strong>${article.article_no }</strong></td>
 											<td>
-											<a href="read.do?no=${article.number}&pageNo=${articlePage.currentPage}">
+											<a href="read.do?no=${article.article_no}&pageNo=${articlePage.currentPage}">
 											<c:out value="${article.title}"/>
 											</a>
 											</td>
 											<td>${article.writer.name}</td>
-											<td>${article.readCount}</td>
+											<td>${article.reg_date}</td>
 										</tr>
 									</c:forEach>
 										</tbody>

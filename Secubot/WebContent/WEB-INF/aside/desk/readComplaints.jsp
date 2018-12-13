@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="u" tagdir="/WEB-INF/tags" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -8,35 +9,48 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="shortcut icon" href="${pageContext.request.contextPath }/img/SecuBot_logo.png">
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath }/img/SecuBot_logo.png">
 <title>SECUBOT - 글 내용</title>
 
 <!-- Bootstrap core CSS -->
-<link href="${pageContext.request.contextPath }/css/bootstrap.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath }/css/bootstrap-reset.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/bootstrap.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/bootstrap-reset.css"
+	rel="stylesheet">
 
 <!--Animation css-->
-<link href="${pageContext.request.contextPath }/css/animate.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/animate.css"
+	rel="stylesheet">
 
 <!--Icon-fonts css-->
-<link href="${pageContext.request.contextPath }/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-<link href="${pageContext.request.contextPath }/assets/ionicon/css/ionicons.min.css" rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath }/assets/font-awesome/css/font-awesome.css"
+	rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath }/assets/ionicon/css/ionicons.min.css"
+	rel="stylesheet" />
 
 <!-- Custom styles for this template -->
-<link href="${pageContext.request.contextPath }/css/style.css?ver=2" rel="stylesheet">
-<link href="${pageContext.request.contextPath }/css/helper.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/style.css?ver=2"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/helper.css"
+	rel="stylesheet">
 
 <!-- Summernote -->
-<link href="${pageContext.request.contextPath }/css/summernote.css" res="stylesheet">
+<link href="${pageContext.request.contextPath }/css/summernote.css"
+	res="stylesheet">
 
 <style>
 textarea {
 	width: 100%;
 	height: 600px;
 }
+
 li.notiActive {
 	display: inline-block;
 }
+
 li.nonotiActive {
 	display: none;
 }
@@ -46,11 +60,11 @@ li.nonotiActive {
 <body>
 
 	<%@ include file="/WEB-INF/view/aside.jsp"%>
-	
+
 	<!-- Main Content Start -->
 	<section class="content">
 		<%@ include file="/WEB-INF/view/header.jsp"%>
-	
+
 		<!-- Page Content Start -->
 		<!-- ================== -->
 		<div class="wraper container-fluid">
@@ -73,18 +87,60 @@ li.nonotiActive {
 								</tr>
 								<tr>
 									<th class="text-center">작성자</th>
-									<td class="text-center">${articleData.article.writer.name}</td>
+									<td class="text-center">${articleData.article.writer}</td>
+								</tr>
+								<tr>
+									<th class="text-center">Email</th>
+									<td class="text-center">${articleData.article.email}</td>
+								</tr>
+								<tr>
+									<th class="text-center">전화 번호</th>
+									<td class="text-center">${articleData.article.phone}</td>
+								</tr>
+								<tr>
+									<th class="text-center">날짜</th>
+									<td class="text-center"><c:out
+											value='${articleData.article.regDate}' /></td>
 								</tr>
 								<tr>
 									<th class="text-center">제목</th>
-									<td class="text-center"><c:out value='${articleData.article.title}' /></td>
+									<td class="text-center"><c:out
+											value='${articleData.article.title}' /></td>
+								<tr>
+									<th class="text-center">출발지 PORT</th>
+									<td class="text-center"><c:out
+											value='${articleData.article.src_port}' /></td>
+								</tr>
+								<tr>
+									<th class="text-center">출발지 IP</th>
+									<td class="text-center"><c:out
+											value='${articleData.article.src_ip}' /></td>
+								</tr>
+								<tr>
+									<th class="text-center">도착지 PORT</th>
+									<td class="text-center"><c:out
+											value='${articleData.article.des_port}' /></td>
+								</tr>
+								<tr>
+									<th class="text-center">도착지 IP</th>
+									<td class="text-center"><c:out
+											value='${articleData.article.des_ip}' /></td>
+								</tr>
+								<tr>
+									<th class="text-center">진행 현황</th>
+									<td class="text-center"><c:out
+											value='${articleData.article.flag}' /></td>
+								</tr>
 								</tr>
 								<tr>
 									<th class="text-center" colspan="2">내용</th>
 								</tr>
 								<tr>
-									<td class="text-center" colspan="2" height=100><u:pre value='${articleData.content}'/></td>
+									<td class="text-center" colspan="2" height=100><u:pre
+											value='${articleData.article.message}' /></td>
 								</tr>
+								
+								<a class="btn btn-default pull-right" href="write.do">글 작성</a>
 							</table>
 						</div>
 					</div>
@@ -96,7 +152,7 @@ li.nonotiActive {
 		</div>
 		<!-- Page Content Ends -->
 		<!-- ================== -->
-	
+
 		<!-- Footer Start -->
 		<footer class="footer"> 2018 © SECUBOT - Adaptive SIEM &
 			Security Configuration Management. </footer>
@@ -112,17 +168,21 @@ li.nonotiActive {
 	<script src="${pageContext.request.contextPath }/js/modernizr.min.js"></script>
 	<script src="${pageContext.request.contextPath }/js/pace.min.js"></script>
 	<script src="${pageContext.request.contextPath }/js/wow.min.js"></script>
-	<script src="${pageContext.request.contextPath }/js/jquery.scrollTo.min.js"></script>
-	<script src="${pageContext.request.contextPath }/js/jquery.nicescroll.js" type="text/javascript"></script>
+	<script
+		src="${pageContext.request.contextPath }/js/jquery.scrollTo.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/js/jquery.nicescroll.js"
+		type="text/javascript"></script>
 
 	<script src="${pageContext.request.contextPath }/js/jquery.app.js"></script>
 
 	<!-- Dashboard -->
-	<script src="${pageContext.request.contextPath }/js/jquery.dashboard.js"></script>
-	
+	<script
+		src="${pageContext.request.contextPath }/js/jquery.dashboard.js"></script>
+
 	<!-- ajax -->
 	<script src="${pageContext.request.contextPath }/js/ajax.js?ver=2"></script>
-	
+
 	<script>
 		checkMyNoti();
 	</script>

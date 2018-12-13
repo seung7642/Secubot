@@ -2,21 +2,19 @@ package com.secubot.noti.model;
 
 import java.util.Date;
 
+import com.secubot.article.model.Writer;
 import com.secubot.util.TransferDate;
 
 public class MyNotification {
 	private Integer notiNo;
 	private Integer articleNo;
-	private String writer_id;
-	private String writer_name;
+	private Writer writer;
 	private boolean readCheck;
 	private Date regdate;
 
-	public MyNotification(Integer articleNo, String writer_id, 
-			String writer_name, boolean readCheck, Date regdate) {
+	public MyNotification(Integer articleNo, Writer writer, boolean readCheck, Date regdate) {
 		this.articleNo = articleNo;
-		this.writer_id = writer_id;
-		this.writer_name = writer_name;
+		this.writer = writer;
 		this.readCheck = readCheck;
 		this.regdate = regdate;
 	}
@@ -37,21 +35,14 @@ public class MyNotification {
 		this.articleNo = articleNo;
 	}
 	
-	public String getId() {
-		return writer_id;
+	public Writer getWriter() {
+		return writer;
 	}
 	
-	public void setId(String writer_id) {
-		this.writer_id = writer_id;
+	public void setWriter(Writer writer) {
+		this.writer = writer;
 	}
 	
-	public String getName() {
-		return writer_name;
-	}
-	
-	public void setName(String writer_name) {
-		this.writer_name = writer_name;
-	}
 
 	public boolean isReadCheck() {
 		return readCheck;

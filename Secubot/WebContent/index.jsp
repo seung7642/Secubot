@@ -200,7 +200,7 @@ canvas {
 		}
 		
 		/* Notification */
-		checkMyNoti();
+		//checkMyNoti();
 		
 		/* Chart.js */
 		function addData(chart, label, data) {
@@ -285,6 +285,14 @@ canvas {
 						window.open(popUrl, popOption);
 					},
 					tooltips: {
+						yPadding: 10,
+						xPadding: 10,
+						caretSize: 8,
+						backgroundColor: 'rgba(72, 241, 12, 1)',
+						titleFontColor: window.chartColors.black,
+						bodyFontColor: window.chartColors.black,
+						borderColor: 'rgba(0,0,0,1)',
+						borderWidth: 4,
 						callbacks: {
 							label: function(tooltipItem, data) {
 								var xLabel = data.datasets[0].data[tooltipItem.index].ImageName;

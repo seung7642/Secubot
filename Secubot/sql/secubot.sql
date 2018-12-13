@@ -24,14 +24,17 @@ create table secubot.article (
 	writer_name varchar(15) not null,
 	title varchar(255) not null,
 	regdate datetime not null,
-	moddate datetime not null,
-	read_cnt int
+	process_check int not null default=0,
+	trans_type int not null
 ) engine=InnoDB default character set=utf8;
 
 create table secubot.article_content (
 	noti_no int auto_increment primary key,
 	article_no int,
 	content text,
+	src_ip char(16) not null,
+	dst_ip char(16) not null,
+	dst_port int not null,
 	foreign key(article_no)
 	references article(article_no) on update cascade
 ) engine=InnoDB default character set=utf8;

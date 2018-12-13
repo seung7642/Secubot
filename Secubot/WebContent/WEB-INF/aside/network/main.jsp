@@ -172,7 +172,7 @@ li.nonotiActive {
 	        $('#datatable').dataTable();
 	    });
 		
-		checkMyNoti();
+		//checkMyNoti();
 		
 		var bodyContent = $.ajax({
 			url: "http://211.193.58.162:2222/NetworkTopology",

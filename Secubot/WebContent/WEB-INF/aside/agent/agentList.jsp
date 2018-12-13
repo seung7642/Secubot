@@ -84,11 +84,11 @@ li.nonotiActive {
 										<tbody id="agentList">
 											<c:forEach var="agent" items="${agentPage.list}" varStatus="idx">
 												<tr class="data">
-													<td class="${\"Agent\".concat(idx.count)}"><strong>${idx.count}</strong></td>
-													<td class="${\"Agent\".concat(idx.count)}">${agent.getName() }</td>
-													<td class="${\"Agent\".concat(idx.count)}">${agent.getPhone()}</td>
-													<td class="${\"Agent\".concat(idx.count)}">${agent.getIp()}</td>
-													<td class="${\"Agent\".concat(idx.count)}">${agent.getMac()}</td>
+													<td class="${"Agent".concat(idx.count)}"><strong>${idx.count}</strong></td>
+													<td class="${"Agent".concat(idx.count)}">${agent.getName() }</td>
+													<td class="${"Agent".concat(idx.count)}">${agent.getPhone()}</td>
+													<td class="${"Agent".concat(idx.count)}">${agent.getIp()}</td>
+													<td class="${"Agent".concat(idx.count)}">${agent.getMac()}</td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -144,7 +144,7 @@ li.nonotiActive {
 	        $('#datatable').dataTable();
 	    });
 	    
-	    checkMyNoti();
+	    //checkMyNoti();
 	    
 	    // For go to Details
 	    function paginationButton(evt, pageNumber) {

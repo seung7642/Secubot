@@ -201,7 +201,7 @@ li.nonotiActive {
 		});
 		
 		
-		checkMyNoti();
+		//checkMyNoti();
 	</script>
 
 </body>

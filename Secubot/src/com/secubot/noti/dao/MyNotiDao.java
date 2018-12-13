@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 
+import com.secubot.article.model.Writer;
 import com.secubot.jdbc.JdbcUtil;
 import com.secubot.noti.model.MyNotification;
 
@@ -19,8 +20,8 @@ public class MyNotiDao {
 				+ "(article_no, writer_id, writer_name, read_check, regdate)"
 				+ "values(?, ?, ?, ?, ?)")) {
 			pstmt.setInt(1, myNoti.getArticleNo());
-			pstmt.setString(2, myNoti.getId());
-			pstmt.setString(3, myNoti.getName());
+			pstmt.setString(2, myNoti.getWriter().getId());
+			pstmt.setString(3, myNoti.getWriter().getName());
 			pstmt.setBoolean(4, myNoti.isReadCheck());
 			pstmt.setTimestamp(5, new Timestamp(myNoti.getRegdate().getTime()));
 			pstmt.executeUpdate();
@@ -55,8 +56,7 @@ public class MyNotiDao {
 	private MyNotification convertNoti(ResultSet rs) throws SQLException {
 		return new MyNotification(
 				rs.getInt("article_no"),
-				rs.getString("writer_id"),
-				rs.getString("writer_name"),
+				new Writer(rs.getString("writer_id"), rs.getString("writer_name")),
 				rs.getBoolean("read_check"), 
 				toDate(rs.getTimestamp("regdate")));
 	}

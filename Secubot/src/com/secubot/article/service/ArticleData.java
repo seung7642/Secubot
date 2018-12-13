@@ -6,19 +6,19 @@ import com.secubot.article.model.ArticleContent;
 public class ArticleData {
 
 	private Article article;
-	private ArticleContent content;
+	//private ArticleContent content;
 
-	public ArticleData(Article article, ArticleContent content) {
+	public ArticleData(Article article) {
 		this.article = article;
-		this.content = content;
+		//this.content = content;
 	}
 
 	public Article getArticle() {
 		return article;
 	}
 
-	public String getContent() {
-		return content.getContent();
-	}
+	//public String getContent() {
+	//	return content.getContent();
+	//}
 
 }

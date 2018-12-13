@@ -16,9 +16,13 @@ public class ArticleContentDao {
 		
 		try {
 			pstmt = conn.prepareStatement("insert into article_content "
-					+ "(article_no, content) values(?, ?)");
-			pstmt.setLong(1, content.getNumber());
+					+ "(article_no, content, src_ip, dst_ip, dst_port) "
+					+ "values(?, ?, ?, ?, ?)");
+			pstmt.setLong(1, content.getArticle_no());
 			pstmt.setString(2, content.getContent());
+			pstmt.setString(3, content.getSrc_ip());
+			pstmt.setString(4, content.getDst_ip());
+			pstmt.setString(5, content.getDst_port());
 			int insertedCount = pstmt.executeUpdate();
 			
 			if (insertedCount > 0) {
@@ -42,7 +46,12 @@ public class ArticleContentDao {
 			
 			ArticleContent content = null;
 			if (rs.next()) {
-				content = new ArticleContent(rs.getInt("article_no"), rs.getString("content"));
+				content = new ArticleContent(
+						rs.getInt("article_no"), 
+						rs.getString("content"),
+						rs.getString("src_ip"),
+						rs.getString("dst_ip"),
+						rs.getString("dst_port"));
 			}
 			return content;
 		} finally {

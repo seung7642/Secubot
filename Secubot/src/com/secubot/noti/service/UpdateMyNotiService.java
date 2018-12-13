@@ -34,10 +34,15 @@ public class UpdateMyNotiService {
 	}
 	
 	public MyNotification convert(int articleNo, WriteRequest writeReq) {
-		return new MyNotification(
+		/*return new MyNotification(
 				articleNo, 
 				writeReq.getWriter().getId(),
 				writeReq.getWriter().getName(),
+				false,
+				new Date());*/
+		return new MyNotification(
+				articleNo,
+				writeReq.getWriter(),
 				false,
 				new Date());
 	}
