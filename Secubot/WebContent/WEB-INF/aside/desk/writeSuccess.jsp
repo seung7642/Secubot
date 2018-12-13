@@ -6,18 +6,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>방화벽 신청 서비스 | Secubot</title>
-<link href="css/bootstrap.css" rel="stylesheet">
-<link href="css/font-awesome.min.css" rel="stylesheet">
-<link href="css/home/lightbox.css" rel="stylesheet">
-<link href="css/animate.min.css" rel="stylesheet">
-<link href="css/home_main.css" rel="stylesheet">
-<link href="css/home/responsive.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/bootstrap.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/font-awesome.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/home/lightbox.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/animate.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/home_main.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/home/responsive.css" rel="stylesheet">
 
 <link rel="shortcut icon" href="img/SecuBot_logo.png">
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed" href="img/ico/apple-touch-icon-57-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="${pageContext.request.contextPath }/img/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="${pageContext.request.contextPath }/img/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="i${pageContext.request.contextPath }/mg/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath }/img/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
 <body>
@@ -110,12 +110,12 @@
 		</div>
 	</div>
 
-	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/lightbox.min.js"></script>
-	<script type="text/javascript" src="js/wow.min.js"></script>
-	<script type="text/javascript" src="js/jquery.countTo.js"></script>
-	<script type="text/javascript" src="js/home-main.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/lightbox.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/wow.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.countTo.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/home-main.js"></script>
 
 </body>
 </html>

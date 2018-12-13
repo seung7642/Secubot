@@ -23,8 +23,8 @@ create table secubot.article (
 	writer_id varchar(15) not null,
 	writer_name varchar(15) not null,
 	title varchar(255) not null,
-	regdate datetime not null,
-	process_check int not null default=0,
+	reg_date datetime not null,
+	process_check int not null,
 	trans_type int not null
 ) engine=InnoDB default character set=utf8;
 

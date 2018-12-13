@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
 <%@ page import="java.net.URLEncoder"%>
@@ -48,12 +49,19 @@ div.tab-pane div.panel.panel-default {
 .panel-clear {
 	clear: both;
 }
+textarea{ 
+  color: black;
+  min-width:100%; 
+  max-width:100%;
+  min-height:100%;
+}
 </style>
+<style type="text/css" media="screen">
 
+</style>
 </head>
 
 <body>
-
 	<%@ include file="/WEB-INF/view/aside.jsp"%>
 
 	<!--Main Content Start -->
@@ -74,22 +82,9 @@ div.tab-pane div.panel.panel-default {
 							aria-expanded="true"> <span class="visible-xs"><i
 									class="fa fa-home"></i></span> <span class="hidden-xs">기본정보</span>
 						</a></li>
-						<li class=""><a href="#system" data-toggle="tab"
+						<li class=""><a href="#sysmonxml" data-toggle="tab"
 							aria-expanded="false"> <span class="visible-xs"><i
-									class="fa fa-user"></i></span> <span class="hidden-xs">시스템정보</span>
-						</a></li>
-						<li class=""><a href="#software" data-toggle="tab"
-							aria-expanded="false"> <span class="visible-xs"><i
-									class="fa fa-envelope-o"></i></span> <span class="hidden-xs">소프트웨어
-									정보</span>
-						</a></li>
-						<li class=""><a href="#policy" data-toggle="tab"
-							aria-expanded="false"> <span class="visible-xs"><i
-									class="fa fa-cog"></i></span> <span class="hidden-xs">정책관리</span>
-						</a></li>
-						<li class=""><a href="#records" data-toggle="tab"
-							aria-expanded="false"> <span class="visible-xs"><i
-									class="fa fa-cog"></i></span> <span class="hidden-xs">이력관리</span>
+									class="fa fa-user"></i></span> <span class="hidden-xs">XML 제어</span>
 						</a></li>
 					</ul>
 					<div class="tab-content">
@@ -103,210 +98,58 @@ div.tab-pane div.panel.panel-default {
 											<th data-priority="3" width="10%">MAC Address</th>
 											<th data-priority="1" width="7.5%">Host</th>
 											<th data-priority="3" width="5%">Group</th>
-											<th data-priority="3" width="7.5%">Policy</th>
-											<th data-priority="6" width="15%">최초등록시간</th>
 											<th data-priority="6" width="15%">최근 접속시간</th>
-											<th data-priority="6" width="30%">설명</th>
+											<th data-priority="6" width="15%">CPU</th>
+											<th data-priority="6" width="30%">OS</th>
+											<th data-priority="6" width="30%">RAM</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td>192.168.10.20</td>
-											<td>00:00:00:00:00:00</td>
-											<td>TEST-PC</td>
-											<td>직원</td>
-											<td>직원정책</td>
-											<td>2018-10-30 00:00:00</td>
-											<td>2018-10-30 00:00:00</td>
-											<td></td>
+											<td>${agentInfo.getAgent_ip()}</td>
+											<td>${agentInfo.getAgent_mac()}</td>
+											<td>${agentInfo.agent_hostname}</td>
+											<td>일반그룹</td>
+											<td>${agentInfo.agent_recent_login}</td>
+											<td>${agentInfo.agent_cpu}</td>
+											<td>${agentInfo.agent_os}</td>
+											<td>${agentInfo.agent_ram}</td>
 										</tr>
 									</tbody>
 								</table>
-							</div>
-						</div>
-						<div class="tab-pane" id="system">
-							<div class="table-responsive" data-pattern="priority-columns">
+								<br>
 								<table id="tech-companies-1"
-									class="table table-small-font table-bordered table-striped">
+									class="table table-small-font table-bordered table-striped" style="table-layout:fixed;word-break:break-all; ">
 									<thead>
 										<tr>
-											<th data-priority="1" width="10%">CPU</th>
-											<th data-priority="3" width="5%">Memory</th>
-											<th data-priority="1" width="20%">OS</th>
-											<th data-priority="3" width="10%">저장장치</th>
-											<th data-priority="3" width="15%">Network INC</th>
-											<th data-priority="6" width="15%">프린터 정보</th>
-											<th data-priority="6" width="15%">보안 정책준수</th>
-											<th data-priority="6" width="10%">기타</th>
+											<th data-priority="1" width="10%">소프트웨어 이름</th>
+											<th data-priority="3" width="30%">설치 경로</th>
+											<th data-priority="1" width="10%">설치 날짜</th>
+											<th data-priority="3" width="5%">버전</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>Intel i5-4860</td>
-											<td>8GB</td>
-											<td>Microsoft-Windows 10</td>
-											<td>SSD256</td>
-											<td>Network Card</td>
-											<td>Samsung-Printer100</td>
-											<td>보안 정책</td>
-											<td></td>
-										</tr>
+											<c:forEach var="item" items="${agentInfo.getSwList()}">
+												<tr class="data">
+													<td>${item.getName()}</td>
+													<td>${item.getPath()}</td>
+													<td>${item.getDate()}</td>
+													<td>${item.getVersion()}</td>
+												</tr>
+											</c:forEach>
 									</tbody>
 								</table>
 							</div>
 						</div>
-						<div class="tab-pane" id="software">
+						<div class="tab-pane" id="sysmonxml">
+							<button type="button" id="commit" class="btn btn-success">저장</button>
+							<br>
 							<div class="table-responsive" data-pattern="priority-columns">
-								<table id="tech-companies-1"
-									class="table table-small-font table-bordered table-striped">
-									<thead>
-										<tr>
-											<th data-priority="1" width="20%">소프트웨어명</th>
-											<th data-priority="3" width="20%">버전</th>
-											<th data-priority="1" width="20%">경로</th>
-											<th data-priority="3" width="20%">설치일자</th>
-											<th data-priority="3" width="20%">갱신 시각</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Chrome</td>
-											<td>69.0.34</td>
-											<td>C:\Programfiles\...</td>
-											<td>2016-10-30</td>
-											<td>2018-09-30</td>
-										</tr>
-									</tbody>
-								</table>
+								<textarea class="form-control" rows="5" id="xmlEditor">${agentInfo.agent_xml}</textarea>
+								
 							</div>
 						</div>
-						<div class="tab-pane" id="policy">
-							<div class="panel panel-default">
-								<div class="panel-heading text-center">
-									<h4 class="panel-title">Group</h4>
-								</div>
-								<div class="panel-body">
-									<ul class="list-group list-group-lg">
-										<li class="list-group-item b-0"><a href=""
-											class=" m-r-10"> </a> <span
-											class="pull-right label bg-primary inline m-t-10">기본</span> <a
-											href="">SecuBot</a></li>
-										<li class="list-group-item b-0"><a href=""
-											class=" m-r-10"> </a> <span
-											class="pull-right label bg-info inline m-t-10">직원</span> <a
-											href="">Team</a></li>
-										<li class="list-group-item b-0"><a href=""
-											class=" m-r-10"> </a> <span
-											class="pull-right label bg-warning inline m-t-10">관리자</span>
-											<a href="">Administrator</a></li>
-									</ul>
-								</div>
-								<!--Panel-body -->
 
-
-								<div class="panel-footer white-bg text-center">
-									<hr class="m-b-10" />
-									<button class="btn btn-primary btn-addon btn-sm">
-										<i class="fa fa-plus m-r-5"></i>Add Group
-									</button>
-								</div>
-								<!-- panel-footer-->
-							</div>
-							<!-- Panel-->
-
-							<div class="panel panel-default">
-								<div class="panel-heading text-center">
-									<h4 class="panel-title">Node Policy</h4>
-								</div>
-								<div class="panel-body">
-									<ul class="list-group list-group-lg">
-										<li class="list-group-item b-0"><a href=""
-											class=" m-r-10"> </a> <span
-											class="pull-right label bg-primary inline m-t-10">기본</span> <a
-											href="">SecuBot</a></li>
-										<li class="list-group-item b-0"><a href=""
-											class=" m-r-10"> </a> <span
-											class="pull-right label bg-info inline m-t-10">직원</span> <a
-											href="">Team</a></li>
-										<li class="list-group-item b-0"><a href=""
-											class=" m-r-10"> </a> <span
-											class="pull-right label bg-warning inline m-t-10">관리자</span>
-											<a href="">Administrator</a></li>
-									</ul>
-								</div>
-								<!--Panel-body -->
-
-
-								<div class="panel-footer white-bg text-center">
-									<hr class="m-b-10" />
-									<button class="btn btn-primary btn-addon btn-sm">
-										<i class="fa fa-plus m-r-5"></i>Add Policy
-									</button>
-								</div>
-								<!-- panel-footer-->
-							</div>
-							<!-- Panel-->
-
-							<div class="panel panel-default" style="width: 25%;">
-								<div class="panel-heading text-center">
-									<h4 class="panel-title">Agent Policy</h4>
-								</div>
-								<div class="panel-body">
-									<ul class="list-group list-group-lg">
-										<li class="list-group-item b-0"><a href=""
-											class=" m-r-10"> </a> <span
-											class="pull-right label bg-primary inline m-t-10">기본</span> <a
-											href="">SecuBot</a></li>
-										<li class="list-group-item b-0"><a href=""
-											class=" m-r-10"> </a> <span
-											class="pull-right label bg-info inline m-t-10">직원</span> <a
-											href="">Team</a></li>
-										<li class="list-group-item b-0"><a href=""
-											class=" m-r-10"> </a> <span
-											class="pull-right label bg-warning inline m-t-10">관리자</span>
-											<a href="">Administrator</a></li>
-									</ul>
-								</div>
-								<!--Panel-body -->
-
-
-								<div class="panel-footer white-bg text-center">
-									<hr class="m-b-10" />
-									<button class="btn btn-primary btn-addon btn-sm">
-										<i class="fa fa-plus m-r-5"></i>Add Policy
-									</button>
-								</div>
-								<!-- panel-footer-->
-							</div>
-							<!-- Panel-->
-							
-							<div class="panel-clear"></div>
-						</div>
-						<div class="tab-pane" id="records">
-							<div class="table-responsive" data-pattern="priority-columns">
-								<table id="tech-companies-1"
-									class="table table-small-font table-bordered table-striped">
-									<thead>
-										<tr>
-											<th data-priority="1" width="15%">시간</th>
-											<th data-priority="3" width="10%">로그종류</th>
-											<th data-priority="1" width="10%">IP</th>
-											<th data-priority="3" width="10%">MAC</th>
-											<th data-priority="3" width="55%">설명</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>2018-10-10 00:00:00</td>
-											<td>일반</td>
-											<td>192.168.10.20</td>
-											<td>00:00:00:00:00:00</td>
-											<td></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -338,6 +181,27 @@ div.tab-pane div.panel.panel-default {
 
 	<!-- Dashboard -->
 	<script src="js/jquery.dashboard.js"></script>
-
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.2/ace.js"></script>
+<script>
+		var forData = document.querySelector("#commit");
+		console.log(forData);
+		forData.addEventListener('click', function(e) {
+			var editor = document.querySelector("#xmlEditor");
+			var bodyContent = $.ajax({
+				url: "http://211.193.58.162:2222/UpdateXML",
+				global: false,
+				type: "POST",
+				async: false,
+				data:{
+					agent_hash:'${agentInfo.agent_hash}',
+					xml_data: editor.value
+				}
+			}).responseText;
+			parse = JSON.parse(bodyContent);
+			if(parse.success==true)
+				alert('적용 완료');
+		}, false);
+</script>
 </body>
 </html>

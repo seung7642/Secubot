@@ -81,30 +81,30 @@ canvas {
 			<div class="row">
 				<div class="col-lg-3 col-sm-6">
 					<div class="widget-panel widget-style-2 white-bg">
-						<i class="fa fa-shield text-pink"></i> 
-						<h2 class="today-process-count m-0 counter" style="cursor:pointer;"></h2>
-						<div>Today's Process</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="widget-panel widget-style-2 white-bg">
-						<i class="ion-social-freebsd-devil text-purple"></i> 
-						<h2 class="today-network-count m-0 counter" style="cursor:pointer;"></h2>
-						<div>Today's Network</div>
+						<i class="ion-ios7-compose text-success"></i> 
+						<h2 class="today-event-count m-0 counter" style="cursor:pointer;"></h2>
+						<span>Today's Events<br><br></span>
 					</div>
 				</div>
 				<div class="col-lg-3 col-sm-6">
 					<div class="widget-panel widget-style-2 white-bg">
 						<i class="ion-android-search text-info"></i> 
 						<h2 class="today-rule-count m-0 counter" style="cursor:pointer;"></h2>
-						<div>Today's Rule</div>
+						<div>Today's ATT&CK Rule Matches</div>
 					</div>
 				</div>
 				<div class="col-lg-3 col-sm-6">
 					<div class="widget-panel widget-style-2 white-bg">
-						<i class="ion-ios7-compose text-success"></i> 
-						<h2 class="today-event-count m-0 counter" style="cursor:pointer;"></h2>
-						<div>Today's Event</div>
+						<i class="fa fa-shield text-pink"></i> 
+						<h2 class="today-process-count m-0 counter" style="cursor:pointer;"></h2>
+						<div>Today's Process Executes</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="widget-panel widget-style-2 white-bg">
+						<i class="ion-social-freebsd-devil text-purple"></i> 
+						<h2 class="today-network-count m-0 counter" style="cursor:pointer;"></h2>
+						<div>Today's Network Connections</div>
 					</div>
 				</div>
 			</div> <!-- end row -->
