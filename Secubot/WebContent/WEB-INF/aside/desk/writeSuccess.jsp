@@ -1,115 +1,121 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>방화벽 신청 서비스 | Secubot</title>
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<link href="css/home/lightbox.css" rel="stylesheet">
+<link href="css/animate.min.css" rel="stylesheet">
+<link href="css/home_main.css" rel="stylesheet">
+<link href="css/home/responsive.css" rel="stylesheet">
 
-<link rel="shortcut icon" href="${pageContext.request.contextPath }/img/SecuBot_logo.png">
-<title>SECUBOT - 글 쓰기</title>
-
-<!-- Bootstrap core CSS -->
-<link href="${pageContext.request.contextPath }/css/bootstrap.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath }/css/bootstrap-reset.css" rel="stylesheet">
-
-<!--Animation css-->
-<link href="${pageContext.request.contextPath }/css/animate.css" rel="stylesheet">
-
-<!--Icon-fonts css-->
-<link href="${pageContext.request.contextPath }/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-<link href="${pageContext.request.contextPath }/assets/ionicon/css/ionicons.min.css" rel="stylesheet" />
-
-<!-- Custom styles for this template -->
-<link href="${pageContext.request.contextPath }/css/style.css?ver=2" rel="stylesheet">
-<link href="${pageContext.request.contextPath }/css/helper.css" rel="stylesheet">
-
-<!-- Summernote -->
-<link href="${pageContext.request.contextPath }/css/summernote.css" res="stylesheet">
-
-<style>
-textarea {
-	width: 100%;
-	height: 600px;
-}
-li.notiActive {
-	display: inline-block;
-}
-li.nonotiActive {
-	display: none;
-}
-</style>
-
+<link rel="shortcut icon" href="img/SecuBot_logo.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="img/ico/apple-touch-icon-57-precomposed.png">
 </head>
+
 <body>
 
-	<%@ include file="/WEB-INF/view/aside.jsp"%>
+	<%
+		HttpSession httpSession = request.getSession(false);
+		if (httpSession == null || httpSession.getAttribute("authUser") == null) {
+			response.sendRedirect("/Secubot/login.do");
+		}
+	%>
 	
-	<!-- Main Content Start -->
-	<section class="content">
-		<%@ include file="/WEB-INF/view/header.jsp"%>
-	
-		<!-- Page Content Start -->
-		<!-- ================== -->
-		<div class="wraper container-fluid">
-			<div class="page-title">
-				<h3 class="title"></h3>
-			</div>
-
+	<header id="header">
+		<div class="container">
 			<div class="row">
-				<div class="col-lg-12">
-					<div class="portlet">
-						<!-- /primary heading -->
-						<div class="portlet-heading">
-							<h3 class="portlet-title text-dark">민원신청이 완료되었습니다.</h3>
+				<div class="col-sm-12 overflow"></div>
+			</div>
+		</div>
+		<div class="navbar navbar-inverse" role="banner">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+
+					<a class="navbar-brand" href="index.html">
+						<h1>
+							<img src="img/home/logo.png" alt="logo">
+						</h1>
+					</a>
+				</div>
+				<!-- 상단 목차 -->
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="active"><a href="index.jsp">Home</a></li>
+
+						<li class="dropdown"><a href="#"> 신청 서비스 <i
+								class="fa fa-angle-down"></i></a>
+							<ul role="menu" class="sub-menu">
+								<li><a href="firewall_apply_board.jsp">방화벽 신청</a></li>
+								<li><a href="firewall_cancel_board.jsp">방화벽 취소</a></li>
+							</ul></li>
+						<li class="dropdown"><a href="#">자료실 <i
+								class="fa fa-angle-down"></i></a>
+							<ul role="menu" class="sub-menu">
+								<li><a href="#">공지 사항</a></li>
+								<li><a href="#">보안 공지</a></li>
+								<li><a href="#">보고서</a></li>
+								<li><a href="#">취약점 정보</a></li>
+								<li><a href="#">가이드 및 매뉴얼</a></li>
+								<li><a href="#">보안 공지</a></li>
+								<li><a href="#">참고 사이트</a></li>
+							</ul></li>
+						<li class="dropdown"><a href="#"> 다운로드 <i
+								class="fa fa-angle-down"></i></a>
+							<ul role="menu" class="sub-menu">
+								<li><a href="#">Secubot Agent</a></li>
+							</ul></li>
+					</ul>
+				</div>
+				<div class="search">
+					<form role="form">
+						<i class="fa fa-search"></i>
+						<div class="field-toggle">
+							<input type="text" class="search-form" autocomplete="off"
+								placeholder="Search">
 						</div>
-						<div class="portlet-body">
-						
-						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!--/#header-->
+
+	<div class="container">
+		<div class="row">
+			<!-- 게시판 -->
+			<div class="col-sm-12">
+				<div class="contact-form bottom">
+					<div class="col-sm-12">
+						<h1 class="title">방화벽 정책 신청</h1>
+						<p>
+							민원신청이 접수되었습니다.
+						</p>
 					</div>
 				</div>
-				<!-- end row -->
 			</div>
-			<!-- end row -->
-
 		</div>
-		<!-- Page Content Ends -->
-		<!-- ================== -->
-	
-		<!-- Footer Start -->
-		<footer class="footer"> 2018 © SECUBOT - Adaptive SIEM &
-			Security Configuration Management. </footer>
-		<!-- Footer Ends -->
-	</section>
-	<!-- Main Content Ends -->
+	</div>
 
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/lightbox.min.js"></script>
+	<script type="text/javascript" src="js/wow.min.js"></script>
+	<script type="text/javascript" src="js/jquery.countTo.js"></script>
+	<script type="text/javascript" src="js/home-main.js"></script>
 
-
-	<!-- js placed at the end of the document so the pages load faster -->
-	<script src="${pageContext.request.contextPath }/js/jquery.js"></script>
-	<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath }/js/modernizr.min.js"></script>
-	<script src="${pageContext.request.contextPath }/js/pace.min.js"></script>
-	<script src="${pageContext.request.contextPath }/js/wow.min.js"></script>
-	<script src="${pageContext.request.contextPath }/js/jquery.scrollTo.min.js"></script>
-	<script src="${pageContext.request.contextPath }/js/jquery.nicescroll.js" type="text/javascript"></script>
-
-	<script src="${pageContext.request.contextPath }/js/jquery.app.js"></script>
-
-	<!-- Dashboard -->
-	<script src="${pageContext.request.contextPath }/js/jquery.dashboard.js"></script>
-	
-	<!-- ajax -->
-	<script src="${pageContext.request.contextPath }/js/ajax.js?ver=2"></script>
-	
-	<!-- Summernote -->
-	<script src="${pageContext.request.contextPath }/js/summernote.js"></script>
-	
-	<script>
-		$('#summernote').summernote();
-		checkMyNoti();
-	</script>
-	
 </body>
 </html>

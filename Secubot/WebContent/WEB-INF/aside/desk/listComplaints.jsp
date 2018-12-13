@@ -78,9 +78,9 @@ li.nonotiActive {
 									</c:if>
 									<c:forEach var="article" items="${articlePage.content}">
 										<tr>
-											<td><strong>${article.article_no }</strong></td>
+											<td><strong>${article.getArticle_no() }</strong></td>
 											<td>
-											<a href="read.do?no=${article.article_no}&pageNo=${articlePage.currentPage}">
+											<a href="read.do?no=${article.getArticle_no()}&pageNo=${articlePage.currentPage}">
 											<c:out value="${article.title}"/>
 											</a>
 											</td>

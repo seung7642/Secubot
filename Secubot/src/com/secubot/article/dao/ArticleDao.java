@@ -86,6 +86,7 @@ public class ArticleDao {
 			List<Article> list = new ArrayList<>();
 			while (rs.next()) {
 				list.add(new Article(
+						rs.getInt("article_no"),
 						new Writer(rs.getString("writer_id"), rs.getString("writer_name")),
 						rs.getString("title"),
 						new Date(rs.getTimestamp("reg_date").getTime()),
@@ -125,13 +126,4 @@ public class ArticleDao {
 			JdbcUtil.close(rs);
 		}
 	}
-
-	public void increaseReadCount(Connection conn, int no) throws SQLException {
-		try (PreparedStatement pstmt = conn
-				.prepareStatement("update article set read_cnt = read_cnt + 1 " + "where article_no = ?")) {
-			pstmt.setInt(1, no);
-			pstmt.executeUpdate();
-		}
-	}
-
 }

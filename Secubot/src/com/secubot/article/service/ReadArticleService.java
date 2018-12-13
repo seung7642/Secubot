@@ -12,27 +12,22 @@ import com.secubot.jdbc.connection.ConnectionProvider;
 public class ReadArticleService {
 
 	private ArticleDao articleDao = new ArticleDao();
-	//private ArticleContentDao contentDao = new ArticleContentDao();
+	private ArticleContentDao contentDao = new ArticleContentDao();
 	
-	public ArticleData getArticle(int articleNum, boolean increaseReadCount) {
+	public ArticleData getArticle(int article_no) {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			
-			Article article = articleDao.selectById(conn, articleNum);
+			Article article = articleDao.selectById(conn, article_no);
 			if (article == null) {
 				throw new ArticleNotFoundException();
 			}
 			
-			//ArticleContent content = contentDao.selectById(conn, articleNum);
-			//if (content == null) {
-				//throw new ArticleContentNotFoundException();
-			//}
-			
-			if (increaseReadCount) {
-				articleDao.increaseReadCount(conn, articleNum);
+			ArticleContent content = contentDao.selectById(conn, article_no);
+			if (content == null) {
+				throw new ArticleContentNotFoundException();
 			}
 			
-			return new ArticleData(article);
-			
+			return new ArticleData(article, content);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

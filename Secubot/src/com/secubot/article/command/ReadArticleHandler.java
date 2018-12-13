@@ -12,6 +12,7 @@ import com.secubot.mvc.command.CommandHandler;
 
 public class ReadArticleHandler implements CommandHandler {
 	
+	private static final String FORM_VIEW = "/WEB-INF/aside/desk/readComplaints.jsp";
 	private ReadArticleService readService = new ReadArticleService();
 	private UpdateMyNotiService updateNotiService = new UpdateMyNotiService();
 	
@@ -22,10 +23,10 @@ public class ReadArticleHandler implements CommandHandler {
 		int article_no = Integer.parseInt(noVal);
 		
 		try {
-			ArticleData articleData = readService.getArticle(article_no, true);
-			updateNotiService.update(article_no);
+			ArticleData articleData = readService.getArticle(article_no);
+			//updateNotiService.update(article_no);
 			req.setAttribute("articleData", articleData);
-			return "/WEB-INF/aside/desk/readComplaints.jsp";
+			return FORM_VIEW;
 		} catch (ArticleNotFoundException | ArticleContentNotFoundException e) {
 			req.getServletContext().log("no article", e);
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);

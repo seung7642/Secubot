@@ -14,32 +14,22 @@
 <title>SECUBOT - 글 내용</title>
 
 <!-- Bootstrap core CSS -->
-<link href="${pageContext.request.contextPath }/css/bootstrap.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath }/css/bootstrap-reset.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/bootstrap.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/bootstrap-reset.css" rel="stylesheet">
 
 <!--Animation css-->
-<link href="${pageContext.request.contextPath }/css/animate.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/animate.css" rel="stylesheet">
 
 <!--Icon-fonts css-->
-<link
-	href="${pageContext.request.contextPath }/assets/font-awesome/css/font-awesome.css"
-	rel="stylesheet" />
-<link
-	href="${pageContext.request.contextPath }/assets/ionicon/css/ionicons.min.css"
-	rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/assets/ionicon/css/ionicons.min.css" rel="stylesheet" />
 
 <!-- Custom styles for this template -->
-<link href="${pageContext.request.contextPath }/css/style.css?ver=2"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath }/css/helper.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/style.css?ver=2" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/helper.css" rel="stylesheet">
 
 <!-- Summernote -->
-<link href="${pageContext.request.contextPath }/css/summernote.css"
-	res="stylesheet">
+<link href="${pageContext.request.contextPath }/css/summernote.css" rel="stylesheet">
 
 <style>
 textarea {
@@ -81,66 +71,51 @@ li.nonotiActive {
 						</div>
 						<div class="portlet-body">
 							<table border="1" width="100%">
-								<tr>
+								<%-- <tr>
 									<th class="text-center">번호</th>
-									<td class="text-center">${articleData.article.number}</td>
+									<td class="text-center">${articleData.article.article_no}</td>
 								</tr>
 								<tr>
-									<th class="text-center">작성자</th>
-									<td class="text-center">${articleData.article.writer}</td>
+									<th class="text-center">ID</th>
+									<td class="text-center">${articleData.article.writer.id}</td>
 								</tr>
 								<tr>
-									<th class="text-center">Email</th>
-									<td class="text-center">${articleData.article.email}</td>
-								</tr>
-								<tr>
-									<th class="text-center">전화 번호</th>
-									<td class="text-center">${articleData.article.phone}</td>
+									<th class="text-center">이름</th>
+									<td class="text-center">${articleData.article.writer.name}</td>
 								</tr>
 								<tr>
 									<th class="text-center">날짜</th>
 									<td class="text-center"><c:out
-											value='${articleData.article.regDate}' /></td>
+											value='${articleData.article.reg_date}' /></td>
 								</tr>
 								<tr>
 									<th class="text-center">제목</th>
 									<td class="text-center"><c:out
 											value='${articleData.article.title}' /></td>
 								<tr>
-									<th class="text-center">출발지 PORT</th>
-									<td class="text-center"><c:out
-											value='${articleData.article.src_port}' /></td>
-								</tr>
-								<tr>
-									<th class="text-center">출발지 IP</th>
+									<th class="text-center">src_ip</th>
 									<td class="text-center"><c:out
 											value='${articleData.article.src_ip}' /></td>
 								</tr>
 								<tr>
-									<th class="text-center">도착지 PORT</th>
+									<th class="text-center">dst_ip</th>
 									<td class="text-center"><c:out
-											value='${articleData.article.des_port}' /></td>
+											value='${articleData.article.dst_ip}' /></td>
 								</tr>
 								<tr>
-									<th class="text-center">도착지 IP</th>
+									<th class="text-center">dst_port</th>
 									<td class="text-center"><c:out
-											value='${articleData.article.des_ip}' /></td>
-								</tr>
-								<tr>
-									<th class="text-center">진행 현황</th>
-									<td class="text-center"><c:out
-											value='${articleData.article.flag}' /></td>
-								</tr>
+											value='${articleData.article.dst_port}' /></td>
 								</tr>
 								<tr>
 									<th class="text-center" colspan="2">내용</th>
 								</tr>
 								<tr>
 									<td class="text-center" colspan="2" height=100><u:pre
-											value='${articleData.article.message}' /></td>
-								</tr>
+											value='${articleData.articleContent.content}' /></td>
+								</tr> --%>
 								
-								<a class="btn btn-default pull-right" href="write.do">글 작성</a>
+								<!-- <a class="btn btn-default pull-right" href="write.do">글 작성</a> -->
 							</table>
 						</div>
 					</div>
@@ -170,9 +145,7 @@ li.nonotiActive {
 	<script src="${pageContext.request.contextPath }/js/wow.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/js/jquery.scrollTo.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/js/jquery.nicescroll.js"
-		type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath }/js/jquery.nicescroll.js"></script>
 
 	<script src="${pageContext.request.contextPath }/js/jquery.app.js"></script>
 
@@ -184,7 +157,7 @@ li.nonotiActive {
 	<script src="${pageContext.request.contextPath }/js/ajax.js?ver=2"></script>
 
 	<script>
-		checkMyNoti();
+		//checkMyNoti();
 	</script>
 </body>
 </html>
