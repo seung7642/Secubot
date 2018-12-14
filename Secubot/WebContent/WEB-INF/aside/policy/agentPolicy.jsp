@@ -140,7 +140,8 @@ li.nonotiActive {
 							<label for="process_name">프로세스명</label>
 							
 							<!-- TODO: ajax로 받아온 데이터를 옵션으로 넣어주기  -->
-							<select name="process_name" id="process_name" class="form-control">
+							<select name="process_name" id="process_name" class="form-control" 
+							onchange="var optionVal = $(this).find(':selected'); doSomething(optionVal)">
 								<option value="process_name"></option>
 							</select>
 						</div>
@@ -176,7 +177,7 @@ li.nonotiActive {
 	<script src="js/jquery.dashboard.js"></script>
 	
 	<!-- ajax -->
-	<script src="js/ajax.js?ver=1.212"></script>
+	<script src="js/ajax.js?ver=1.2121"></script>
 	
 	<script src="assets/datatables/jquery.dataTables.min.js"></script>
 	<script src="assets/datatables/dataTables.bootstrap.js"></script>
@@ -194,6 +195,24 @@ li.nonotiActive {
 		var parse = JSON.parse(data);
 		console.log(data);
 		console.log(parse);
+		
+		var select = document.querySelector("#process_name");
+		for (var i=0; i<parse.ProcessList.length; i++) {
+			select.innerHTML += "<option class=\"" + i +"\">" + parse.ProcessList[i].ImageName + "</option>";
+		}
+		
+		var selected_option = $('#process_name option:selected');
+		$('#process_name option').each(function() {
+			if($(this).is(':selected')) {
+				console.log(".is success");
+			}
+		});
+		
+		function doSomething(param) {
+			if ($(param.selected)) {
+				alert(param + ' is selected!');
+			}
+		}
 		
 	</script>
 

@@ -9,13 +9,11 @@ function getProcessList() {
 	var data = $.ajax({
 		url: 'http://211.193.58.162:2222/ProcessList?total=1d&interval=1m',
 		type: 'GET',
-		async: true, // 비동기로 하면 잘되는데, 동기로하면 400 Bad Request가 나옴.
+		async: false, // 비동기로 하면 잘되는데, 동기로하면 400 Bad Request가 나옴. ? 갑자기 잘되네
 		success: function(el) {
-			console.log("success: " + el);
 		}
 	}).responseText;
 	//setTimeout("getProcessList()", 20000);
-	console.log(data);
 	return data;
 }
 
