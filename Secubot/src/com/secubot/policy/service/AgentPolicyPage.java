@@ -2,14 +2,14 @@ package com.secubot.policy.service;
 
 import java.util.List;
 
-import com.secubot.policy.model.AgentPolicy;
+import com.secubot.policy.model.ProcessPolicyDetail;
 
 public class AgentPolicyPage {
 
 	private int total;
-	private List<AgentPolicy> list;
+	private List<ProcessPolicyDetail> list;
 	
-	public AgentPolicyPage(int total, List<AgentPolicy> list) {
+	public AgentPolicyPage(int total, List<ProcessPolicyDetail> list) {
 		this.total = total;
 		this.list = list;
 	}
@@ -22,11 +22,11 @@ public class AgentPolicyPage {
 		this.total = total;
 	}
 	
-	public List<AgentPolicy> getList() {
+	public List<ProcessPolicyDetail> getList() {
 		return list;
 	}
 	
-	public void setList(List<AgentPolicy> list) {
+	public void setList(List<ProcessPolicyDetail> list) {
 		this.list = list;
 	}
 }

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.secubot.policy.service.AgentPolicyPage;
 import com.secubot.policy.service.AgentPolicyService;
+import com.secubot.auth.service.User;
 import com.secubot.mvc.command.CommandHandler;
 
 public class AgentPolicyHandler implements CommandHandler {
@@ -27,16 +28,16 @@ public class AgentPolicyHandler implements CommandHandler {
 	}
 	
 	private String processForm(HttpServletRequest req, HttpServletResponse res) throws SQLException {
-		// TODO: policy_process 테이블의 레코드들을 받아와 req.setAttribute 설정
-		AgentPolicyPage agentPage = agentService.getAgentPage();
-		req.setAttribute("agentPage", agentPage);
+		// TODO: process_policy_detail 테이블의 레코드들을 받아와 req.setAttribute 설정
 		return FORM_VIEW;
 	}
 	
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		String policy_name = (String)req.getParameter("policy_name");
+		User user = (User)req.getSession(false).getAttribute("authUser");
+		String policy_description = (String)req.getParameter("policy_description");
 		String process_name = (String)req.getParameter("process_name");
-		agentService.addAgentPolicy(policy_name, process_name);
+		String rule_json = (String)req.getParameter("rule_json");
+		agentService.addProcessPolicyDetail(user, policy_description, process_name, rule_json);
 		
 		return "/WEB-INF/aside/policy/policySuccess.jsp";
 	}

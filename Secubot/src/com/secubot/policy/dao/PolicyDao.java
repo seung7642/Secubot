@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.secubot.policy.model.AgentPolicy;
+import com.secubot.policy.model.ProcessPolicyDetail;
 import com.secubot.policy.model.NetworkPolicy;
 import com.secubot.jdbc.JdbcUtil;
 
@@ -17,14 +17,20 @@ public class PolicyDao {
 	/*
 	 * 1. Agent Policy
 	 */
-	public void insertAgent(Connection conn, AgentPolicy agentPolicy) throws SQLException {
+	public void insertProcessPolicyDetail(Connection conn, ProcessPolicyDetail agentPolicy) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
-			pstmt = conn.prepareStatement("insert into policy_process (policy_name, process_name) values(?, ?)");
-			pstmt.setString(1, agentPolicy.getPolicyName());
-			pstmt.setString(2, agentPolicy.getProcessName());
+			pstmt = conn.prepareStatement("insert into policy_process "
+					+ "(policy_author, policy_description, flag_accept, flag_apply, rule_json, image_name) "
+					+ "values(?, ?, ?, ?, ?, ?)");
+			pstmt.setString(1, agentPolicy.getPolicy_author());
+			pstmt.setString(2, agentPolicy.getPolicy_description());
+			pstmt.setBoolean(3, agentPolicy.isFlag_accept());
+			pstmt.setBoolean(4, agentPolicy.isFlag_apply());
+			pstmt.setString(5, agentPolicy.getRule_json());
+			pstmt.setString(6, agentPolicy.getImage_name());
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
 			throw new RuntimeException(e);
@@ -34,18 +40,23 @@ public class PolicyDao {
 		}
 	}
 	
-	public List<AgentPolicy> listAgentPolicy(Connection conn) throws SQLException {
+	public List<ProcessPolicyDetail> listProcessPolicyDetail(Connection conn) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
 			pstmt = conn.prepareStatement("select * from policy_process");
 			rs = pstmt.executeQuery();
-			List<AgentPolicy> agentList = new ArrayList<>();
+			List<ProcessPolicyDetail> agentList = new ArrayList<>();
 			while (rs.next()) {
-				agentList.add(new AgentPolicy(
-						rs.getString("policy_name"),
-						rs.getString("process_name")
+				agentList.add(new ProcessPolicyDetail(
+						rs.getInt("process_policy_id"),
+						rs.getString("policy_author"),
+						rs.getString("policy_description"),
+						rs.getBoolean("flag_accept"),
+						rs.getBoolean("flag_apply"),
+						rs.getString("rule_json"),
+						rs.getString("image_name")
 						));
 			}
 			return agentList;
@@ -55,12 +66,12 @@ public class PolicyDao {
 		}
 	}
 	
-	public int countAgentPolicy(Connection conn) throws SQLException {
+	public int countProcessPolicyDetail(Connection conn) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
-			pstmt = conn.prepareStatement("select count(*) from policy_process");
+			pstmt = conn.prepareStatement("select count(*) from process_policy_detail");
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				return rs.getInt(1);

@@ -133,7 +133,7 @@ li.nonotiActive {
 							</select>
 						</div>
 						<div class="form-group md-form mb-4">
-							<label for="policy_name">정책 설명</label>
+							<label for="policy_description">정책 설명</label>
 							<input name="policy_description" type="text" class="form-control" id="policy_description" placeholder="description">
 						</div>
 						<div class="form-group">

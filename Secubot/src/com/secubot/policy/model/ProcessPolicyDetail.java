@@ -3,15 +3,28 @@ package com.secubot.policy.model;
 public class ProcessPolicyDetail {
 
 	private int process_policy_id;
+	private String policy_author;
 	private String policy_description;
 	private boolean flag_accept;
 	private boolean flag_apply;
 	private String rule_json; // MySQL json 타입 데이터
 	private String image_name; // 프로세스명
 	
-	public ProcessPolicyDetail(String policy_description, boolean flag_accept, boolean flag_apply,
+	public ProcessPolicyDetail(int process_policy_id, String policy_author, String policy_description, boolean flag_accept, boolean flag_apply,
+			String rule_json, String image_name) {
+		this.process_policy_id = process_policy_id;
+		this.policy_description = policy_description;
+		this.policy_author = policy_author;
+		this.flag_accept = flag_accept;
+		this.flag_apply = flag_apply;
+		this.rule_json = rule_json;
+		this.image_name = image_name;
+	}
+	
+	public ProcessPolicyDetail(String policy_author, String policy_description, boolean flag_accept, boolean flag_apply,
 			String rule_json, String image_name) {
 		this.policy_description = policy_description;
+		this.policy_author = policy_author;
 		this.flag_accept = flag_accept;
 		this.flag_apply = flag_apply;
 		this.rule_json = rule_json;
@@ -32,6 +45,14 @@ public class ProcessPolicyDetail {
 	
 	public void setPolicy_description(String policy_description) {
 		this.policy_description = policy_description;
+	}
+	
+	public String getPolicy_author() {
+		return policy_author;
+	}
+	
+	public void setPolicy_author(String policy_author) {
+		this.policy_author = policy_author;
 	}
 	
 	public boolean isFlag_accept() {
