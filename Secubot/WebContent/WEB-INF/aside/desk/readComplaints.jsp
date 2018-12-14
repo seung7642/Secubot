@@ -87,6 +87,11 @@ li.nonotiActive {
 								</tr>
 								
 								<tr>
+									<th class="text-center">이메일</th>
+									<td class="text-center">${ }</td>
+								</tr>
+								
+								<tr>
 									<th class="text-center">날짜</th>
 									<td class="text-center"><c:out value='${articleData.article.getReg_date()}' /></td>
 								</tr>

@@ -53,12 +53,13 @@ public class SendEmail {
 			msg.setSubject("Secubot Project"); 
 			msg.setSentDate(new Date());
 			
-			String contentMsg = "This is Secubot Message\n보내주신 접수 내용\n"
-					+ "src_ip: " + content.getSrc_ip() + "\n"
-					+ "dst_ip: " + content.getDst_ip() + "\n"
-					+ "dst_port: " + content.getDst_port() + "\n"
-					+ "가 정상적으로 처리되었습니다."
-					+ "감사합니다.";
+			String contentMsg = "This is Secubot Message\\r\\n"
+					+ "It is the receipt that you sent.\\r\\n"
+					+ "src_ip: " + content.getSrc_ip() + "\\r\\n"
+					+ "dst_ip: " + content.getDst_ip() + "\\r\\n"
+					+ "dst_port: " + content.getDst_port() + "\\r\\n"
+					+ "Successfully processed. \\r\\n"
+					+ "Thank you";
 			MimeBodyPart mimeBodyPart = new MimeBodyPart();
 			mimeBodyPart.setContent(contentMsg, "text/html");
 			
