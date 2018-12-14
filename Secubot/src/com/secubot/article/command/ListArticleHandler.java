@@ -5,11 +5,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.secubot.article.service.ArticlePage;
 import com.secubot.article.service.ListArticleService;
+import com.secubot.util.SendEmail;
 import com.secubot.mvc.command.CommandHandler;
 
 public class ListArticleHandler implements CommandHandler {
 
 	private ListArticleService listService = new ListArticleService();
+	private SendEmail send = new SendEmail();
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -18,6 +20,7 @@ public class ListArticleHandler implements CommandHandler {
 		if (pageNoVal != null) {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
+		SendEmail.send();
 		
 		ArticlePage articlePage = listService.getArticlePage(pageNo);
 		req.setAttribute("articlePage", articlePage);

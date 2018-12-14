@@ -19,20 +19,20 @@ import com.secubot.member.service.MailInfo;
 
 public class SendEmail {
 
-	public static void send(MailInfo mailInfo) {
+	public static void send() {
 		
 		// 송신자 이메일 아이디와 패스워드
-		String admin = "user";
-		String password = "password";
+		String admin = "atmdgh1234";
+		String password = "secubot1234";
 		
 		// Properties에 메일 설정내용 저장
 		Properties props = System.getProperties();
 		props.put("mail.smtp.user", admin);
+		props.put("mail.smtp.auth", true);
+		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", "smtp.naver.com");
 		props.put("mail.smtp.port", "587");
-		props.put("mail.smtp.ssl.enable", "true");
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.trust", "smtp.naver.com");
+		props.put("mail.smtp.ssl.trust", "smtp.naver.com");
 		
 		Authenticator auth = new Authenticator() {
 			@Override
@@ -45,12 +45,11 @@ public class SendEmail {
 		Message msg = new MimeMessage(mailSession);
 		
 		try {
-			InternetAddress to = new InternetAddress(mailInfo.getEmail()); 
+//			InternetAddress to = new InternetAddress(mailInfo.getEmail()); 
 			msg.setFrom(new InternetAddress(admin+"@naver.com"));
-			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("to@gmail.com")); 
+			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("seung7642@gmail.com")); 
 			msg.setSubject("Secubot Project"); 
-			msg.setSentDate(new Date()); 
-			msg.setContent(mailInfo.getContent(), "text/html;charset=euc-kr");
+			msg.setSentDate(new Date());
 			
 			String contentMsg = "This is Secubot Message Content";
 			MimeBodyPart mimeBodyPart = new MimeBodyPart();
@@ -58,6 +57,8 @@ public class SendEmail {
 			
 			Multipart multipart = new MimeMultipart();
 			multipart.addBodyPart(mimeBodyPart);
+			
+			msg.setContent(multipart);
 			
 			Transport.send(msg);
 		} catch (MessagingException e) {
