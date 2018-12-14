@@ -190,20 +190,20 @@ canvas {
 	<script src="js/visualization.js?ver=2.4"></script>
 	
 	<script>
-		/* var data = getProcessList();
+		var data = getProcessList();
 		var parse = JSON.parse(data);
 		var xScale = d3.scale.linear().domain([0, 2500000]).range([-100, 100]);
 		var yScale = d3.scale.linear().domain([0, 2000]).range([-100, 100]);
 		for (i in parse.ProcessList) {
 			parse.ProcessList[i].x = xScale(parse.ProcessList[i].x);
 			parse.ProcessList[i].y = yScale(parse.ProcessList[i].y);
-		} */
+		}
 		
 		/* Notification */
 		//checkMyNoti();
 		
 		/* Chart.js */
-		/* function addData(chart, label, data) {
+		function addData(chart, label, data) {
 			chart.data.labels.push(label);
 			chart.data.datasets.forEach((dataset) => {
 				dataset.data.push(data);
@@ -306,7 +306,7 @@ canvas {
 					}
 				}
 			});
-		}; */
+		};
 		
 		/* function clickFunc() {
 			var popUrl = "/popup.jsp?md5=" + parse.ProcessList[1].MD5 + "&imagename=" + parse.ProcessList[1].ImageName;
@@ -338,108 +338,6 @@ canvas {
 		var todayEvent = todayEventCount();
 		var parseTodayEvent = JSON.parse(todayEvent);
 		
-		
-		
-		
-		function getProcessList() {
-			var data = $.ajax({
-				url: 'http://211.193.58.162:2222/ProcessList?total=1d&interval=1m',
-				type: 'GET',
-				async: true,
-				success: function(data) {
-					var parse = data;
-					var xScale = d3.scale.linear().domain([parse.minX-10, parse.maxX+10]).range([-100, 100]);
-					var yScale = d3.scale.linear().domain([parse.minY-10, parse.maxY+10]).range([-100, 100]);
-					for (i in parse.ProcessList) {
-						parse.ProcessList[i].x = xScale(parse.ProcessList[i].x);
-						parse.ProcessList[i].y = yScale(parse.ProcessList[i].y);
-					}
-					/* Chart.js */
-					var color = Chart.helpers.color;
-					var scatterChartData = {
-						datasets: [{
-							label: 'Process',
-							borderColor: window.chartColors.red,
-							backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
-							data: parse.ProcessList
-						}]
-					};
-					
-					var ctx = document.getElementById('canvas').getContext('2d');
-					window.myScatter = Chart.Scatter(ctx, {
-						data: scatterChartData,
-						options: {
-							title: {
-								display: true,
-								text: '보안 위협 시각화'
-							},
-							scales: {
-								yAxes: [{
-									display: true,
-									gridLines: {
-										zeroLineColor: "rgba(0, 255, 0, 1)",
-										lineWidth: 1
-									},
-									ticks: {
-										max: parse.maxY,
-										min: parse.minY
-									},
-									scaleLabel: {
-										display: true,
-										labelString: "독립성"
-									}
-								}],
-								xAxes: [{
-									display: true,
-									gridLines: {
-										zeroLineColor: "rgba(0, 255, 0, 1)"
-									},
-									ticks: {
-										max: parse.maxX,
-										min: parse.minX
-									},
-									scaleLabel: {
-										display: true,
-										labelString: "지속성"
-									}
-								}]
-							},
-							pan: {
-								enabled: true,
-								mode: 'xy',
-							},
-							zoom: {
-								enabled: true,
-								mode: 'xy',
-							},
-							//events: ['click'],
-							// TODO: 해당 Scatter 클릭 시 데이터 받아오는 작업.
-							'onClick': function(evt, item) {
-								var that = this;
-								console.log(item);
-								var popUrl = "/Secubot/popup.jsp?md5=" + parse.ProcessList[item[0]._index].MD5 + "&imagename=" + parse.ProcessList[item[0]._index].ImageName;
-								var popOption = "width=700, height=400, scrollbars=no, status=no;";
-								window.open(popUrl, popOption);
-							},
-							"tooltips":{
-								callbacks:{
-									label: function(tooltipItem,data){
-										return data.datasets[0].data[tooltipItem.index].ImageName;
-									}
-								}
-								
-							}
-						}
-					});
-					function clickFunc() {
-						var popUrl = "/popup.jsp?md5=" + parse.ProcessList[1].MD5 + "&imagename=" + parse.ProcessList[1].ImageName;
-						var popOption = "width=700, height=400, scrollbars=no, status=no;";
-						window.open(popUrl, popOption);
-					}
-				}
-			}).responseText;
-		}
-		getProcessList();
 	</script>
 	
 </body>

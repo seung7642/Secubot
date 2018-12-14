@@ -43,7 +43,8 @@ public class AgentPolicyHandler implements CommandHandler {
 		String policy_description = (String)req.getParameter("policy_description");
 		String process_name = (String)req.getParameter("process_name");
 		String rule_json = (String)req.getParameter("rule_json");
-		agentService.addProcessPolicyDetail(user, policy_description, process_name, rule_json);
+		String agent_hash = (String)req.getParameter("agent_hash");
+		agentService.addProcessPolicyDetail(user, policy_description, process_name, rule_json, agent_hash);
 		
 		return "/WEB-INF/aside/policy/policySuccess.jsp";
 	}

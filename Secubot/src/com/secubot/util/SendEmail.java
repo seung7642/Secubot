@@ -51,7 +51,7 @@ public class SendEmail {
 //			InternetAddress to = new InternetAddress(mailInfo.getEmail()); 
 			msg.setFrom(new InternetAddress(admin+"@naver.com"));
 			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(articleData.getArticle().getWriter().getEmail())); 
-			msg.setSubject("Secubot Project"); 
+			msg.setSubject("민원신청에 따른 결과입니다."); 
 			msg.setSentDate(new Date());
 			
 			String contentMsg = "<strong>안녕하세요. Secubot 팀입니다.</strong><br/><br/>"

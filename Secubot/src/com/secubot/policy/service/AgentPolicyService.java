@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import com.secubot.policy.model.LoginSession;
+import com.secubot.policy.model.ProcessPolicy;
 import com.secubot.policy.model.ProcessPolicyDetail;
 import com.secubot.policy.dao.PolicyDao;
 import com.secubot.auth.service.User;
@@ -21,7 +22,7 @@ public class AgentPolicyService {
 	private ProcessPolicyDetail processPolicyDetail = null;
 	private PolicyDao policyDao = new PolicyDao();
 	
-	public void addProcessPolicyDetail(User user, String policy_description, String process_name, String rule_json) throws SQLException, ParseException {
+	public void addProcessPolicyDetail(User user, String policy_description, String process_name, String rule_json, String agent_hash) throws SQLException, ParseException {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			conn.setAutoCommit(false);
 			processPolicyDetail = new ProcessPolicyDetail(user.getName(), policy_description, true, true, rule_json, process_name);
@@ -30,7 +31,12 @@ public class AgentPolicyService {
 			Object obj = parser.parse(jsonStr);
 			JSONObject jsonObj = (JSONObject) obj;
 			
-			policyDao.insertProcessPolicyDetail(conn, processPolicyDetail, jsonStr);
+			int process_policy_id = policyDao.insertProcessPolicyDetail(conn, processPolicyDetail, jsonStr);
+			if (process_policy_id == 0) {
+				throw new RuntimeException();
+			}
+			
+			policyDao.insertProcessPolicy(conn, new ProcessPolicy(process_policy_id, agent_hash));
 			
 			conn.commit();
 		}

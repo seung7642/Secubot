@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.json.simple.JSONObject;
 
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +15,7 @@ import com.secubot.policy.model.ProcessPolicyDetail;
 import com.secubot.policy.model.NetworkPolicy;
 import com.secubot.policy.model.ProcessPolicy;
 import com.secubot.policy.model.LoginSession;
+import com.secubot.article.model.Article;
 import com.secubot.jdbc.JdbcUtil;
 
 public class PolicyDao {
@@ -21,9 +23,10 @@ public class PolicyDao {
 	/*
 	 * 1. Agent Policy
 	 */
-	public void insertProcessPolicyDetail(Connection conn, ProcessPolicyDetail agentPolicy, String jsonObj) throws SQLException {
+	public int insertProcessPolicyDetail(Connection conn, ProcessPolicyDetail agentPolicy, String jsonObj) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		Statement stmt = null;
 		
 		try {
 			pstmt = conn.prepareStatement("insert into process_policy_detail "
@@ -35,7 +38,17 @@ public class PolicyDao {
 			pstmt.setBoolean(4, agentPolicy.isFlag_apply());
 			pstmt.setString(5, jsonObj);
 			pstmt.setString(6, agentPolicy.getImage_name());
-			pstmt.executeUpdate();
+			int insertedCount = pstmt.executeUpdate();
+
+			if (insertedCount > 0) {
+				stmt = conn.createStatement();
+	
+				rs = stmt.executeQuery("select last_insert_id() from article");
+				if (rs.next()) {
+					return rs.getInt("process_policy_id");
+				}
+			}
+			return 0;
 		} catch(SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
@@ -158,16 +171,27 @@ public class PolicyDao {
 	/*
 	 * process_policy, login_session 테이블
 	 */
-	public void insertProcessPolicy(Connection conn, ProcessPolicy processPolicy) throws SQLException {
+	public int insertProcessPolicy(Connection conn, ProcessPolicy processPolicy) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		Statement stmt = null;
 		
 		try {
 			pstmt = conn.prepareStatement("insert into process_policy "
 					+ "(process_policy_id, agent_hash) values(?, ?)");
 			pstmt.setInt(1, processPolicy.getProcess_policy_id());
 			pstmt.setString(2, processPolicy.getAgent_hash());
-			pstmt.executeQuery();
+			int insertedCount = pstmt.executeUpdate();
+
+			if (insertedCount > 0) {
+				stmt = conn.createStatement();
+	
+				rs = stmt.executeQuery("select last_insert_id() from article");
+				if (rs.next()) {
+					return rs.getInt("process_policy_id");
+				}
+			}
+			return 0;
 		} catch(SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
