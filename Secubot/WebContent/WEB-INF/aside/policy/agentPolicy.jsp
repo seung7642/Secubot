@@ -141,13 +141,13 @@ li.nonotiActive {
 							
 							<!-- TODO: ajax로 받아온 데이터를 옵션으로 넣어주기  -->
 							<select name="process_name" id="process_name" class="form-control" 
-							onchange="var optionVal = $(this).find(':selected'); doSomething(optionVal)">
+							onchange="var optionVal = $(this).find(':selected').attr('class'); doSomething(optionVal)">
 								<option value="process_name"></option>
 							</select>
 						</div>
 						<div class="form-group md-form mb-4">
 							<label for="rule_json">MD5</label>
-							<input name="rule_json" type="text" class="form-control" id="rule_json" placeholder="MD5">
+							<input name="rule_json" type="text" class="form-control" id="rule_json" placeholder="MD5" disabled>
 						</div>
 						<div class="form-group">
 							<button class="btn btn-outline-secondary" data-dismiss="modal" aria-hidden="false">Cancle</button>
@@ -210,7 +210,9 @@ li.nonotiActive {
 		
 		function doSomething(param) {
 			if ($(param.selected)) {
-				alert(param + ' is selected!');
+				console.log(param);
+				console.log(JSON.stringify(param));
+				$('#rule_json').attr('value', parse.ProcessList[param].MD5);
 			}
 		}
 		
