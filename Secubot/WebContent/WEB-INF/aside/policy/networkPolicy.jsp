@@ -145,6 +145,10 @@ li.nonotiActive {
 							<input name="dst_ip" type="text" class="form-control" id="dst_ip" placeholder="dstIP...">
 						</div>
 						<div class="form-group">
+							<label for="dst_port">dstPort</label>
+							<input name="dst_port" type="text" class="form-control" id="dst_port" placeholder="dstPort...">
+						</div>
+						<!-- <div class="form-group">
 							<div id="spinner">
 								<div class="input-group input-small">
 									<input type="text" class="spinner-input form-control" maxlength="3" readonly>
@@ -158,7 +162,7 @@ li.nonotiActive {
 									</div>
 								</div>
 							</div>
-                        </div>
+                        </div> -->
 						<div class="form-group">
 							<button class="btn btn-outline-secondary" data-dismiss="modal" aria-hidden="false">Cancle</button>
 							<button type="submit" class="btn btn-success">Add</button>

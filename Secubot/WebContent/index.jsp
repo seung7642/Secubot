@@ -115,9 +115,6 @@ canvas {
 						<div class="portlet-heading">
 							<h3 class="portlet-title text-dark"></h3>
 						</div>
-						<button id="randomizeData">Day</button>
-						<button id="randomizeData">Weekend</button>
-						<button id="randomizeData">Month</button>
 						<div class="portlet-body" id="visualization">
 							<div>
 								<canvas id="canvas"></canvas>
@@ -192,8 +189,8 @@ canvas {
 	<script>
 		var data = getProcessList();
 		var parse = JSON.parse(data);
-		var xScale = d3.scale.linear().domain([0, 2500000]).range([-100, 100]);
-		var yScale = d3.scale.linear().domain([0, 2000]).range([-100, 100]);
+		var xScale = d3.scale.linear().domain([parse.minX*1.05, parse.maxX*1.05]).range([-100, 100]);
+		var yScale = d3.scale.linear().domain([parse.minY*1.1, parse.maxY*1.05]).range([-100, 100]);
 		for (i in parse.ProcessList) {
 			parse.ProcessList[i].x = xScale(parse.ProcessList[i].x);
 			parse.ProcessList[i].y = yScale(parse.ProcessList[i].y);

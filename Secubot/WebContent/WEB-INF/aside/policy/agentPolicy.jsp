@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="org.json.simple.JSONObject" %>
+<%@ page import="org.json.simple.parser.JSONParser" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -81,6 +83,7 @@ li.nonotiActive {
 											<th data-priority="1" width="5%">#</th>
 											<th data-priority="3" width="20%">정책명</th>
 											<th data-priority="3" width="20%">프로세스명</th>
+											<th data-priority="3" width="20%">MD5</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -89,6 +92,7 @@ li.nonotiActive {
 												<td>#</td>
 												<td>Process_Kill</td>
 												<td>${list.image_name }</td>
+												<td>${list.rule_json }</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -96,6 +100,9 @@ li.nonotiActive {
 								<button type="button" class="btn btn-info btn-custom m-b-5" data-toggle="modal"
 								data-placement="right" title="정책을 추가합니다."
 								data-target="#myModal">추가</button>
+								<button type="button" class="btn btn-danger btn-custom m-b-5" data-toggle="modal"
+								data-placement="right" title="정책을 삭제합니다."
+								data-target="#myModal2">삭제</button>
 							</div>
 						</div>
 					</div>
@@ -162,6 +169,23 @@ li.nonotiActive {
 							<button type="submit" class="btn btn-success">Add</button>
 						</div>
 					</form>
+				</div>
+				<div class="modal-footer">
+				
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					정말 삭제하시겠습니까?
 				</div>
 				<div class="modal-footer">
 				

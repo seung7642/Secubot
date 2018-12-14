@@ -61,8 +61,6 @@ $(document).ready(function() {
 				<a href="#"><i class="ion-clipboard"></i> <span class="nav-label">Policy</span></a>
 				<ul class="list-unstyled">
 					<li><a href="${pageContext.request.contextPath }/agentPolicy.do">process</a></li>
-				</ul>
-				<ul class="list-unstyled">
 					<li><a href="${pageContext.request.contextPath }/networkPolicy.do">network</a></li>
 				</ul>
 			</li>
@@ -72,6 +70,7 @@ $(document).ready(function() {
 				<a href="#"><i class="ion-podium"></i><span class="nav-label">Analysis</span></a>
 				<ul class="list-unstyled">
 					<li><a href="${pageContext.request.contextPath }/analysis.do">search</a></li>
+					<li><a href="${pageContext.request.contextPath }/analysisnetwork.do">search_network</a></li>
 				</ul>
 			</li>
 			
