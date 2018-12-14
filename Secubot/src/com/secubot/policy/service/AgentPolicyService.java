@@ -23,12 +23,12 @@ public class AgentPolicyService {
 	public void addProcessPolicyDetail(User user, String policy_description, String process_name, String rule_json) throws SQLException, ParseException {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			processPolicyDetail = new ProcessPolicyDetail(user.getName(), policy_description, true, true, rule_json, process_name);
-			String jsonStr = "{ MD5: " +  processPolicyDetail.getRule_json() + " }";
+			String jsonStr = "{ \"MD5\" : \"" +  processPolicyDetail.getRule_json() + "\" }";
 			JSONParser parser = new JSONParser();
 			Object obj = parser.parse(jsonStr);
 			JSONObject jsonObj = (JSONObject) obj;
 			
-			policyDao.insertProcessPolicyDetail(conn, processPolicyDetail, jsonObj);
+			policyDao.insertProcessPolicyDetail(conn, processPolicyDetail, jsonStr);
 		}
 	}
 	

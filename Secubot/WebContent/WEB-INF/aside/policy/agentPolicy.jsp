@@ -147,7 +147,7 @@ li.nonotiActive {
 						</div>
 						<div class="form-group md-form mb-4">
 							<label for="rule_json">MD5</label>
-							<input name="rule_json" type="text" class="form-control" id="rule_json" placeholder="MD5" disabled>
+							<input name="rule_json" type="text" class="form-control" id="rule_json" placeholder="MD5">
 						</div>
 						<div class="form-group">
 							<button class="btn btn-outline-secondary" data-dismiss="modal" aria-hidden="false">Cancle</button>

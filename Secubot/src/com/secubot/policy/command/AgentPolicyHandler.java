@@ -28,7 +28,7 @@ public class AgentPolicyHandler implements CommandHandler {
 	}
 	
 	private String processForm(HttpServletRequest req, HttpServletResponse res) throws SQLException {
-		// TODO: process_policy_detail 테이블의 레코드들을 받아와 req.setAttribute 설정
+		// TODO: login_session 테이블에서 리스트 가져와서 속성으로 등록하기
 		AgentPolicyPage agentPolicyPage = agentService.getAgentPage();
 		req.setAttribute("agentPolicyPage", agentPolicyPage);
 		return FORM_VIEW;

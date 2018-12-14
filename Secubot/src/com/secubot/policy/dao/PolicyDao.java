@@ -12,6 +12,7 @@ import java.sql.SQLException;
 
 import com.secubot.policy.model.ProcessPolicyDetail;
 import com.secubot.policy.model.NetworkPolicy;
+import com.secubot.policy.model.ProcessPolicy;
 import com.secubot.jdbc.JdbcUtil;
 
 public class PolicyDao {
@@ -19,7 +20,7 @@ public class PolicyDao {
 	/*
 	 * 1. Agent Policy
 	 */
-	public void insertProcessPolicyDetail(Connection conn, ProcessPolicyDetail agentPolicy, JSONObject jsonObj) throws SQLException {
+	public void insertProcessPolicyDetail(Connection conn, ProcessPolicyDetail agentPolicy, String jsonObj) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -31,7 +32,7 @@ public class PolicyDao {
 			pstmt.setString(2, agentPolicy.getPolicy_description());
 			pstmt.setBoolean(3, agentPolicy.isFlag_accept());
 			pstmt.setBoolean(4, agentPolicy.isFlag_apply());
-			pstmt.setObject(5, jsonObj);
+			pstmt.setString(5, jsonObj);
 			pstmt.setString(6, agentPolicy.getImage_name());
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
@@ -145,6 +146,27 @@ public class PolicyDao {
 				return rs.getInt(1);
 			}
 			return 0;
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+	}
+	
+	/*
+	 * process_policy, login_session 테이블
+	 */
+	public void insertProcessPolicy(Connection conn, ProcessPolicy processPolicy) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement("insert into process_policy "
+					+ "(process_policy_id, agent_hash) values(?, ?)");
+			pstmt.setInt(1, processPolicy.getProcess_policy_id());
+			pstmt.setString(2, processPolicy.getAgent_hash());
+			pstmt.executeQuery();
 		} catch(SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
