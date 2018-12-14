@@ -38,8 +38,9 @@ public class LoginSession {
 		this.usb_allow = usb_allow;
 	}
 	
-	public LoginSession(String agent_hash) {
+	public LoginSession(String agent_hash, String user_name) {
 		this.agent_hash = agent_hash;
+		this.user_name = user_name;
 	}
 	
 	public Date getLogin_date() {

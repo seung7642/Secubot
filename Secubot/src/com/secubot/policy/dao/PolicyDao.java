@@ -176,7 +176,26 @@ public class PolicyDao {
 		}
 	}
 	
-	public LoginSession selectLoginSession(Connection conn) throws SQLException {
+	public List<LoginSession> selectLoginSession(Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		
+		try {
+			pstmt = conn.prepareStatement("select * from login_session");
+			rs = pstmt.executeQuery();
+			List<LoginSession> list = new ArrayList<>();
+			while (rs.next()) {
+				list.add(new LoginSession(
+						rs.getString("agent_hash"), 
+						rs.getString("user_name"))
+						);
+			}
+			return list;
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
 	}
 }
