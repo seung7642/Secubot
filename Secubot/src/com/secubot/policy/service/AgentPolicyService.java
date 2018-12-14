@@ -2,6 +2,11 @@ package com.secubot.policy.service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -12,13 +17,18 @@ import com.secubot.jdbc.connection.ConnectionProvider;
 
 public class AgentPolicyService {
 
-	private ProcessPolicyDetail ProcessPolicyDetail = null;
+	private ProcessPolicyDetail processPolicyDetail = null;
 	private PolicyDao policyDao = new PolicyDao();
 	
-	public void addProcessPolicyDetail(User user, String policy_description, String process_name, String rule_json) throws SQLException {
+	public void addProcessPolicyDetail(User user, String policy_description, String process_name, String rule_json) throws SQLException, ParseException {
 		try (Connection conn = ConnectionProvider.getConnection()) {
-			ProcessPolicyDetail = new ProcessPolicyDetail(user.getName(), policy_description, true, true, rule_json, process_name);
-			policyDao.insertProcessPolicyDetail(conn, ProcessPolicyDetail);
+			processPolicyDetail = new ProcessPolicyDetail(user.getName(), policy_description, true, true, rule_json, process_name);
+			String jsonStr = "{ MD5: " +  processPolicyDetail.getRule_json() + " }";
+			JSONParser parser = new JSONParser();
+			Object obj = parser.parse(jsonStr);
+			JSONObject jsonObj = (JSONObject) obj;
+			
+			policyDao.insertProcessPolicyDetail(conn, processPolicyDetail, jsonObj);
 		}
 	}
 	

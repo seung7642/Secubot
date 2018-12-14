@@ -3,6 +3,8 @@ package com.secubot.policy.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.simple.JSONObject;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,19 +19,19 @@ public class PolicyDao {
 	/*
 	 * 1. Agent Policy
 	 */
-	public void insertProcessPolicyDetail(Connection conn, ProcessPolicyDetail agentPolicy) throws SQLException {
+	public void insertProcessPolicyDetail(Connection conn, ProcessPolicyDetail agentPolicy, JSONObject jsonObj) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
-			pstmt = conn.prepareStatement("insert into policy_process "
+			pstmt = conn.prepareStatement("insert into process_policy_detail "
 					+ "(policy_author, policy_description, flag_accept, flag_apply, rule_json, image_name) "
 					+ "values(?, ?, ?, ?, ?, ?)");
 			pstmt.setString(1, agentPolicy.getPolicy_author());
 			pstmt.setString(2, agentPolicy.getPolicy_description());
 			pstmt.setBoolean(3, agentPolicy.isFlag_accept());
 			pstmt.setBoolean(4, agentPolicy.isFlag_apply());
-			pstmt.setString(5, "{MD5:" + agentPolicy.getRule_json() + "}");
+			pstmt.setObject(5, jsonObj);
 			pstmt.setString(6, agentPolicy.getImage_name());
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
@@ -45,7 +47,7 @@ public class PolicyDao {
 		ResultSet rs = null;
 		
 		try {
-			pstmt = conn.prepareStatement("select * from policy_process");
+			pstmt = conn.prepareStatement("select * from process_policy_detail");
 			rs = pstmt.executeQuery();
 			List<ProcessPolicyDetail> agentList = new ArrayList<>();
 			while (rs.next()) {
