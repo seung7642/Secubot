@@ -214,7 +214,7 @@ li.nonotiActive {
 	        $('#datatable').dataTable();
 	    });
 	    
-	    checkMyNoti();
+	    //checkMyNoti();
 	</script>
 </body>
 </html>

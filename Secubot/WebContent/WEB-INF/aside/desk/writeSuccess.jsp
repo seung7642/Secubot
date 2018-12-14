@@ -47,7 +47,7 @@
 
 					<a class="navbar-brand" href="index.html">
 						<h1>
-							<img src="img/home/logo.png" alt="logo">
+							<img src="${pageContext.request.contextPath }/img/home/logo.png" alt="logo">
 						</h1>
 					</a>
 				</div>

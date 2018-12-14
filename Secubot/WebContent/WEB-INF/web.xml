@@ -58,6 +58,7 @@
 		<url-pattern>/networkPolicy.do</url-pattern>
 		<url-pattern>/analysis.do</url-pattern>
 		<url-pattern>/report.do</url-pattern>
+		<url-pattern>/infoAgent.do</url-pattern>
 	</filter-mapping>
 	
 	<filter>
