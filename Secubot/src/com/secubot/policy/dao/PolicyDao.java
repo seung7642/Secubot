@@ -29,7 +29,7 @@ public class PolicyDao {
 			pstmt.setString(2, agentPolicy.getPolicy_description());
 			pstmt.setBoolean(3, agentPolicy.isFlag_accept());
 			pstmt.setBoolean(4, agentPolicy.isFlag_apply());
-			pstmt.setString(5, agentPolicy.getRule_json());
+			pstmt.setString(5, "{MD5:" + agentPolicy.getRule_json() + "}");
 			pstmt.setString(6, agentPolicy.getImage_name());
 			pstmt.executeUpdate();
 		} catch(SQLException e) {

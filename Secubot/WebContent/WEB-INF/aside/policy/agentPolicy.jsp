@@ -84,11 +84,11 @@ li.nonotiActive {
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="agent" items="${agentPage.list }">
+										<c:forEach var="agent" items="${agentPolicyPage.list }">
 											<tr>
 												<td>#</td>
-												<td>${agent.getPolicyName() }</td>
-												<td>${agent.getProcessName() }</td>
+												<td>Process_Kill</td>
+												<td>${agent.getImage_name() }</td>
 											</tr>
 										</c:forEach>
 									</tbody>
