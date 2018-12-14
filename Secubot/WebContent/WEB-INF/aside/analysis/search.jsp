@@ -41,8 +41,8 @@ vis-timeline{
 }
 
 .vis-item.red {
-  background-color: #feb236;
-  border-color: #ff7b25;
+  background-color: #cc2222;
+  border-color: red;
   color:#ffffff;
 }
 .vis-item.vis-selected {
@@ -87,9 +87,26 @@ li.nonotiActive {
 				<br>
 				<p id="queryResult"></p> 
 				<div id="resultTimeline"></div>
+
 			</div>
 			<!-- End row -->
+			<table class="table table-hover table-striped table-sm"  style="table-layout:fixed;word-break:break-all;width:100%; ">
+				<caption>행위 리스트</caption>
+				<thead class="thead-dark">
 
+					<tr>
+						<th width="8%">UserName</th>					
+						<th width="8%">UtcTime</th>
+						<th width="6%">ParentPID</th>
+						<th width="6%">PID</th>
+						<th width="30%">Parent Command Line</th>
+						<th width="30%">Command Line</th>
+						<th width="12%">HASH</th>
+					</tr>
+				</thead>
+				<tbody  id="resultCommandLine">
+				</tbody>
+			</table>
 		</div>
 			<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -281,15 +298,31 @@ li.nonotiActive {
 						}
 					}
 					$("#queryResult")[0].innerHTML= "총 " + resp.hits.total + "개의 결과 조회됨."
+					deleteElement($("#resultCommandLine")[0]);
 					
 				    var hits = resp.hits.hits;
 				    allData = [];
 				    d = [];
 					for (var i in hits){
+						
 						var tmp={};
 						tmp.id = Number(i);
 						tmp.content = hits[i]["_source"].type;
-						if (hits[i]["_source"].type == "Image_load"){
+						if (hits[i]["_source"].type == "process_creation"){
+
+							tmp.content += "";
+							document.querySelector("#resultCommandLine").innerHTML += 
+								"<tr>" +
+								"<td >" + hits[i]["_source"].UserName +"</td>"+
+								"<td >" + hits[i]["_source"].UtcTime +"</td>"+
+								"<td >" + hits[i]["_source"].ParentProcessId +"</td>"+
+								"<td >" + hits[i]["_source"].ProcessId +"</td>"+
+								"<td >" + hits[i]["_source"].ParentCommandLine +"</td>"+
+								"<td >" + hits[i]["_source"].CommandLine +"</td>"+
+								"<td >" + "<a target=\"_blank\" href=\"https://www.virustotal.com/#/file/" + hits[i]["_source"].MD5 + "\">" + hits[i]["_source"].MD5 + "</a></td>"+
+								"</tr>" +
+								"<tr><td colspan=\"8\"></td></tr>";
+						}else if (hits[i]["_source"].type == "Image_load"){
 							tmp.content += " " +  hits[i]["_source"].ImageLoaded;
 						}else if (hits[i]["_source"].type == "process_changed_file_creation_time"){
 							tmp.content += " " +  hits[i]["_source"].TargetFilename;
@@ -326,7 +359,8 @@ li.nonotiActive {
 					var items = new vis.DataSet(d)
 					var options = {verticalScroll: true, clickToUse:true,width:'100%',height:'480px',zoomKey: 'ctrlKey'}
 					deleteElement($("#resultTimeline")[0]);
-					var timeline = new vis.Timeline($("#resultTimeline")[0],items,options);
+					
+					var timeline = new vis.Timeline($("#qqqresultTimeline")[0],items,options);
 				    timeline.on('click', function (properties) {
 				    	if (properties.item != null){
 
