@@ -11,7 +11,6 @@ import com.secubot.mvc.command.CommandHandler;
 public class ListArticleHandler implements CommandHandler {
 
 	private ListArticleService listService = new ListArticleService();
-	private SendEmail send = new SendEmail();
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
