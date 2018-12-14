@@ -54,20 +54,23 @@ public class SendEmail {
 			msg.setSubject("Secubot Project"); 
 			msg.setSentDate(new Date());
 			
-			String contentMsg = "<strong>This is Secubot Message</strong><br/>"
-					+ "It is the receipt that you sent.<br/>"
-					+ "src_ip: " + articleData.getContent().getSrc_ip() + "<br/>"
-					+ "dst_ip: " + articleData.getContent().getDst_ip() + "<br/>"
-					+ "dst_port: " + articleData.getContent().getDst_ip() + "<br/>"
-					+ "Successfully processed. <br/>"
-					+ "Thank you";
+			String contentMsg = "<strong>안녕하세요. Secubot 팀입니다.</strong><br/><br/>"
+					+ "<strong>접수하신 내용입니다.</strong><br/>"
+					+ "==============================================<br/>"
+					+ "<strong>src_ip:</strong> " + articleData.getContent().getSrc_ip() + "<br/>"
+					+ "<strong>dst_ip:</strong> " + articleData.getContent().getDst_ip() + "<br/>"
+					+ "<strong>dst_port:</strong> " + articleData.getContent().getDst_port() + "<br/>"
+					+ "==============================================<br/>"
+					+ "<strong>접수하신 내용이 정상적으로 처리되었습니다.</strong><br/>"
+					+ "<strong>감사합니다.</strong>";
 			MimeBodyPart mimeBodyPart = new MimeBodyPart();
-			mimeBodyPart.setContent(contentMsg, "text/html");
+			mimeBodyPart.setContent(contentMsg, "text/html;charset=utf-8");
 			
 			Multipart multipart = new MimeMultipart();
 			multipart.addBodyPart(mimeBodyPart);
 			
 			msg.setContent(multipart);
+//			msg.setHeader("content-type", "text/html; charset=utf-8");
 			
 			Transport.send(msg);
 		} catch (MessagingException e) {

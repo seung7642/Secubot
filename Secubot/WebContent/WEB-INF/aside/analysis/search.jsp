@@ -41,8 +41,8 @@ vis-timeline{
 }
 
 .vis-item.red {
-  background-color: #cc2222;
-  border-color: red;
+  background-color: #feb236;
+  border-color: #ff7b25;
   color:#ffffff;
 }
 .vis-item.vis-selected {

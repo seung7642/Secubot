@@ -80,11 +80,11 @@ textarea{
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#default" data-toggle="tab"
 							aria-expanded="true"> <span class="visible-xs"><i
-									class="fa fa-home"></i></span> <span class="hidden-xs">기본정보</span>
+									class="fa fa-home"></i></span> <span class="hidden-xs">자산정보</span>
 						</a></li>
 						<li class=""><a href="#sysmonxml" data-toggle="tab"
 							aria-expanded="false"> <span class="visible-xs"><i
-									class="fa fa-user"></i></span> <span class="hidden-xs">XML 제어</span>
+									class="fa fa-user"></i></span> <span class="hidden-xs">이벤트 수집 정책</span>
 						</a></li>
 					</ul>
 					<div class="tab-content">

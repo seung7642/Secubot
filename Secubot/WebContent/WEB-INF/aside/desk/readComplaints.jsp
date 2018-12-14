@@ -87,7 +87,7 @@ li.nonotiActive {
 								</tr>
 								
 								<tr>
-									<th class="text-center">이름</th>
+									<th class="text-center">E-Mail</th>
 									<td class="text-center">${articleData.article.writer.email}</td>
 								</tr>
 								

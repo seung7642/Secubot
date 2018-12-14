@@ -7,14 +7,15 @@ function scaleNum(D1,D2,T1,T2,n){
 
 function getProcessList() {
 	var data = $.ajax({
-		url: 'http://211.193.58.162:2222/ProcessList',
+		url: 'http://211.193.58.162:2222/ProcessList?total=1d&interval=1m',
 		type: 'GET',
-		async: false,
+		async: true, // 비동기로 하면 잘되는데, 동기로하면 400 Bad Request가 나옴.
 		success: function(el) {
-			console.log("success");
+			console.log("success: " + el);
 		}
 	}).responseText;
 	//setTimeout("getProcessList()", 20000);
+	console.log(data);
 	return data;
 }
 

@@ -44,7 +44,7 @@ li.nonotiActive {
 	<!-- Main Content Start -->
 	<section class="content">
 		<%@ include file="/WEB-INF/view/header.jsp"%>
-	
+
 		<!-- Page Content Start -->
 		<!-- ================== -->
 		<div class="wraper container-fluid">
@@ -56,7 +56,7 @@ li.nonotiActive {
 				<div class="col-md-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title text-dark">보안 업무 형상관리</h3>
+							<h3 class="panel-title text-dark">보안 민원 업무 처리</h3>
 						</div>
 						<div class="panel-body">
 							<div class="row">

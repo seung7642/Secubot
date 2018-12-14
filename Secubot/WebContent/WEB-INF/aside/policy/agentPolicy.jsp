@@ -132,9 +132,21 @@ li.nonotiActive {
 								<option value="process_kill">Process Kill</option>
 							</select>
 						</div>
+						<div class="form-group md-form mb-4">
+							<label for="policy_name">정책 설명</label>
+							<input name="policy_description" type="text" class="form-control" id="policy_description" placeholder="description">
+						</div>
 						<div class="form-group">
 							<label for="process_name">프로세스명</label>
-							<input name="process_name" type="text" class="form-control" id="process_name" placeholder="Process name...">
+							
+							<!-- TODO: ajax로 받아온 데이터를 옵션으로 넣어주기  -->
+							<select name="process_name" id="process_name" class="form-control">
+								<option value="process_name"></option>
+							</select>
+						</div>
+						<div class="form-group md-form mb-4">
+							<label for="rule_json">MD5</label>
+							<input name="rule_json" type="text" class="form-control" id="rule_json" placeholder="MD5">
 						</div>
 						<div class="form-group">
 							<button class="btn btn-outline-secondary" data-dismiss="modal" aria-hidden="false">Cancle</button>
@@ -164,7 +176,7 @@ li.nonotiActive {
 	<script src="js/jquery.dashboard.js"></script>
 	
 	<!-- ajax -->
-	<script src="js/ajax.js?ver=1"></script>
+	<script src="js/ajax.js?ver=1.212"></script>
 	
 	<script src="assets/datatables/jquery.dataTables.min.js"></script>
 	<script src="assets/datatables/dataTables.bootstrap.js"></script>
@@ -176,6 +188,13 @@ li.nonotiActive {
 		});
 		
 		//checkMyNoti();
+		
+		// TODO: getProcessList로 받아온 데이터를 옵션에 넣어주기
+		var data = getProcessList();
+		var parse = JSON.parse(data);
+		console.log(data);
+		console.log(parse);
+		
 	</script>
 
 </body>
