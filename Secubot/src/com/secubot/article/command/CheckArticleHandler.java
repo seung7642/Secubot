@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.secubot.article.service.CheckArticleService;
+import com.secubot.auth.service.User;
 import com.secubot.mvc.command.CommandHandler;
 
 public class CheckArticleHandler implements CommandHandler {
@@ -30,6 +31,9 @@ public class CheckArticleHandler implements CommandHandler {
 		int article_no = Integer.parseInt(param);
 		int cnt = 1; // 지금은 비승인 / 승인 2가지 상태만 있다.
 		check.update(cnt, article_no);
+		
+		User user = (User)req.getSession(false).getAttribute("authUser");
+		check.checkEmail(user, article_no);
 		return FORM_VIEW;
 	}
 	

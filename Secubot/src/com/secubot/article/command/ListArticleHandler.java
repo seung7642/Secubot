@@ -19,7 +19,6 @@ public class ListArticleHandler implements CommandHandler {
 		if (pageNoVal != null) {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
-		SendEmail.send();
 		
 		ArticlePage articlePage = listService.getArticlePage(pageNo);
 		req.setAttribute("articlePage", articlePage);

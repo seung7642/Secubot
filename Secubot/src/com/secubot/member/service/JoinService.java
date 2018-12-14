@@ -70,7 +70,7 @@ public class JoinService {
 			
 			MailInfo mailInfo = new MailInfo(email, registerCode); 
 			mailInfo.setRegisterContent();
-			SendEmail.send(mailInfo); 
+//			SendEmail.send(mailInfo);
 		} catch (SQLException e) {
 			JdbcUtil.rollback(conn);
 			throw new RuntimeException();

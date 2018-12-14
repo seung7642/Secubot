@@ -15,11 +15,13 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import com.secubot.article.model.ArticleContent;
+import com.secubot.auth.service.User;
 import com.secubot.member.service.MailInfo;
 
 public class SendEmail {
 
-	public static void send() {
+	public static void send(User user, ArticleContent content) {
 		
 		// 송신자 이메일 아이디와 패스워드
 		String admin = "atmdgh1234";
@@ -47,11 +49,16 @@ public class SendEmail {
 		try {
 //			InternetAddress to = new InternetAddress(mailInfo.getEmail()); 
 			msg.setFrom(new InternetAddress(admin+"@naver.com"));
-			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("seung7642@gmail.com")); 
+			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(user.getEmail())); 
 			msg.setSubject("Secubot Project"); 
 			msg.setSentDate(new Date());
 			
-			String contentMsg = "This is Secubot Message Content";
+			String contentMsg = "This is Secubot Message\n보내주신 접수 내용\n"
+					+ "src_ip: " + content.getSrc_ip() + "\n"
+					+ "dst_ip: " + content.getDst_ip() + "\n"
+					+ "dst_port: " + content.getDst_port() + "\n"
+					+ "가 정상적으로 처리되었습니다."
+					+ "감사합니다.";
 			MimeBodyPart mimeBodyPart = new MimeBodyPart();
 			mimeBodyPart.setContent(contentMsg, "text/html");
 			
