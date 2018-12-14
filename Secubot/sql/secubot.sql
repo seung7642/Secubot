@@ -22,6 +22,7 @@ create table secubot.article (
 	article_no int auto_increment primary key,
 	writer_id varchar(15) not null,
 	writer_name varchar(15) not null,
+	writer_email varchar(15) not null,
 	title varchar(255) not null,
 	reg_date datetime not null,
 	process_check int not null,

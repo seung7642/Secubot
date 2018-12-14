@@ -87,8 +87,8 @@ li.nonotiActive {
 								</tr>
 								
 								<tr>
-									<th class="text-center">이메일</th>
-									<td class="text-center">${ }</td>
+									<th class="text-center">이름</th>
+									<td class="text-center">${articleData.article.writer.email}</td>
 								</tr>
 								
 								<tr>
@@ -153,8 +153,7 @@ li.nonotiActive {
 	<script src="${pageContext.request.contextPath }/js/modernizr.min.js"></script>
 	<script src="${pageContext.request.contextPath }/js/pace.min.js"></script>
 	<script src="${pageContext.request.contextPath }/js/wow.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/js/jquery.scrollTo.min.js"></script>
+	<script src="${pageContext.request.contextPath }/js/jquery.scrollTo.min.js"></script>
 	<script src="${pageContext.request.contextPath }/js/jquery.nicescroll.js"></script>
 
 	<script src="${pageContext.request.contextPath }/js/jquery.app.js"></script>

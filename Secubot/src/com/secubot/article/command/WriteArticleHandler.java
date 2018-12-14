@@ -58,7 +58,7 @@ public class WriteArticleHandler implements CommandHandler {
 	
 	private WriteRequest createWriteRequest(User user, HttpServletRequest req) {
 		return new WriteRequest(
-				new Writer(user.getId(), user.getName()),
+				new Writer(user.getId(), user.getName(), user.getEmail()),
 				req.getParameter("title"),
 				req.getParameter("content"),
 				req.getParameter("type").equals("TCP")?0:1, // TCP=0, UDP=1

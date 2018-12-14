@@ -56,7 +56,7 @@ public class MyNotiDao {
 	private MyNotification convertNoti(ResultSet rs) throws SQLException {
 		return new MyNotification(
 				rs.getInt("article_no"),
-				new Writer(rs.getString("writer_id"), rs.getString("writer_name")),
+				new Writer(rs.getString("writer_id"), rs.getString("writer_name"), rs.getString("writer_email")),
 				rs.getBoolean("read_check"), 
 				toDate(rs.getTimestamp("regdate")));
 	}

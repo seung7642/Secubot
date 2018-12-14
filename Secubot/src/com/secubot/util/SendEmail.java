@@ -16,12 +16,13 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 import com.secubot.article.model.ArticleContent;
+import com.secubot.article.service.ArticleData;
 import com.secubot.auth.service.User;
 import com.secubot.member.service.MailInfo;
 
 public class SendEmail {
 
-	public static void send(User user, ArticleContent content) {
+	public static void send(User user, ArticleData articleData) {
 		
 		// 송신자 이메일 아이디와 패스워드
 		String admin = "atmdgh1234";
@@ -49,15 +50,15 @@ public class SendEmail {
 		try {
 //			InternetAddress to = new InternetAddress(mailInfo.getEmail()); 
 			msg.setFrom(new InternetAddress(admin+"@naver.com"));
-			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(user.getEmail())); 
+			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(articleData.getArticle().getWriter().getEmail())); 
 			msg.setSubject("Secubot Project"); 
 			msg.setSentDate(new Date());
 			
 			String contentMsg = "This is Secubot Message\\r\\n"
 					+ "It is the receipt that you sent.\\r\\n"
-					+ "src_ip: " + content.getSrc_ip() + "\\r\\n"
-					+ "dst_ip: " + content.getDst_ip() + "\\r\\n"
-					+ "dst_port: " + content.getDst_port() + "\\r\\n"
+					+ "src_ip: " + articleData.getContent().getSrc_ip() + "\\r\\n"
+					+ "dst_ip: " + articleData.getContent().getDst_ip() + "\\r\\n"
+					+ "dst_port: " + articleData.getContent().getDst_port() + "\\r\\n"
 					+ "Successfully processed. \\r\\n"
 					+ "Thank you";
 			MimeBodyPart mimeBodyPart = new MimeBodyPart();

@@ -23,14 +23,15 @@ public class ArticleDao {
 
 		try {
 			pstmt = conn.prepareStatement(
-					"insert into article(writer_id, writer_name, title, reg_date, process_check, trans_type) "
-							+ " values(?, ?, ?, ?, ?, ?)");
+					"insert into article(writer_id, writer_name, writer_email, title, reg_date, process_check, trans_type) "
+							+ " values(?, ?, ?, ?, ?, ?, ?)");
 			pstmt.setString(1, article.getWriter().getId());
 			pstmt.setString(2, article.getWriter().getName());
-			pstmt.setString(3, article.getTitle());
-			pstmt.setTimestamp(4, new Timestamp(article.getReg_date().getTime()));
-			pstmt.setInt(5, article.getProcess_check());
-			pstmt.setInt(6, article.getTrans_type());
+			pstmt.setString(3, article.getWriter().getEmail());
+			pstmt.setString(4, article.getTitle());
+			pstmt.setTimestamp(5, new Timestamp(article.getReg_date().getTime()));
+			pstmt.setInt(6, article.getProcess_check());
+			pstmt.setInt(7, article.getTrans_type());
 			int insertedCount = pstmt.executeUpdate();
 
 			if (insertedCount > 0) {
@@ -85,7 +86,7 @@ public class ArticleDao {
 			while (rs.next()) {
 				list.add(new Article(
 						rs.getInt("article_no"),
-						new Writer(rs.getString("writer_id"), rs.getString("writer_name")),
+						new Writer(rs.getString("writer_id"), rs.getString("writer_name"), rs.getString("writer_email")),
 						rs.getString("title"),
 						new Date(rs.getTimestamp("reg_date").getTime()),
 						rs.getInt("process_check"),
@@ -112,7 +113,7 @@ public class ArticleDao {
 			if (rs.next()) {
 				article = new Article(
 						rs.getInt("article_no"),
-						new Writer(rs.getString("writer_id"), rs.getString("writer_name")),
+						new Writer(rs.getString("writer_id"), rs.getString("writer_name"), rs.getString("writer_email")),
 						rs.getString("title"),
 						new Date(rs.getTimestamp("reg_date").getTime()),
 						rs.getInt("process_check"),

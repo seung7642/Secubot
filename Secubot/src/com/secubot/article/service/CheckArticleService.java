@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import com.secubot.article.dao.ArticleContentDao;
 import com.secubot.article.dao.ArticleDao;
+import com.secubot.article.model.Article;
 import com.secubot.article.model.ArticleContent;
 import com.secubot.auth.service.User;
 import com.secubot.jdbc.connection.ConnectionProvider;
@@ -25,8 +26,8 @@ public class CheckArticleService {
 	public void checkEmail(User user, int article_no) throws SQLException {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			ArticleContent content = contentDao.selectById(conn, article_no);
-			
-			SendEmail.send(user, content);
+			Article article = articleDao.selectById(conn, article_no);
+			SendEmail.send(user, new ArticleData(article, content));
 		}
 	}
 }
