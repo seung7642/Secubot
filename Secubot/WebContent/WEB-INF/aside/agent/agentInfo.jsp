@@ -145,7 +145,7 @@ textarea{
 							<button type="button" id="commit" class="btn btn-success">저장</button>
 							<br>
 							<div class="table-responsive" data-pattern="priority-columns">
-								<textarea class="form-control" rows="5" id="xmlEditor">${agentInfo.agent_xml}</textarea>
+								<textarea class="form-control" rows="5" id="xmlEditor" style="height:400px;">${agentInfo.agent_xml}</textarea>
 								
 							</div>
 						</div>
