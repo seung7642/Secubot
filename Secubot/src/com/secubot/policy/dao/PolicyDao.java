@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import com.secubot.policy.model.ProcessPolicyDetail;
 import com.secubot.policy.model.NetworkPolicy;
 import com.secubot.policy.model.ProcessPolicy;
+import com.secubot.agent.model.LoginSession;
 import com.secubot.jdbc.JdbcUtil;
 
 public class PolicyDao {
@@ -173,5 +174,9 @@ public class PolicyDao {
 			JdbcUtil.close(pstmt);
 			JdbcUtil.close(rs);
 		}
+	}
+	
+	public LoginSession selectLoginSession(Connection conn) throws SQLException {
+		
 	}
 }
