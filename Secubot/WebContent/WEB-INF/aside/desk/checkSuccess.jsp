@@ -70,58 +70,7 @@ li.nonotiActive {
 							<h3 class="portlet-title text-dark">민원 내용</h3>
 						</div>
 						<div class="portlet-body">
-							<table border="1" width="100%">
-								<tr>
-									<th class="text-center">번호</th>
-									<td class="text-center">${articleData.article.article_no}</td>
-								</tr>
-								
-								<tr>
-									<th class="text-center">ID</th>
-									<td class="text-center">${articleData.article.writer.getId()}</td>
-								</tr>
-								
-								<tr>
-									<th class="text-center">이름</th>
-									<td class="text-center">${articleData.article.writer.name}</td>
-								</tr>
-								
-								<tr>
-									<th class="text-center">날짜</th>
-									<td class="text-center"><c:out value='${articleData.article.getReg_date()}' /></td>
-								</tr>
-								
-								<tr>
-									<th class="text-center">제목</th>
-									<td class="text-center"><c:out value='${articleData.article.getTitle()}' /></td>
-								</tr>
-								
-								<tr>
-									<th class="text-center">src_ip</th>
-									<td class="text-center"><c:out value='${articleData.content.getSrc_ip()}' /></td>
-								</tr>
-								
-								<tr>
-									<th class="text-center">dst_ip</th>
-									<td class="text-center"><c:out value='${articleData.content.getDst_ip()}' /></td>
-								</tr>
-								
-								<tr>
-									<th class="text-center">dst_port</th>
-									<td class="text-center"><c:out value='${articleData.content.getDst_port()}' /></td>
-								</tr>
-								
-								<tr>
-									<th class="text-center" colspan="2">내용</th>
-								</tr>
-								
-								<tr>
-									<td class="text-center" colspan="2" height=100><u:pre
-											value='${articleData.content.getContent()}' /></td>
-								</tr>
-								
-								<a class="btn btn-default pull-right" href="${pageContext.request.contextPath }/article/complaintcheck.do?article_no=${articleData.article.article_no }">승인</a>
-							</table>
+							<p>정상적으로 승인처리되었습니다.</p>
 						</div>
 					</div>
 				</div>

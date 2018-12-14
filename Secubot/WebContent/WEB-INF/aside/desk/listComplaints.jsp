@@ -68,6 +68,7 @@ li.nonotiActive {
 												<th>제목</th>
 												<th>작성자</th>
 												<th>날짜</th>
+												<th>승인여부</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -86,6 +87,8 @@ li.nonotiActive {
 											</td>
 											<td>${article.writer.name}</td>
 											<td>${article.reg_date}</td>
+											<td>${(article.process_check==0?"비승인":"승인") }
+											</td>
 										</tr>
 									</c:forEach>
 										</tbody>

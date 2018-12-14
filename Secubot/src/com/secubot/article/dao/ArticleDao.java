@@ -31,7 +31,6 @@ public class ArticleDao {
 			pstmt.setTimestamp(4, new Timestamp(article.getReg_date().getTime()));
 			pstmt.setInt(5, article.getProcess_check());
 			pstmt.setInt(6, article.getTrans_type());
-			pstmt.executeUpdate();
 			int insertedCount = pstmt.executeUpdate();
 
 			if (insertedCount > 0) {
@@ -41,7 +40,6 @@ public class ArticleDao {
 				if (rs.next()) {
 					Integer newNo = rs.getInt(1);
 					
-					// rs.getString("writer_id") => Error: writer_id column을 찾을 수 없습니다.
 					return new Article(
 							newNo,
 							article.getWriter(),
@@ -122,6 +120,25 @@ public class ArticleDao {
 			}
 
 			return article;
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+	}
+	
+	public int updateCheck(Connection conn, int cnt, int article_no) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement("update article set process_check=? where article_no=?");
+			pstmt.setInt(1, cnt);
+			pstmt.setInt(2, article_no);
+			int result = pstmt.executeUpdate();
+			if (result > 0) {
+				return 1;
+			}
+			return 0;
 		} finally {
 			JdbcUtil.close(pstmt);
 			JdbcUtil.close(rs);
