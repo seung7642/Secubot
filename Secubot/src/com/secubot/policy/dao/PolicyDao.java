@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import com.secubot.policy.model.ProcessPolicyDetail;
 import com.secubot.policy.model.NetworkPolicy;
 import com.secubot.policy.model.ProcessPolicy;
-import com.secubot.agent.model.LoginSession;
+import com.secubot.policy.model.LoginSession;
 import com.secubot.jdbc.JdbcUtil;
 
 public class PolicyDao {

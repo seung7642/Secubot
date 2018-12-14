@@ -1,10 +1,12 @@
 package com.secubot.policy.command;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.secubot.policy.model.LoginSession;
 import com.secubot.policy.service.AgentPolicyPage;
 import com.secubot.policy.service.AgentPolicyService;
 import com.secubot.auth.service.User;
@@ -30,7 +32,9 @@ public class AgentPolicyHandler implements CommandHandler {
 	private String processForm(HttpServletRequest req, HttpServletResponse res) throws SQLException {
 		// TODO: login_session 테이블에서 리스트 가져와서 속성으로 등록하기
 		AgentPolicyPage agentPolicyPage = agentService.getAgentPage();
+		List<LoginSession> list = agentService.getList();
 		req.setAttribute("agentPolicyPage", agentPolicyPage);
+		req.setAttribute("list", list);
 		return FORM_VIEW;
 	}
 	

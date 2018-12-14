@@ -133,6 +133,14 @@ li.nonotiActive {
 							</select>
 						</div>
 						<div class="form-group md-form mb-4">
+							<label for="agent_hash">적용할 에이전트</label>
+							<select name="agent_hash" id="agent_hash" class="form-control">
+								<c:forEach var="list" items="${list }">
+									<option value="agent_hash">${list.user_name }(${list.agent_hash })</option>
+								</c:forEach>
+							</select>
+						</div>
+						<div class="form-group md-form mb-4">
 							<label for="policy_description">정책 설명</label>
 							<input name="policy_description" type="text" class="form-control" id="policy_description" placeholder="description">
 						</div>
