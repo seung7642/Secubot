@@ -83,7 +83,7 @@ canvas {
 					<div class="widget-panel widget-style-2 white-bg">
 						<i class="ion-ios7-compose text-success"></i> 
 						<h2 class="today-event-count m-0 counter" style="cursor:pointer;"></h2>
-						<span>Today's Events<br><br></span>
+						<div>Today's Events</div>
 					</div>
 				</div>
 				<div class="col-lg-3 col-sm-6">
@@ -311,7 +311,7 @@ canvas {
 			window.open(popUrl, popOption);
 		} */
 
-		document.getElementById('randomizeData').addEventListener('click', function() {
+		/* document.getElementById('randomizeData').addEventListener('click', function() {
 			scatterChartData.datasets.forEach(function(dataset) {
 				dataset.data = dataset.data.map(function() {
 					return {
@@ -321,7 +321,7 @@ canvas {
 				});
 			});
 			window.myScatter.update();
-		});
+		}); */
 		
 		var todayProcess = todayProcessCount();
 		var parseTodayProcess = JSON.parse(todayProcess);

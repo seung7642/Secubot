@@ -176,6 +176,9 @@ label {
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
+					<form action="" method="GET" class="form col-md-2" onsubmit="pausecomp(1000);alert('차단되었습니다');return false;">
+						<button type="submit" class="btn btn-danger btn-custom m-b-5">차단</button>
+					</form>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span></button>
 				</div>
@@ -291,16 +294,7 @@ label {
 				if (parse.ProcessFamilyList[i].RuleName != ""){
 					RuleNameField = "<a target=\"_blank\" href=\"https://attack.mitre.org/techniques/" + parse.ProcessFamilyList[i].RuleCode + "\">" +parse.ProcessFamilyList[i].RuleCode + "</a>";
 				}
-				/*
-						th width="10%">UtcTime</th>
-						<th width="5%">ParentPID</th>
-						<th width="5%">PID</th>
-						<th width="20%">Parent Command Line</th>
-						<th width="20%">Command Line</th>
-						<th width="5%">RuleName</th>
-						<th width="3%">HASH</th>
-						<th width="5%">Stage</th>
-				*/
+				
 				window["ProcessChain"][Cname] = parse.ProcessFamilyList[i];
 				document.querySelector("#forData3").innerHTML += 
 					"<tr>" +

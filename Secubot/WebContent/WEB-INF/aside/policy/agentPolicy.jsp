@@ -84,6 +84,7 @@ li.nonotiActive {
 											<th data-priority="3" width="20%">정책명</th>
 											<th data-priority="3" width="20%">프로세스명</th>
 											<th data-priority="3" width="20%">MD5</th>
+											<th data-priority="3" width="20%">정책설명</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -93,6 +94,7 @@ li.nonotiActive {
 												<td>Process_Kill</td>
 												<td>${list.image_name }</td>
 												<td>${list.rule_json }</td>
+												<td>${list.policy_description }</td>
 											</tr>
 										</c:forEach>
 									</tbody>

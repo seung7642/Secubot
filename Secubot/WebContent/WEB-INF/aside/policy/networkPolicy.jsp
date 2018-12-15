@@ -145,8 +145,8 @@ li.nonotiActive {
 							<input name="dst_ip" type="text" class="form-control" id="dst_ip" placeholder="dstIP...">
 						</div>
 						<div class="form-group">
-							<label for="dst_port">dstPort</label>
-							<input name="dst_port" type="text" class="form-control" id="dst_port" placeholder="dstPort...">
+							<label for="port">dstPort</label>
+							<input name="port" type="text" class="form-control" id="port" placeholder="dstPort...">
 						</div>
 						<!-- <div class="form-group">
 							<div id="spinner">

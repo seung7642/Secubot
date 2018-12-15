@@ -69,8 +69,9 @@ $(document).ready(function() {
 			<li class="has-submenu">
 				<a href="#"><i class="ion-podium"></i><span class="nav-label">Analysis</span></a>
 				<ul class="list-unstyled">
-					<li><a href="${pageContext.request.contextPath }/analysis.do">search</a></li>
+					<li><a href="${pageContext.request.contextPath }/analysis.do">search_process</a></li>
 					<li><a href="${pageContext.request.contextPath }/analysisnetwork.do">search_network</a></li>
+					<li><a href="${pageContext.request.contextPath }/analysisnetwork.do">search_file</a></li>
 				</ul>
 			</li>
 			
