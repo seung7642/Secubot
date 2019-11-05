@@ -1,9 +1,5 @@
 # Sysmon
 
-[TOC]
-
-## 개요
-
 기업에서는 정보유출 위험을 최소화하고 내부보안을 강화하기 위한 방안으로 **EDR(Endpoint Detection and Response) 등을 이용하여 사용자의 이상행위를 분석**하고 있다.
 
 
