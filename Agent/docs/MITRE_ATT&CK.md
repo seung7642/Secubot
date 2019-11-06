@@ -1,2 +1,2 @@
-# MITRE^TM^ - ACC&CK
+# MITRE<sup>TM</sup> - ACC&CK
 
