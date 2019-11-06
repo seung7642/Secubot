@@ -5,33 +5,25 @@
 1. `System Configuration Diagram`
 2. `Web Configuration`
 
-
+<br />
 
 ## 1. System Configuration Diagram
 
-![1544894003687](README.assets/1544894003687.png)
+![1573055046246](README.assets/system_configuration.png)
 
-
+<br />
 
 ## 2. Web Configuration
 
-**Language :** `JSP&Servlet / Javascript / HTML5&CSS3`
-
-**Wep Application Server :** `Apache Tomcat 9`
-
-**Web Server :** `Apache`
-
-**DB :** `MySQL 5.7`
-
-**IDE :** `Eclipse` 
-
-
-
 ***<u>Function</u>***
 
-1. Login / Logout / Join
-2. Chart for Data Visualization ( Scatter, Network for topology, Line)
-3. Notification when write article
-4. Send E-Mail when I checked the article.
-5. Popup Window that check data detail when Occured Click Event at Scatter.
-6. Etc
+1. `Login / Logout / Join`
+2. `Chart for Data Visualization ( Scatter, Network for topology, Line)`
+3. `Notification when write article`
+4. `Send E-Mail when I checked the article.`
+5. `Popup Window that check data detail when Occured Click Event at Scatter.`
+
+<br />
+
+
+
