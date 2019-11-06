@@ -10,25 +10,7 @@ EndUser의 보안성을 강화하기 위해서는 Anti-virus, NAC 등의 다양�
 
 ## Sysmon function
 
-- 현재 프로세스와 상위 프로세스 전체에 대한 프로세스 생성여부를 기록
-- 프로세스 이미지 파일의 해쉬를 제공하며 동시에 여러 개의 해쉬 사용 가능 (기본적으로 SHA1을 적용되며, MD5, SHA256, IMPHASH도 사용 가능)
-- 네트워크 이벤트는 네트워크 연결을 시도하는 프로세스 정보, IP주소, PORT 정보, 호스트 이름​ 등을 기록
-- 파일 생성시간의 변화를 감지하여 파일이 실제 생성된 시기를 파악하여 기록
-- 특정 이벤트를 동적으로 포함시키거나 제외시키는 필터링 규칙 적용 가능
-
-
-
-Sysmon 기본 설치 시 기록되는 이벤트 목록
-
-- `Process create (with SHA1)`
-- `Process terminate`
-- `Driver loaded`
-- `File creation time changed`
-- `RawAccessRead`
-- `CreateRemoteThread`
-- `Sysmon service state changed`
-
-
+Sysmon은 **총 16개의 이벤트를 기록**할 수 있으며, 목록은 다음과 같다.
 
 | Evnet ID | Evnet Name                                    | Description                                                  |
 | -------- | :-------------------------------------------- | ------------------------------------------------------------ |
@@ -49,3 +31,14 @@ Sysmon 기본 설치 시 기록되는 이벤트 목록
 | 15       | FileCreateStreamHash                          | 파일스트림 생성 시 스트림 내의 해쉬를 기록                   |
 | 16       | Error                                         | Sysmon에서 오류가 발생할 시 생성                             |
 
+
+
+Sysmon을 **기본 옵션으로 설치하게되면 7개의 이벤트만 기록**한다.
+
+- `Process create (with SHA1)`
+- `Process terminate`
+- `Driver loaded`
+- `File creation time changed`
+- `RawAccessRead`
+- `CreateRemoteThread`
+- `Sysmon service state changed`
